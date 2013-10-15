@@ -1,0 +1,11 @@
+*~
+*.aux
+*.toc
+*.pdf
+*.idx
+*.log
+*.out
+test*
+*.DS_Store
+*\#*
+*.pyg

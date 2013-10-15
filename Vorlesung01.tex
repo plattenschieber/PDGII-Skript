@@ -1,0 +1,138 @@
+\chapter{Iterationsverfahren für (große) lineare Gleichungssysteme}
+Gegeben: $Ax=b$, $A\in \R^{n\times n}$, $A$ invertierbar, $x,b \in \R^n$ mit $x=A^{-1}b$
+Ziel: Konstruktion eines iterativen Verfahren zur Lösung von * der Form:
+\begin{equation}
+  x^{(k+1)} := \phi(x^{(k)}), k\in \N, x^{(0)} \in \R^n
+  \label{}
+\end{equation}
+Iterationsfunktion $\phi: \R^n \to \R^n$ gegeben.
+
+\section{Das Richardson-Verfahren}
+Ansatz: Sei $M\in \R^{n\times n}$ invertierbar. Wir betrachten das folgende Splitting:
+\begin{equation}
+  Mx + \underbrace{(A-M)x}{=N} = b
+  \label{}
+\end{equation}
+und setzen 
+\begin{equation}
+  Mx^{(k+1) + Nx^{(k)}} = b,\quad k=0,1,2\dots\\
+  \Leftrightarrow x^{(k+1)} = x^{(k)} + M^{-1}(b-Ax^{(k)})
+  = x^{(k)} M^{-1}r^{(k)} \text{ mit } r^{(k)} := b-Ax^{(k)} \text{ k-te Residuum} %aligne die gleicheitszeichen
+  \label{}
+\end{equation}
+
+Dieses Iterationsverfahren lässt sich durch Einführen eines Relaxationsparameters $\alpha \in \R$ noch verallgemeinern.
+\begin{equation}
+  x^{(0)} \in \R^n \text{geg.}
+  x^{(k+1)} := x^{(k)} + \alpha M^{-1} r^{(k)},\quad k=0,1,2,\dots
+  \label{Iterationsverfahren}
+\end{equation}
+heißt (stationäres) Richardson-Verfahren. 
+$\Rightarrow$ Iterationsvorschrift: $\phi(x) = Bx + c$ $B=I-\alpha M^{-1}A, C=\alpha M^{-1}b$
+
+Für die Konvergenz kennen wir aus Numerik I folgenden Satz:
+
+\begin{satz}
+  \label{itkonvergenz}
+  Das Iterationsverfahren (label) konvergiert genau dann, wenn 
+  \begin{equation}
+    \rho (B) < 1 
+    \label{}
+  \end{equation}
+  wobei $\rho(B) := \max_{\lambda \in \sigma(B)} |\lambda|$ und $\sigma(B) = \left\{ \lambda\in \C: \lambda \text{EW von B} \right\}$
+\end{satz}
+
+Hinreichende Konvergenzbedingung ist $\|B\| <1$ wobei $\|\cdot \|$ eine beliebige Matrixnorm ist, die durch eine Vektornorm induziert wird.
+\begin{equation*}
+  \Rightarrow \|e^{(k)} \leq \eta^k \|e^{(k)}, \quad \eta := \|B\|, e^{(k)} = x-x^{(k)} \text{ Fehler im k-ten Schritt}
+\end{equation*}
+
+\begin{satz}
+  Das stationäre Richardson-Verfahren (label) mit $\alpha \neq 0$ konvergiert genau dann, wenn 
+  \begin{equation}
+    2* \frac{Re(\lambda_i)}{\alpha|\lambda_i|^2} > 1, \quad \forall i=1,\dots, n
+    \label{}
+  \end{equation}
+  wobei $\lambda_i \in \sigma(M^{-1}A), \quad i=1,\dots, n$
+\end{satz}
+
+\begin{proof}
+  Wende (label itkonvergenz) auf $B=I-\alpha M^{-1}A$ an. Sei $\mu_i \in \sigma(B)$. Dann gilt
+  \begin{equation*}
+    \Leftrightarrow \mu_i = 1-\alpha \lambda_i, \quad \lambda_i \in \sigma(M^{-1}A)\\
+    \rho(B) < 1 \Leftrightarrow |1-\alpha\lambda_i| <1, \quad \forall \lambda_i \in \sigma(M^{-1}A)
+    \Leftrightarrow -2 \alpha Re(\lambda_i) + \alpha^2 |\lambda_i|^2 <0
+  \end{equation*}
+\end{proof}
+
+\begin{satz}
+  Voraussetzungen: $M^{-1}A$ habe nur positive reelle Eigenwerte $\lambda_i, i=1,\dots, n$ (Invertierbarkeit nicht zwingend erforderlich), die wie folgt geordnet seien:
+  \begin{equation*}
+    0< \lambda_n \leq \lambda_{n-1} \leq \dots \leq \lambda_1
+  \end{equation*}
+  \begin{itemize}
+    \item[1]  Dann ist das stationäre Richardson-Verfahren genau dann konvergent, wenn 
+             \begin{equation*}
+                0 < \alpha < \frac{2}{\lambda_1}
+              \end{equation*}
+    \item[2] Der Spektralradius $\rho(B)$ ist minimal (und damit die Konvergenz am schnellsten), wenn 
+      \begin{equation*}
+        \alpha = \alpha_{opt} := \frac{2}{\lambda_1+\lambda_n}
+      \end{equation*}
+      Dann gilt
+      \begin{equation*}
+        \rho_{opt} = \min_{\alpha} \left( \rho(B_\alpha) \right) = \frac{\lambda_1-\lambda_n}{\lambda_1+\lambda_n} = \frac{\kappa - 1}{\kappa+1}= 1 - \frac{2}{\kappa+1}
+      \end{equation*}
+      mit $\kappa = \kappa(M^{-1}A) = \frac{\lambda_1}{\lambda_n}$ Konditionszahl
+    
+
+  \end{itemize}
+ \end{satz}
+
+ \begin{proof}
+   \begin{equation*}
+     \mu_i \in \sigma(B) \Leftrightarrow \mu_i = 1-\alpha \lambda_i, \quad \lambda_i\in \sigma(M^{-1}A)
+   \end{equation*}
+   Aus Satz 1.1.1: Richardson-Verfahren konvergiert $\Leftrightarrow |\mu_i| <1, \quad \forall i = 1, \dots, n$
+   \begin{equation*}
+     \Leftrightarrow |1-\alpha\lambda_i| < 1\\
+     \Leftrightarrow -1 < 1 - \alpha \lambda_i < 1 
+     \Leftrightarrow 0 < \alpha < \frac{2}{\lambda_i} 
+     \Leftrightarrow 0 < \alpha < \frac{2}{\lambda_1} = \min_i \frac{2}{\lambda_i}
+   \end{equation*}
+   mit $\rho(B) = \max_i |1-\alpha\lambda_i = \max \left\{ |1-\alpha\lambda_i|, |1-\alpha\lambda_n| \right\}$
+   Der kleinste Spektralradius $\rho_{opt}$ ergibt sich durch Schnittpunktbildung der beiden Geraden. Berechne den opt Schnittpunkt von $|1-\alpha\lambda_1$ und $|1-\alpha\lambda_n|$\
+BILD
+   \begin{equation*}
+     -(1-\alpha\lambda_n) = 1-\alpha\lambda_1 
+     \Leftrightarrow \alpha_{opt} = \frac{2}{\lambda_1+\lambda_n}
+     \Rightarrow \rho_{opt} = 1-\alpha_{opt} \lambda_n = 1 - \frac{2}{\lambda_1+\lambda_n} \lambda_n = \frac{\lambda_1-\lambda_n}{\lambda_1+\lambda_n}
+   \end{equation*}
+ \end{proof}
+
+ Die Konvergenz des stationären Richardson-Verfahrens ist also abhängig von der Konditionszahl von $M^{-1}A$ bzw. vom größten und kleinsten Eigenwert:
+ \begin{equation*}
+   \lambda_1 := max \lambda_i, \quad \lambda_i \in \sigma(M^{-1}A)\\
+   \lambda_n := min \lambda_i
+ \end{equation*}
+
+ \begin{bemerkung}
+ Die Matrix $M$ ist frei wählbar und man kann die Kondition des Systems damit a-priori beeinflussen. Daher nennt man sie auch Vorkonditionierer (engl. preconditioner) oder Vorkonditionierungsmatrix
+ \begin{itemize}
+   \item $M$ sollte eine gute Approximation an $A$ sein und $\kappa(M^{-1}A)$ sollte möglichst klein sein
+   \item $M^{-1}$ sollte sich einfach auf einem Vektor anwenden lassen, d.h. mit vertretbarem Rechenaufwand. 
+ \end{itemize}
+ \end{bemerkung}
+
+ \begin{bemerkung}
+ Man spricht beim Verfahren (**) auch vom vorkonditionniertem Richardson-Verfahren ($M\neq I$). 
+ Nachteil: Für optimale Konvergenz muss Information über $\lambda_1$ und $\lambda_n$ vorliegen (die Ermittlung dieser, kann mitunter so teuer wie die Berechnung des ganzen Systems sein).
+ \end{bemerkung}
+
+ \begin{algorithmus}[Vorkonditioniertes Richardson-Verfahren]
+   Init: 1. Geg. $X^{(0)}\in \R^n$ (Startvektor), $\alpha\in\R \\ \{0\}$
+   2. Berechne das Startresiduum $r^{(0)} := b-Ax^{(0)}$
+   Iteration: while $\|r^{(k)} \leq \varepsilon \|r^{(0)}$ für gegebenes $\varepsilon$
+   
+ \end{algorithmus}<++>
+
