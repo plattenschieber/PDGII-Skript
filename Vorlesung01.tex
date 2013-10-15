@@ -2,10 +2,10 @@
 Gegeben: $Ax=b$, $A\in \R^{n\times n}$, $A$ invertierbar, $x,b \in \R^n$ mit $x=A^{-1}b$
 Ziel: Konstruktion eines iterativen Verfahren zur Lösung von * der Form:
 \begin{equation}
-  x^{(k+1)} := \phi(x^{(k)}), k\in \N, x^{(0)} \in \R^n
+  x^{(k+1)} := \varphi(x^{(k)}),\quad k\in \N, x^{(0)} \in \R^n
   \label{}
 \end{equation}
-Iterationsfunktion $\phi: \R^n \to \R^n$ gegeben.
+Iterationsfunktion $\varphi: \R^n \to \R^n$ gegeben.
 
 \section{Das Richardson-Verfahren}
 Ansatz: Sei $M\in \R^{n\times n}$ invertierbar. Wir betrachten das folgende Splitting:
@@ -28,7 +28,7 @@ Dieses Iterationsverfahren lässt sich durch Einführen eines Relaxationsparamet
   \label{Iterationsverfahren}
 \end{equation}
 heißt (stationäres) Richardson-Verfahren. 
-$\Rightarrow$ Iterationsvorschrift: $\phi(x) = Bx + c$ $B=I-\alpha M^{-1}A, C=\alpha M^{-1}b$
+$\Rightarrow$ Iterationsvorschrift: $\varphi(x) = Bx + c$ $B=I-\alpha M^{-1}A, C=\alpha M^{-1}b$
 
 Für die Konvergenz kennen wir aus Numerik I folgenden Satz:
 
