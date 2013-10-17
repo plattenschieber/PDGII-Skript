@@ -1,0 +1,110 @@
+
+Konventionen: $y^{(k)} = M^{-1}r^{(k)}, x^{(k+1)} = Bx^{(k)} + C, \quad B=I -\alpha M^{-1}A, C=\alpha M^{-1}b$
+Voraussetzung: $M^{-1}A$ hat nur positive reelle Eigenwerte $0<\lambda_n \leq \lambda_{n-1}\leq \dots \leq \lambda_1$
+Das vorkonditionierte Richardson-Verfahren konvergiert $\Leftrightarrow 0<\alpha<\frac{2}{\lambda_1}$. Die optimale Konvergenzrate liegt dann bei $\alpha=\alpha_{opt} = \frac{2}{\lambda_1+\lambda_n}$
+$M$ bzw. $M_{-1}$ bezeichnet man als Vorkonditionierer. Unter der Konditionszahl $\kappa\left( M^{-1}A \right)$ verstehen wir folgenden Ausdruck: $\kappa\left( M^{\frac{-1}{2}} A M^{\frac{-1}{2}} \right) = \frac{\lambda_{max}\left(  M^{\frac{-1}{2}} A M^{\frac{-1}{2}}  \right)}{\lambda_{min}\left(  M^{\frac{-1}{2}} A M^{\frac{-1}{2}}  \right)} \underbrace{=}_{A,M \text{ s.p.d}} \frac{\lambda_{max}(M^{-1}A)}{\lambda_{min}(M^{-1}A)}$
+
+\section{Das Gradientenverfahren}
+Voraussetzung: $A\in\R^{n\times n}$, s.p.d.
+Dann löst $x\in\R^n$ $Ax=b \Leftrightarrow \phi(x) = \min_{y\in\R^n} \phi(y)$, mit $\phi(y) := \frac12 y^TAy - y^Tb$
+Betrachte nun das Richardson-Verfahren, aber mit der Möglichkeit $\alpha=\alpha_k$ in jedem Schritt individuell zu wählen. Dann erhalten wir 
+$\Rightarrow x^{(k+1)} = x^{(k)} + \alpha_k M^{-1}r^{(k)}, \quad r^{(k)}:=b-Ax^{(k)} =Ax-Ax^{(k)} = Ae^{(k)}$
+Wie zuvor ist: $e^{(k+1)}:= e^{(k+1)}(\alpha_k):=\underbrace{\left( I-\alpha_k M^{-1}A \right)}_{=:B^{(k)}}e^{(k)}$
+Sei 
+\begin{equation}
+  \|x\|_A := \sqrt{x^TAx} = \sqrt{(x,x)_A},\quad (x,y)_A := y^TAx
+  \label{}
+\end{equation}
+Dann gilt
+\begin{equation}
+  \|e^{(k+1)}\|_A^2 = \left( Ae^{(k+1)}, e^{(k+1)} \right)_2 = \left( r^{(k+1)}, e^{(k+1)} \right)_2\\
+  \label{}
+\end{equation}
+\begin{itemize}
+  \item[i] $e^{(k+1)} = \left( I-\alpha_kM^{-1}A \right)e^{(k)} -\alpha_kM^{-1}Ae^{(k)}$
+  \item[ii] $r^{(k+1)} = r^{(k)}-\alpha_kAM^{-1}Ae^{(k)}$  
+\end{itemize}
+\begin{equation}
+  \Rightarrow \|e^{(k+1)}\|_A^2 \underbrace{=}_{y^{(k)} = M^{-1}r^{(k)}} \left( r^{(k)}, e^{(k)} \right) -\alpha_k \left( (Ay^{(k)},e^{(k)}) + (r^{(k)},M^{-1}Ae^{(k)}) \right) + \alpha_k^2 (Ay^{(k)}, M^{-1}Ae^{(k)})\\
+  \underbrace{\Rightarrow}_{e^{(k)}A^{-1}r^{(k)}} \|e^{(k+1)}\|_A = (r^{(k)},e^{(k)}) - 2\alpha_k (y^{(k)},r^{(k)}) + \alpha_k^2 (Ay^{(k)}, y^{(k)})
+  \label{}
+\end{equation}
+
+Das Residuum sollte klein werden. Deshalb minieren wir den Fehler in der Energienorm.
+
+Jetzt wählen wir $\alpha_k$ im $k+1$ Iterationsschritt so, dass der Fehler in der $A$-Norm miniert wird, d.h. wir minieren die Funktion 
+\begin{equation*}
+  f(\alpha_k) := \|e^{(k+1)}(\alpha_k)\|_A^2
+\end{equation*}
+
+Betrachte 
+\begin{equation}
+  0 = \frac{\partial f}{\partial \alpha}(\alpha_k) = -2 (y^{(k)},r^{(k)}) + 2 \alpha_k (Ay^{(k)}, y^{(k)})\\
+  \Leftrightarrow \alpha_k = \frac{y^{(k)},r^{(k)}}{Ay^{(k)},y^{(k)}}
+  \label{}
+\end{equation}
+
+\begin{equation}
+  \frac{\partial^2 f}{\partial \alpha_k^2}(\alpha_k) \underbrace{=}_{A spd} 2(Ay^{(k)},y^{(k)}) > 0
+  \label{}
+\end{equation}
+$\alpha_k$ ist tatsächlich ein lokales Minimum
+
+\begin{equation}
+  \|e^{(k+1)}\|_A^2 \underbrace{=}_{Def} (Ae^{(k+1)},e^{(k+1)}) = \underbrace{=}_{Def} (A(x-x^{(k+1)},(x-x^{(k+1)}))) \underbrace{=}_{Ax=b} (b,x) - \underbrace{(b,x^{(k+1)}) - (x^{(k+1)},b)}_{=-2(b,x^{k+1})} + (Ax^{(k+1)},x^{(k+1)}) = (b,x) + 2\phi(x^{(k+1)})
+  \label{}
+\end{equation}
+
+Also ist die lokale Minimierung des Fehlers $e^{(k+1)}$ in der $A$-Norm äquivalent zur Minimierung des Funktionals $\phi(x^{(k+1)}(\alpha_k)$ unter allen Vekoten $X^{(k+1)}(\alpha_k)$ der Form 
+$x^{(k)} + \alpha_k M^{-1}r^{\left( k \right)}$ 
+durch Lösen $1$-dim. Minimierungsprobleme.
+
+Geometrische Veranschaulichung für $M=I$. Sei $\phi(x)$ die Höhenfunktion.
+$\Rightarrow$ steilster Abstieg $-\Grad_x \phi(x) = - (Ax-b) = b-Ax$
+$\Rightarrow -\Grad_x\phi(x^{(k)}) = r^{(k)}$
+$\Rightarrow$ Gradientwert: $X^{(k+1)} + \alpha_k r^{(k)} = x^{(k)} - \alpha_k \Grad_x\phi(x^{(k)})$.
+Das Gradientenverfahren minimiert lokal in Richtung des steilsten Abstiegs.
+
+\begin{satz}[Kantorowitsch Ungleichung]
+  Sei $A\inR^{n\times n}$ s.p.d. mit spektraler Konditionszahl $\kappa(A) := \frac{\lambda_{max}(A)}{\lambda_{min}(A)}$. Dann gilt für jeden Vektore $0\neq x\in \R^n$die Ungleichung 
+  \begin{equation}
+    \frac{(x^TAx)(x^TA^{-1}x)}{(x^tx)^2} \leq \frac{(\lambda_{max}+\lambda_{min})^2}{4 \lambda_{max} \lambda_{min}}
+    \label{}
+  \end{equation}  
+\end{satz}
+
+\begin{proof}
+  Die Eigenwerte von $A$ seien geordnet $0<\lambda_{min} = \lambda_1 \leq \lambda_2 \leq \dots \leq \lambda_n = \lambda_{max}$ Diagonalisierung von $A$ durch Orthonormales $Q$
+  \begin{equation}
+    Q^TAQ = D = \diag_{i=1,..,n} (\lambda_i) \Rightarrow A^{_1} = (QDQ^T)^{-1} = QD^{-1}Q^T\\
+    \Rightarrow \frac{(x^TAx)(x^TA^{-1}x)}{(x^Tx)^2}  = \frac{(x^TQDQ^Tx)(x^TQD^{-1}Q^Tx)}{(x^Tx)^2} = \frac{(y^TDy)(y^tD^{-1}y)}{\underbrace{(y^TQ^TQy)}_{=I}}\\
+    \frac{(y^TDy)(y^TD^{-1}y)}{(y^Ty)^2} = \frac{(\sum_{i=1}^{n}y)i^2 \lambda_i}{(\sum_{i=1}^{n}y_i^2)} \frac{(\sum_{i=1}^{n}y)i^2 \lambda_i^{-1})}{(\sum_{i=1}^{n}y_i^2)} 
+    = \left( \sum_{i=1}^{n} z_i \lambda_i \right) \left( \sum_{i=1}^{n} z_i \lambda_i^{-1} \right), \quad z_i:= \frac{y_i^2}{\sum_{j=1}^{n}y_j^2} \Rightarrow \sum_{i=1}^{n} z_i = 1
+    \Rightarrow \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \text{ sind konvexe Kombination}
+    \label{}
+  \end{equation}
+  Sei $g: \lambda \to \frac1\lambda$, dann liegen alle Punkte $(\lambda_i,\frac1\lambda_i)$ auf dem Graphen von g.
+  BILD 
+  $g''(\lambda) > 0 \quad \forall \lambda \in \left[ \lambda_{min},\lambda_{max} \right]$ \Rightarrow g ist konvexe Funktion
+  Daher liegen alle Punkte $(\lambda,\frac1\lambda)$ mit $\lambda_{min} < \lambda < \lambda_{max}$ unterhalb der Geraden durch die Punkte $(\lambda_{min}, \frac{1}{\lambda_{min}})$ und $(\lambda_{max}, \frac{1}{\lambda_{max}})$. Der Punkt $\left(  \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \right)$ liegt in der konvexen Hülle der Punkte $(\lambda_i, \frac{1}{\lambda_i}), i=1,..,n$. Daher liegen die konvexen Kombinationen $\left(  \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \right)$ in der schraffierten Fläche, insbesondere unterhalb der Geraden durch $(\lambda_{min}, \frac{1}{\lambda_{min}})$ und $(\lambda_{max}, \frac{1}{\lambda_{max}})$
+
+  $\Rightarrow \lambda \to \frac{1}{\lambda_{min}} + \frac{\frac{1}{\lambda_{max}}-\frac{1}{\lambda_{min}}}{\lambda_{max} - \lambda_{min}} (\lambda-\lambda_{min})$ 
+  $= \frac{\lambda_{min} + \lambda_{max}-\lambda}{\lambda_{max} - \lambda_{min}}$
+  $\Rightarrow $ FEHLT
+
+  Standardergebnis Analysis: 
+  \begin{equation}
+    \max_{\lambda_{min} \leq \lambda \leq \lambda_{max}} \left( \lambda \frac{\lambda_{max} + \lambda_{min} - \lambda}{\lambda_{max}\lambda_{min} \right) = \frac{(\lambda_{min}+\lambda_{max})^2}{4\lambda_{max}\lambda_{min}}
+    \label{}
+  \end{equation}
+Hieraus folgt die Behauptung mit $\lambda:= \sum_{i=1}^{n} z_i \lambda_i \in (\lambda_{min}, \lambda_{max})$
+\end{proof} 
+
+Folgerung: 
+Sei $M\in\R^{n\times n}$ spd, dann gilt 
+\begin{equation}
+  \frac{(M^{-1}Ax,x)_M}{(x,x)_M} \leq \frac{(\lambda_{min}+\lambda_{max})^2}{4\lambda_{min}\lambda_{max}
+  \label{}
+\end{equation}
+
+$\lambda_{min} = $ kleinester Eigenwert von $M^{-1}A$ und $\lambda_{max} = $ größter Eigenwert von $M^{-1}A$
