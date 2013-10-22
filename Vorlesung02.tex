@@ -56,7 +56,7 @@ $\alpha_k$ ist tatsächlich ein lokales Minimum
 \end{equation}
 
 Also ist die lokale Minimierung des Fehlers $e^{(k+1)}$ in der $A$-Norm äquivalent zur Minimierung des Funktionals $\phi(x^{(k+1)}(\alpha_k)$ unter allen Vekoten $X^{(k+1)}(\alpha_k)$ der Form 
-$x^{(k)} + \alpha_k M^{-1}r^{\left( k \right)}$ 
+$x^{(k)} + \alpha_k M^{-1}r^{(k)}$ 
 durch Lösen $1$-dim. Minimierungsprobleme.
 
 Geometrische Veranschaulichung für $M=I$. Sei $\phi(x)$ die Höhenfunktion.
@@ -83,7 +83,7 @@ Das Gradientenverfahren minimiert lokal in Richtung des steilsten Abstiegs.
     \Rightarrow \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \text{ sind konvexe Kombination}
     \label{}
   \end{equation}
-  Sei $g: \lambda \to \frac1\lambda$, dann liegen alle Punkte $(\lambda_i,\frac1\lambda_i)$ auf dem Graphen von g.
+  Sei $g: \lambda \to \frac1\lambda$, dann liegen alle Punkte $(\lambda_i,\frac{1}{\lambda_i})$ auf dem Graphen von g.
   BILD 
   $g''(\lambda) > 0 \quad \forall \lambda \in \left[ \lambda_{min},\lambda_{max} \right] \Rightarrow g $ist konvexe Funktion
   Daher liegen alle Punkte $(\lambda,\frac 1 \lambda )$ mit $\lambda_{min} < \lambda < \lambda_{max}$ unterhalb der Geraden durch die Punkte $(\lambda_{min}, \frac{1}{\lambda_{min}})$ und $(\lambda_{max}, \frac{1}{\lambda_{max}})$. Der Punkt $\left(  \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \right)$ liegt in der konvexen Hülle der Punkte $(\lambda_i, \frac{1}{\lambda_i}), i=1,..,n$. Daher liegen die konvexen Kombinationen $\left(  \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \right)$ in der schraffierten Fläche, insbesondere unterhalb der Geraden durch $(\lambda_{min}, \frac{1}{\lambda_{min}})$ und $(\lambda_{max}, \frac{1}{\lambda_{max}})$
@@ -94,7 +94,7 @@ Das Gradientenverfahren minimiert lokal in Richtung des steilsten Abstiegs.
 
   Standardergebnis Analysis: 
   \begin{equation}
-    \max_{\lambda_{min} \leq \lambda \leq \lambda_{max}} \left( \lambda \frac{\lambda_{max} + \lambda_{min} - \lambda}{\lambda_{max}\lambda_{min} \right) = \frac{(\lambda_{min}+\lambda_{max})^2}{4\lambda_{max}\lambda_{min}}
+    \max_{\lambda_{min} \leq \lambda \leq \lambda_{max}} \left( \lambda \frac{\lambda_{max} + \lambda_{min} - \lambda}{\lambda_{max}\lambda_{min}} \right) = \frac{(\lambda_{min} + \lambda_{max})^2}{4\lambda_{max}\lambda_{min}}
     \label{}
   \end{equation}
 Hieraus folgt die Behauptung mit $\lambda:= \sum_{i=1}^{n} z_i \lambda_i \in (\lambda_{min}, \lambda_{max})$
