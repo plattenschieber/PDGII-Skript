@@ -3,8 +3,8 @@ output=PDGII
 otherfiles=makefile
 
 Wissrech1.pdf: $(texfiles)
-	pdflatex -shell-escape -jobname=$(output) index.tex
-	pdflatex -shell-escape -jobname=$(output) index.tex
+	latexmk  -shell-escape -jobname=$(output) index.tex
+#	latexmk  -shell-escape -jobname=$(output) index.tex
 
 archiv: PDGII.pdf $(texfiles) $(otherfiles) 
 	zip $(output).zip $^
