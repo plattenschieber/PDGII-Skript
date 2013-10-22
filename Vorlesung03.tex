@@ -20,7 +20,56 @@ Es ist : $ e^{(k)}:= x-x^{(k)},\, y^{(k)}:= M^{-1}r^{(k)},\, Ax=b,\, r^{(k)}=b-A
 \[\Leftrightarrow ||e^{(k+1)}||^2_A \leq \left( 1-\frac{4\lambda_{max}\lambda_{min}}{(lambda_{max}+\lambda_{min})^2}\right) ||e^{(k)}||^2_A = \frac{(\lambda_{max}-\lambda_{min})^2}{(\lambda_{max}+\lambda_{min})^2} ||e^{(k)}||^2_A \]
 \[ \Leftrightarrow || e^{(k+1)}||_A \leq \frac{(\lambda_{max} - \lambda_{min})}{\lambda_{max} + \lambda_{min}} ||e^{(k)}||_A = \left( \frac{\kappa (M^{-1}A) -1 }{\kappa (M^{-1}A)+1} \right) ||e^{(k)}||_A \leq \left( \frac{\kappa (M^{-1}A) -1 }{\kappa (M^{-1}A)+1} \right)^k ||e^{(0)}||_A \]
 
-JERO
+\begin{satz}
+  Beim instationären (vorkonditionierten) Richardson-Verdahren/(vorkonditioniertes) Gradientenverfahren gilt für die Konvergenzrate folgende obere Schranke:
+  \begin{equation}
+    \kappa \frac{(M^{-1}A)-1}{\kappa(M^{-1}A)+1}
+  \end{equation}
+  wobei $\kappa(M^{-1}A):= \kappa_2(M^{-1/2}AM^{-1/2}) = \frac{\lambda_{max}(m^{-1/2}AM^{-1/2})}{\lambda_{min}(M^{-1/2}AM^{-1/2})}$
+\end{satz}
+
+\begin{algorithmus}[vorkonditioniertes Gradientenverfahren]
+  Initialisierung: 
+  \begin{itemize}
+    \item[1] geg. Startvektor $x^{(0)} \in \R^n$
+    \item[2] $r^{(0)}:= b-Ax^{(0)}$ (Startresidium)
+  \end{itemize}
+  Iteration: $k=0,1,2,\dots$ solange Konvergenzkriterium erfüllt, z.B. 
+  $\|r^{(k)}\|_2 \leq \varepsilon \|r^{(0)}\|_2\\
+  y^{(k)}:=M^{-1}r^{(k)}\\
+  q^{(k)}:=Ay^{(k)}\\
+  \alpha^{(k)}:=\frac{(y^{(k)},r^{(k)})}{(q^{(k)},y^{(k)})}\\
+  x^{(k+1)}:=x^{(k)}+\alpha^{(k)}y^{(k)}\\
+  r^{(k+1)}:=r^{(k)}-\alpha^{(k)}q^{(k)}$
+\end{algorithmus}
+
+\begin{bemerkung}
+  Man beachte, dass in dem vorliegenden Algorithmus in jeder Iteration jeweils mindestens eine Matrix-Vekotr-Multiplikation mit $A$ bzw. $M^{-1}$ benötigt wird.
+\end{bemerkung}
+
+\subsubsection{Das Verfahren der konjugierten Gradienten}
+Beim Gradientenverfahren haben wir zwei Phasen kennengelernt, um $x^{(k+1)}$ aus $x^{(k)}$ zu berechnen:
+\begin{itemize}
+  \item Bestimmen der Suchrichtungen $y^{(k)}$
+  \item Berechnen des lokalen Minimums von $\Phi$ in dieser Richtung
+\end{itemize}
+
+\begin{bemerkung}[Beobachtung]
+  2) ist unabhängig von 1); 
+\end{bemerkung}
+
+Ist eine beliebige Suchrichtung $p^{(k)}$ gegeben, so bestimme den Relaxationsparameter $\alpha^{(k)}$ derart, dass $\Phi(x^{(k)}+\alpha^(k)p^{(k)})$ minimal wird. Dies kann man wie beim Gradientenverfahren machen, d.h. 
+\begin{equation*}
+  \alpha^{(k)} := \frac{(p^(k)),r^{(k)}}{(Ap^{(k)},p^{(k)})}
+\end{equation*}
+
+Frage: Kann man $p^{(k)}$ besser wählen als im Gradientenverfahren? (Wie will man Optimalität überhaupt definieren?) Dazu betrachten wir folgende Definition der Optimalität von Suchrichtungen ($\to$ Die Suchrichtung werden orthogonal zu den Resiuuen gewählt)
+
+\begin{definition}
+  Eine Richtung $x\in \R^n$ heißt optimal bzgl. einer Richtung $p\in \R^n \equiv \Phi(x) \leq \Phi(x+\lambda p) \quad \forall \lambda \in \R$
+  $\Phi(y):= \frac 1 2 y^TAy - b^Ty$
+\end{definition}
+
 
 
 \underline{Bem. 1.2.2.:}
@@ -44,4 +93,28 @@ Dazu sei $x^{(k+1)}=x^{(k)}+q$, wobei $x^{(k)}$ optimal sei bzgl. einer Richtung
 Also gilt:
 \[ r^{(k+1)} \bot p \, \Leftrightarrow \, (q,p)_A=(Aq,p)=0 \, \Leftrightarrow \, q \text{ ist $A-$orth. zu } p \]
 
+\begin{bemerkung}
+  Vorkonditionierte Verfahren sind für uns so wichtig, weil das Optimalitätskriterium der Orthogonalität in der Realität auf Grund von Rundungsfehlern (insbesondere bei schlecht konditionierten Problemen) diese verwischen würde. Ein Vorkonditionierer hilft uns dem entgegenzuwirken.
+\end{bemerkung}
 
+\begin{folgerung}
+  Um die Optimalität aufeinander folgender Iterationen zu gewährleisten, müssen die Abstiegsrichtungen gegenseitig $A$-orthogonal sein, d.h. $(p,q)_A=0$. Dies nennt man \underline{$A$-konjugiert} oder \underline{konjugiert} zueinander. Ein Verfahren, welches konjugierte Abstiegsrichtungen verwendet, nennt man \underline{konjugiertes Verfahren}.
+\end{folgerung}
+
+\begin{vorgehensweise}
+  Sei $p^{(0)}:= r^{(0)}$, dann konstruiere Richtungen der Form 
+  \begin{equation}
+    p^{(k+1)}:=r^{(k+1)}-\beta^{(k)}p^{(k)}, \quad k=0,1,\dots
+  \end{equation}
+  Wähle dabei $\beta^{(k)} \in \R$, so dass 
+  \begin{equation}
+    (Ap^{(j)},p^{(k+1)})=0 \quad \forall j=0,1,2,\ldots,k
+  \end{equation}
+  d.h. $p^{(k+1)}$ soll konjugiert sein zu allen vorherigen Richtungen $p^{(j)}, j=0,\cdots,k$
+  Aus ref 1,2 und $j=k$ folgt $\beta^{(k)}=\frac{(p^{(k)},r^{(k+1)})_A}{(p^{(k)},p^{(k)})_A}$
+\end{vorgehensweise}
+
+  Es bleibt zu Zeigen: ref 2 gilt dann auch für $j=0,\cdots,k$
+  \begin{proof}
+    vollständige Induktion (Übung)
+  \end{proof}
