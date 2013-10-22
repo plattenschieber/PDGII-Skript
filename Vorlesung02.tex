@@ -60,13 +60,13 @@ $x^{(k)} + \alpha_k M^{-1}r^{\left( k \right)}$
 durch Lösen $1$-dim. Minimierungsprobleme.
 
 Geometrische Veranschaulichung für $M=I$. Sei $\phi(x)$ die Höhenfunktion.
-$\Rightarrow$ steilster Abstieg $-\Grad_x \phi(x) = - (Ax-b) = b-Ax$
-$\Rightarrow -\Grad_x\phi(x^{(k)}) = r^{(k)}$
 $\Rightarrow$ Gradientwert: $X^{(k+1)} + \alpha_k r^{(k)} = x^{(k)} - \alpha_k \Grad_x\phi(x^{(k)})$.
 Das Gradientenverfahren minimiert lokal in Richtung des steilsten Abstiegs.
+$\Rightarrow$ steilster Abstieg $- \nabla_x \phi(x) = - (Ax-b) = b-Ax$
+$\Rightarrow -\nabla_x\phi(x^{(k)}) = r^{(k)}$
 
 \begin{satz}[Kantorowitsch Ungleichung]
-  Sei $A\inR^{n\times n}$ s.p.d. mit spektraler Konditionszahl $\kappa(A) := \frac{\lambda_{max}(A)}{\lambda_{min}(A)}$. Dann gilt für jeden Vektore $0\neq x\in \R^n$die Ungleichung 
+  Sei $A\in R^{n\times n}$ s.p.d. mit spektraler Konditionszahl $\kappa(A) := \frac{\lambda_{max}(A)}{\lambda_{min}(A)}$. Dann gilt für jeden Vektore $0\neq x\in \R^n$die Ungleichung 
   \begin{equation}
     \frac{(x^TAx)(x^TA^{-1}x)}{(x^tx)^2} \leq \frac{(\lambda_{max}+\lambda_{min})^2}{4 \lambda_{max} \lambda_{min}}
     \label{}
@@ -85,8 +85,8 @@ Das Gradientenverfahren minimiert lokal in Richtung des steilsten Abstiegs.
   \end{equation}
   Sei $g: \lambda \to \frac1\lambda$, dann liegen alle Punkte $(\lambda_i,\frac1\lambda_i)$ auf dem Graphen von g.
   BILD 
-  $g''(\lambda) > 0 \quad \forall \lambda \in \left[ \lambda_{min},\lambda_{max} \right]$ \Rightarrow g ist konvexe Funktion
   Daher liegen alle Punkte $(\lambda,\frac1\lambda)$ mit $\lambda_{min} < \lambda < \lambda_{max}$ unterhalb der Geraden durch die Punkte $(\lambda_{min}, \frac{1}{\lambda_{min}})$ und $(\lambda_{max}, \frac{1}{\lambda_{max}})$. Der Punkt $\left(  \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \right)$ liegt in der konvexen Hülle der Punkte $(\lambda_i, \frac{1}{\lambda_i}), i=1,..,n$. Daher liegen die konvexen Kombinationen $\left(  \sum_{i=1}^{n} z_i \lambda_i, \sum_{i=1}^{n} z_i \lambda_i^{-1} \right)$ in der schraffierten Fläche, insbesondere unterhalb der Geraden durch $(\lambda_{min}, \frac{1}{\lambda_{min}})$ und $(\lambda_{max}, \frac{1}{\lambda_{max}})$
+  $g''(\lambda) > 0 \quad \forall \lambda \in \left[ \lambda_{min},\lambda_{max} \right] \Rightarrow g $ist konvexe Funktion
 
   $\Rightarrow \lambda \to \frac{1}{\lambda_{min}} + \frac{\frac{1}{\lambda_{max}}-\frac{1}{\lambda_{min}}}{\lambda_{max} - \lambda_{min}} (\lambda-\lambda_{min})$ 
   $= \frac{\lambda_{min} + \lambda_{max}-\lambda}{\lambda_{max} - \lambda_{min}}$
