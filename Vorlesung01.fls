@@ -1,6 +1,0 @@
-PWD /Users/hans/Documents/Studium/Master/PDGII/Skript
-INPUT /usr/local/texlive/2013/texmf.cnf
-INPUT /usr/local/texlive/2013/texmf-dist/web2c/texmf.cnf
-INPUT /usr/local/texlive/2013/texmf-var/web2c/pdftex/latex.fmt
-INPUT Vorlesung01.tex
-OUTPUT Vorlesung01.log
