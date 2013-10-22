@@ -1,0 +1,47 @@
+\underline{Folgerung:} $M \in \mathbb{R}^{n \times n}$, s.p.d., dann gilt:
+
+\[\frac{ (M^{-1}Ax,x)_M(A^{-1}Mx,x)_M}{(x,x)^2_M } \leq \frac{(\lambda_{max} + \lambda_{min})^2}{4\lambda_{max}\lambda_{min}} \]
+wobei $\lambda_{max}=\lambda_{max}(M^{-1/2}AM^{-1/2}),\, \lambda_{min}=\lambda_{min}(M^{-1/2}AM^{-1/2})$.\\
+Es gilt:
+\[ A=Q^TDQ,\, A^{1/2}:=Q^TD^{1/2}Q,\, D^{1/2}:=diag_{i=1,\dots, n} ( \sqrt{\lambda_i}) \]
+\underline{Beweis der Folgerung:}\\
+$y:=M^{1/2}x$
+\begin{align*}
+\frac{(M^{-1}Ax,x)_M(A^{-1}Mx,x)_M}{(x,x)^2_M} \\
+^{y=M^{1/2}x} &= \frac{ (AM^{-1/2}y,M^{-1/2}y)(A^{-1}M^{1/2}y,M^{1/2}y)}{(y,y)^2 \\
+&= \frac{ (M^{-1/2}AM^{-1/2}y,y)(M^{1/2}A^{-1}M^{1/2}y,y)}{(y,y)^2 \\
+^{\tilde A:=M^{-1/2}AM^{-1/2}} &= \frac{(\tilde A y ,y)(\tilde A^{-1}y,y)}{(y,y)^2} \\
+^{\text{Kant. Ungl. } + \tilde A \, s.p.d.} &= \frac{(\lambda_{max}(\tilde A) + \lambda_{min}(\tilde A))^2}{4\lambda_{max}(\tilde A)\lambda_{min}(\tilde A)}
+\end{align*}
+$\lambda(\tilde A)=\lambda (M^{-1}A)$ \\
+$\hfill \box$
+Es ist : $ e^{(k)}:= x-x^{(k)},\, y^{(k)}:= M^{-1}r^{(k)},\, Ax=b,\, r^{(k)}=b-Ax^{(k)}$.
+\[ \frac{||e^{(k)}||^2_A - ||e^{(k+1)}||^2_A}{||e^{(k)}||_A} =\frac{(y^{(k)},y^{(k)})^2_M}{(M^{-1}Ay^{(k)},y^{(k)})_M(A^{-1}My^{(k)},y^{(k)})_M \]
+\[\Leftrightarrow ||e^{(k+1)}||^2_A \leq \left( 1-\frac{4\lambda_{max}\lambda_{min}}{(lambda_{max}+\lambda_{min})^2}\right) ||e^{(k)}||^2_A = \frac{(\lambda_{max}-\lambda_{min})^2}{(\lambda_{max}+\lambda_{min})^2} ||e^{(k)}||^2_A \]
+\[ \Leftrightarrow || e^{(k+1)}||_A \leq \frac{(\lambda_{max} - \lambda_{min})}{\lambda_{max} + \lambda_{min}} ||e^{(k)}||_A = \left( \frac{\kappa (M^{-1}A) -1 }{\kappa (M^{-1}A)+1} \right) ||e^{(k)}||_A \leq \left( \frac{\kappa (M^{-1}A) -1 }{\kappa (M^{-1}A)+1} \right)^k ||e^{(0)}||_A \]
+
+JERO
+
+
+\underline{Bem. 1.2.2.:}
+\[ x \text{ optimal bzgl. } p \, \Leftrightarrow \, p \bot r := B-Ax, \text{ wobei } p \bot r : \Leftrightarrow (p,r)=0 \]
+\underline{Beweis:} $ \phi (x)=\frac{1}{2} x^TAx-b^Tx $\\
+\[ \lambda \in\mathbb{R} : \, \phi (x + \lambda p) = \phi(x) + \lambda (\underbrace{Ax-b}_{=-r},p)+ \frac{\lambda^2}{2}\underbrace{(Ap,p)}_{\geq 0} \]
+Dann gilt:
+\begin{align*}
+	\phi(x) &\leq \phi(x+\lambda p ) \forall \, \lambda \in\mathbb{R} \\
+\Leftrightarrow 0 & \leq -\lambda (r,p)+\underbrace{\frac{\lambda^2}{2}(Ap,p)}_{\geq 0} \forall \, \lambda \in \mathbb{R} \\
+\Leftrightarrow (r,p) &=0 \\
+\Leftrightarrow r & \bot p
+\end{align*}
+$\hfilll \box$
+Für das Gradientenverfahren mit $M=I$ gilt:\\
+$x^{(k+1)}$ ist optimal bzgl. $r^{(k)}$ ( $\alpha^{(k)}$ wird gerade so gewählt, dass $r^{(k+1)} \bot r^{(k)}$ ist).\\
+Im Allgem. ist $x^{(k+2)}$ nicht mehr optimal bzgl. $r^{(k)}$.\\
+\underline{Frage:} Gibt es Abstiegsrichtungen die diese Optimalität erhalten?\\
+Dazu sei $x^{(k+1)}=x^{(k)}+q$, wobei $x^{(k)}$ optimal sei bzgl. einer Richtung $p$, d.h. $p \bot r^{(k)}$. Wir verlangen nun, dass $x^{(k+1)}$ auch bzgl. $p$ optimal sein soll:
+\[ r^{(k+1)} \bot p \, \Leftrightarrow \, 0 = (r^{(k+1)},p) = (r^{(k)}-Aq,p)=-(Aq,p) \]
+Also gilt:
+\[ r^{(k+1)} \bot p \, \Leftrightarrow \, (q,p)_A=(Aq,p)=0 \, \Leftrightarrow \, q \text{ ist $A-$orth. zu } p \]
+
+
