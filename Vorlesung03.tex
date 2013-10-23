@@ -8,15 +8,15 @@ Es gilt:
 $y:=M^{1/2}x$
 \begin{align*}
 \frac{(M^{-1}Ax,x)_M(A^{-1}Mx,x)_M}{(x,x)^2_M} \\
-^{y=M^{1/2}x} &= \frac{ (AM^{-1/2}y,M^{-1/2}y)(A^{-1}M^{1/2}y,M^{1/2}y)}{(y,y)^2 \\
-&= \frac{ (M^{-1/2}AM^{-1/2}y,y)(M^{1/2}A^{-1}M^{1/2}y,y)}{(y,y)^2 \\
+^{y=M^{1/2}x} &= \frac{ (AM^{-1/2}y,M^{-1/2}y)(A^{-1}M^{1/2}y,M^{1/2}y)}{(y,y)^2} \\
+&= \frac{ (M^{-1/2}AM^{-1/2}y,y)(M^{1/2}A^{-1}M^{1/2}y,y)}{(y,y)^2} \\
 ^{\tilde A:=M^{-1/2}AM^{-1/2}} &= \frac{(\tilde A y ,y)(\tilde A^{-1}y,y)}{(y,y)^2} \\
 ^{\text{Kant. Ungl. } + \tilde A \, s.p.d.} &= \frac{(\lambda_{max}(\tilde A) + \lambda_{min}(\tilde A))^2}{4\lambda_{max}(\tilde A)\lambda_{min}(\tilde A)}
 \end{align*}
 $\lambda(\tilde A)=\lambda (M^{-1}A)$ \\
-$\hfill \box$
+%$\hfill \box$
 Es ist : $ e^{(k)}:= x-x^{(k)},\, y^{(k)}:= M^{-1}r^{(k)},\, Ax=b,\, r^{(k)}=b-Ax^{(k)}$.
-\[ \frac{||e^{(k)}||^2_A - ||e^{(k+1)}||^2_A}{||e^{(k)}||_A} =\frac{(y^{(k)},y^{(k)})^2_M}{(M^{-1}Ay^{(k)},y^{(k)})_M(A^{-1}My^{(k)},y^{(k)})_M \]
+\[ \frac{||e^{(k)}||^2_A - ||e^{(k+1)}||^2_A}{||e^{(k)}||_A} =\frac{(y^{(k)},y^{(k)})^2_M}{(M^{-1}Ay^{(k)},y^{(k)})_M}(A^{-1}My^{(k)},y^{(k)})_M \]
 \[\Leftrightarrow ||e^{(k+1)}||^2_A \leq \left( 1-\frac{4\lambda_{max}\lambda_{min}}{(lambda_{max}+\lambda_{min})^2}\right) ||e^{(k)}||^2_A = \frac{(\lambda_{max}-\lambda_{min})^2}{(\lambda_{max}+\lambda_{min})^2} ||e^{(k)}||^2_A \]
 \[ \Leftrightarrow || e^{(k+1)}||_A \leq \frac{(\lambda_{max} - \lambda_{min})}{\lambda_{max} + \lambda_{min}} ||e^{(k)}||_A = \left( \frac{\kappa (M^{-1}A) -1 }{\kappa (M^{-1}A)+1} \right) ||e^{(k)}||_A \leq \left( \frac{\kappa (M^{-1}A) -1 }{\kappa (M^{-1}A)+1} \right)^k ||e^{(0)}||_A \]
 
@@ -83,7 +83,7 @@ Dann gilt:
 \Leftrightarrow (r,p) &=0 \\
 \Leftrightarrow r & \bot p
 \end{align*}
-$\hfilll \box$
+%$\hfilll \box$
 Für das Gradientenverfahren mit $M=I$ gilt:\\
 $x^{(k+1)}$ ist optimal bzgl. $r^{(k)}$ ( $\alpha^{(k)}$ wird gerade so gewählt, dass $r^{(k+1)} \bot r^{(k)}$ ist).\\
 Im Allgem. ist $x^{(k+2)}$ nicht mehr optimal bzgl. $r^{(k)}$.\\
@@ -97,11 +97,11 @@ Also gilt:
   Vorkonditionierte Verfahren sind für uns so wichtig, weil das Optimalitätskriterium der Orthogonalität in der Realität auf Grund von Rundungsfehlern (insbesondere bei schlecht konditionierten Problemen) diese verwischen würde. Ein Vorkonditionierer hilft uns dem entgegenzuwirken.
 \end{bemerkung}
 
-\begin{folgerung}
+\begin{bemerkung}[Folgerung]
   Um die Optimalität aufeinander folgender Iterationen zu gewährleisten, müssen die Abstiegsrichtungen gegenseitig $A$-orthogonal sein, d.h. $(p,q)_A=0$. Dies nennt man \underline{$A$-konjugiert} oder \underline{konjugiert} zueinander. Ein Verfahren, welches konjugierte Abstiegsrichtungen verwendet, nennt man \underline{konjugiertes Verfahren}.
-\end{folgerung}
+\end{bemerkung}
 
-\begin{vorgehensweise}
+\begin{bemerkung}[vorgehensweise]
   Sei $p^{(0)}:= r^{(0)}$, dann konstruiere Richtungen der Form 
   \begin{equation}
     p^{(k+1)}:=r^{(k+1)}-\beta^{(k)}p^{(k)}, \quad k=0,1,\dots
@@ -112,7 +112,7 @@ Also gilt:
   \end{equation}
   d.h. $p^{(k+1)}$ soll konjugiert sein zu allen vorherigen Richtungen $p^{(j)}, j=0,\cdots,k$
   Aus ref 1,2 und $j=k$ folgt $\beta^{(k)}=\frac{(p^{(k)},r^{(k+1)})_A}{(p^{(k)},p^{(k)})_A}$
-\end{vorgehensweise}
+\end{bemerkung}
 
   Es bleibt zu Zeigen: ref 2 gilt dann auch für $j=0,\cdots,k$
   \begin{proof}
