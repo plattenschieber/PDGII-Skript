@@ -9,28 +9,28 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsfonts,stmaryrd,mathtools,amsthm,esint}
 \usepackage{dsfont} % bb für Zahlen
-\usepackage{MnSymbol}
+%\usepackage{MnSymbol} %adobe minion font
 
 %% minted
-\usepackage{minted}
-\newminted{cpp}{linenos}
+%\usepackage{minted}
+%\newminted{cpp}{linenos}
 
-\usepackage{marginnote}
-\renewcommand*{\marginfont}{\footnotesize} 
+%\usepackage{marginnote}
+%\renewcommand*{\marginfont}{\footnotesize} 
 
 \usepackage{graphicx}
-\graphicspath{{Bilder/}}
-\usepackage{tikz}
-\usepackage[all]{xy}
-\usetikzlibrary{arrows,calc,shadows,patterns,through,backgrounds}
-\pgfdeclarepatternformonly{mynwlines}{%
-\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{8pt}{8pt}}{\pgfqpoint{6pt}{6pt}}%
-{
-  \pgfsetlinewidth{0.4pt}
-  \pgfpathmoveto{\pgfqpoint{0pt}{3pt}}
-  \pgfpathlineto{\pgfqpoint{6.1pt}{-3.1pt}}
-  \pgfusepath{stroke}
-}
+%\graphicspath{{Bilder/}}
+%\usepackage{tikz}
+%\usepackage[all]{xy}
+%\usetikzlibrary{arrows,calc,shadows,patterns,through,backgrounds}
+%\pgfdeclarepatternformonly{mynwlines}{%
+%\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{8pt}{8pt}}{\pgfqpoint{6pt}{6pt}}%
+%{
+%  \pgfsetlinewidth{0.4pt}
+%  \pgfpathmoveto{\pgfqpoint{0pt}{3pt}}
+%  \pgfpathlineto{\pgfqpoint{6.1pt}{-3.1pt}}
+%  \pgfusepath{stroke}
+%}
 
 \usepackage{hyperref}
 \usepackage{makeidx}
@@ -49,25 +49,31 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand\K{\mathbb{K}}
-\renewcommand\P{\mathcal{P}}
-\newcommand\A{\mathcal{A}}
+\renewcommand{\c}[1]{\mathcal{#1}} % beliebiger Buchstabe kann mit \op in cal geschrieben werden 
+\renewcommand\P{\mathcal{P}} % tolles P, anstatt eines Zeilenumbruchzeichens 
+\newcommand\Ac{\mathcal{A}}
 \newcommand\Lc{\mathcal{L}}
-\newcommand\ii{\mathrm{i}}
-\newcommand\Kv{\mathcal{K}}
-\newcommand{\ud}{\,\textnormal{d}}
-%\newcommand{\ocirc}{\, \raisebox{1pt}{\footnotesize\textcircled{$\circ $}}\,}
-%\newcommand{\ostar}{\, \raisebox{1pt}{\footnotesize\textcircled{$*$}}\,}
+\newcommand\Kc{\mathcal{K}}
+\newcommand\ii{\mathrm{i}} % schlichtes i, ungeschwungen
+\newcommand{\ud}{\,\textnormal{d}} % aufrechtes d fürs Integral
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
-\newcommand{\op}[1]{\mathcal{#1}}
-\def\default{}
+%\def\default{}
 \renewcommand{\emph}[2][\default]{\ifx#1\default\textbf{#2}\index{#2}\else\textbf{#2}\index{#1}\fi}
+%\newcommand{\ocirc}{\, \raisebox{1pt}{\footnotesize\textcircled{$\circ $}}\,}
+%\newcommand{\ostar}{\, \raisebox{1pt}{\footnotesize\textcircled{$*$}}\,}
 
-\newcommand{\bs}[1]{\boldsymbol{#1}}
-\newcommand{\entspr}{\mathop{\widehat{=}}}
-\newcommand{\eps}{\varepsilon}
+\newcommand{\bs}[1]{\boldsymbol{#1}} % fett gedruckt
+\newcommand{\entspr}{\mathop{\widehat{=}}} % entspricht Zeichen
+\newcommand{\eps}{\varepsilon} % schönes epsilon 
 \def\pre{\textnormal{pre}}
 \def\suc{\textnormal{suc}}
+
+% coole Abkürzungen für die Norm und Doppelnorm
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\znorm}[1]{|\!|\!|#1|\!|\!|}
+
+% ein paar Befehle in Normalschrift, statt kursiv
 \newcommand\dist{\textnormal{dist}}
 \newcommand\im{\textnormal{Im}\,}
 \newcommand\re{\textnormal{Re}\,}
@@ -78,8 +84,6 @@
 \newcommand\cov{\textnormal{Cov}}
 \newcommand\ggt{\textnormal{ggT}}
 \newcommand\periode{\textnormal{Periode}}
-\newcommand{\norm}[1]{\|#1\|}
-\newcommand{\znorm}[1]{|\!|\!|#1|\!|\!|}
 \newcommand{\trace}{\textnormal{trace}\,}
 \newcommand{\sign}{\textnormal{sign}\,}
 \newcommand{\cond}{\textnormal{cond}}
@@ -87,7 +91,6 @@
 \newcommand{\spann}{\textnormal{span}}
 \newcommand{\grad}{\textnormal{grad}\,}
 \newcommand{\sgn}{\textnormal{sgn}}
-\newcommand{\Pm}{\mathcal{P}}
 \newcommand{\rd}{\textnormal{rd}}
 \newcommand{\diag}{\textnormal{diag}}
 \newcommand{\blockdiag}{\textnormal{blockdiag}}
