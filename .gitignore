@@ -8,3 +8,4 @@ test*
 *.DS_Store
 *\#*
 *.pyg
+index.synctex*
