@@ -90,11 +90,28 @@
       $\Leftrightarrow \frac{\|e^{(k+1)}\|_A}{\|e^{(0)}\|_A} 
       \leq  \min_{p\in \mathcal{p}^*_{k+1}}  \max_{\lambda_i \in \sigma(A)} |p(\lambda)|$
 
-    \item[6] Als nächstes versuchen wir ein Polynom $q\in \mathcal{P}^*_{k+1}$ zu konstruieren, s.d. $|q(\lambda)|$ möglichst klein ist für $\lambda\in [\lambda_{min}, \lambda_{max}]$. Dazu führen wir die \underline{Tschebyscheff-Polynome} ein (vgl. Martin Haute-Bourgois, Grundlagen d. Num. Math. und WissRech, Vieweg-Teubner, 3. Auflage S.284). 
+    \item[7] Als nächstes versuchen wir ein Polynom $q\in \mathcal{P}^*_{k+1}$ zu konstruieren, s.d. $|q(\lambda)|$ möglichst klein ist für $\lambda\in [\lambda_{min}, \lambda_{max}]$. Dazu führen wir die \underline{Tschebyscheff-Polynome} ein (vgl. Martin Haute-Bourgois, Grundlagen d. Num. Math. und WissRech, Vieweg-Teubner, 3. Auflage S.284). 
       Definition  $T_k(x) := \cos(k arccos(x)), \quad k\geq 0, x\in [-1,1]$ Tschebyscheff-Polynome k-ter Ordnung.
   $T_0(x)=1, T_1(x)=x, t:=arccos(x)$
   Behauptung: $T_{k-1}(x) + T_{k+1}(x) = \cos((k-1)t) + \cos ((k+1)t)$
-  CHRISTOPH das Ende dieses Punktes plus Punkt 8
+  Somit gilt die rekursive Darstellung
+  \[ T_0(x)=1,\, T_1(x)=x,\, T_{k+1}(x)=2xT_k (x) - T_{k-1}(x),\, k=1,2,\dots \]
+  $ \Rightarrow T_k \in \mathcal{P}_k$ \\
+
+\item[8] Es gilt auch die Darstellung
+  \[ T_K (x) =\cosh (k\cdot arccosh (x))\text{ für } x \geq 1,\, T_0(x)=1,\, T_1(x)=x \]
+  Für den Rest muss man die Rekursionsformel anwenden:\\
+  Setze für $x \geq 1$: $t:=arccosh(x) = ln (x+\sqrt{x^2-1})$\\
+  Dann gilt
+  \[ T_k(x) = cosh (kt) = \frac{1}{2} (e^{kt} + e^{-kt})\geq \frac{1}{2} (e^t)^k = \frac{1}{2} (x+\sqrt{x^2-1})^k \]
+
+\item[9] Wähle nun $q \in \mathcal{P}^*_{k+1}$ wie folgt
+  \[ q(\lambda) := \frac{T_{k+1}\left( \frac{2\lambda - \lambda_{min} - \lambda_{max}}{\lambda_{min}-\lambda_{max}} \right) }{T_{k+1} \left( \frac{\lambda_{min}+\lambda_{max}}{\lambda_{max} - \lambda_{min}}\right)} \Rightarrow q(0)=1, q\in\mathcal{P}_{k+1} \rightarrow q\in\mathcal{P}^*_{k+1} 
+  \]
+  Weiterhin gilt: 
+  \[\max_{\lambda \in \sigma (A)} |q(\lambda)| \leq \frac{1}{T_{k+1}\left( .......... \right)} \]
+
+
   \end{enumerate}
 \end{proof}
 
