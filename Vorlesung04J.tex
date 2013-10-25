@@ -45,9 +45,32 @@
         = (x-x^{(0)},Ap^{(j)})
         \Leftrightarrow (x^{(k+1)}-x^{(0)},p^{(j)})_A = (x-x^{(0)},p^{(j)})_A
       \]
-    \item[3)] CHRISTOPH
     \item[5] 
       Also gilt $\|e^{(k+1)}\|_A = \min_{p\in \mathcal{P}^*_{k+1}} \|p(A)e^{(0)}\|_A$, wobei $\mathcal{P}^*_{k+1}=\left\{ q\in \mathcal{P}_{k+1} | q(0)=1 \right\}$
+
+    \item  \underline{Beh.:}
+      \[span\{p^{(0)},\dots p^{(k)} \} = span \{ r^{(0)},Ar^{(0)},\dots A^kr^{(0)}\} =: \underbrace{\mathcal{K}_{k+1}(r^{(0)})}_{\text{Krylovraum}} \]
+      Offensichtlich gilt: $span \{ p^{(0)},\dots p^{(k)}\} =span \{ r^{(0)},r^{(1)},\dots , r^{(k)}\}$\\
+      \begin{proof}
+        3) mit vollst. Induktion;\\
+        IA: da $p^{(0)}=r^{(0)}$ \\
+        $'\subset '$: IV: $ span \{ p^{(0)},\dots , p^{(k)} \} = \mathcal{K}_{k+1}(r^{(0)}) $\\
+        IS: IV $\Rightarrow Ap^{(k)} \in \mathcal{K}_{k+2}(r^{(0)})$\\
+        Aus $(\ast \ast)$ also $r^{(k+1)=r^{(k)-\alpha^{(k)}Ap^{(k)} \in \mathcal{K}_{k+2}(r^{(0)})$ 
+        \begin{align*}
+          ^{(\ast \ast \ast)}\Rightarrow& p^{(k+1)}=r^{(k+1)}-\beta^{(k)}p^{(k)} \in \mathcal{K}_{k+2}(r^{(0)}) \\
+          \Rightarrow & span \{ p^{(0)},\dots p^{(k+1)} \} \subset \mathcal{K}_{k+2}(r^{(0)})
+        \end{align*}
+        $'\supset '$\\
+        IV $span \{p^{(0)},\dots p^{(k)}\} = \mathcal{K}_{k+1}(r^{(0)})$ \\
+        IS: IV $\Rightarrow A^kr^{(0)} \in span \{ p^{(0)},\dots p^{(k)} \}$ \\
+        \begin{align*}
+          ^{(\ast \ast)} \Rightarrow & A^{k+1}r^{(0)} \in span \{ r^{(0)},\dots , r^{(k+1)} \} = span \{ p^{(0)},\dots p^{(k+1)} \} \\
+          \Rightarrow & '\supset '
+        \end{align*}
+      \end{proof}
+
+    \item[4] $^{2) + 3)} \Rightarrow \, x^{(k+1)}-x^{(k)}$ ist die Orthogonalprojektion des Anfangsfehlers $ x-x^{(0)} =: e^{(0)}$ auf den Krylovraum $\mathcal{K}_{k+1}(r^{(0)}$.\\
     \item[6] A ist s.p.d. $\Rightarrow A=Q^TDQ, Q$ orthogonale Matrix, $D=diag(\lambda_i), \lambda_i$ EV von $A$\\
       $\Rightarrow p(A) = Q^Tp(D)Q$\\
       $\Rightarrow \|e^{(k+1)}\|^2_A = \min_{p\in \mathcal{p}^*_{k+1}} \|p(A)e^{(0)}\|_A^2 
