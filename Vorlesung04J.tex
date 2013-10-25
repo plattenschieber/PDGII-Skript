@@ -33,8 +33,10 @@
 
 \begin{proof}
   Folgt den Argumenten von Quaternioni/Valle Numerical Mathematics for PDE, Springenr, S.48-50 und Quarteroni/Suer/Sater, Numerical Mathematics, S.154
-    \item[1)] (*)$x^{(k+1)}= x^{(k)} + \alpha^{(k)}p^{(k)} \underbrace{=}_{Argument} x^{(0)} + \sum_{i=0}^{k} \alpha^{(i)}p^{(i)}$
-    \item[2)] Sei $x=A^{-1}b$ die exakte Lösung , dann folgt aus 1) 
+  \begin{enumerate}[(1)]
+    \item (*)$x^{(k+1)}= x^{(k)} + \alpha^{(k)}p^{(k)} \underbrace{=}_{Argument} x^{(0)} + \sum_{i=0}^{k} \alpha^{(i)}p^{(i)}$
+
+    \item Sei $x=A^{-1}b$ die exakte Lösung , dann folgt aus 1) 
       \[
         (Ap^{(j)}, x^{(k+1)}-x^{(0)}) = \sum_{i=0}^{k} \alpha^{(i)}\underbrace{(Ap^{(j)},p^{(i)})}_{=0, i\neq j} 
         = \alpha^{(j)}(Ap^{(j)},p^{(j)}) \underbrace{=}_{Def. \alpha^{(j)}} (r^{(j)},p^{(j)}) = (b-Ax^{(j)},p^{(j)})
