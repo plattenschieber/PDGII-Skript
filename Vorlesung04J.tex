@@ -45,8 +45,6 @@
         = (x-x^{(0)},Ap^{(j)})
         \Leftrightarrow (x^{(k+1)}-x^{(0)},p^{(j)})_A = (x-x^{(0)},p^{(j)})_A
       \]
-    \item[5] 
-      Also gilt $\|e^{(k+1)}\|_A = \min_{p\in \mathcal{P}^*_{k+1}} \|p(A)e^{(0)}\|_A$, wobei $\mathcal{P}^*_{k+1}=\left\{ q\in \mathcal{P}_{k+1} | q(0)=1 \right\}$
 
     \item  \underline{Beh.:}
       \[span\{p^{(0)},\dots p^{(k)} \} = span \{ r^{(0)},Ar^{(0)},\dots A^kr^{(0)}\} =: \underbrace{\mathcal{K}_{k+1}(r^{(0)})}_{\text{Krylovraum}} \]
@@ -71,6 +69,16 @@
       \end{proof}
 
     \item[4] $^{2) + 3)} \Rightarrow \, x^{(k+1)}-x^{(k)}$ ist die Orthogonalprojektion des Anfangsfehlers $ x-x^{(0)} =: e^{(0)}$ auf den Krylovraum $\mathcal{K}_{k+1}(r^{(0)}$.\\
+
+    \item[5] es gilt mit 4) und $e^{(k+1)}=x-x^{(k+1)}$:
+        \begin{align*}
+          ||e^{(k+1)}||A &= || (x-x^{(0)})-(x^{(k+1)} -x^{(0)} ||_A \\
+          &= \min_{y \in \mathcal{K}_{k+1}(r^{(0)})} ||x-x^{(0)} - y ||_A = \min_{y \in \mathcal{K}_{k+1}(r^{(0)})} ||e^{(0)} - y ||_A 
+        \end{align*}
+        Da $r^{(0)} =A(x-x^{(0)})$=Ae^{(0)}$  lässt sich ein bel. $y \in \mathcal{K}_{k+1}(r^{(0)})$ schreiben als:
+        \[ y= \sum_{j=0}^k \tilde \gamma_j A^jr^{(0)} = \sum_{j=1}^{k+1}\gamma_j A^j e^{(0)} = \tilde p (A)e^{(0)}, \,  p \in \mathcal{P}_{k+1} \]
+        Also gilt $\|e^{(k+1)}\|_A = \min_{p\in \mathcal{P}^*_{k+1}} \|p(A)e^{(0)}\|_A$, wobei $\mathcal{P}^*_{k+1}=\left\{ q\in \mathcal{P}_{k+1} | q(0)=1 \right\}$
+
     \item[6] A ist s.p.d. $\Rightarrow A=Q^TDQ, Q$ orthogonale Matrix, $D=diag(\lambda_i), \lambda_i$ EV von $A$\\
       $\Rightarrow p(A) = Q^Tp(D)Q$\\
       $\Rightarrow \|e^{(k+1)}\|^2_A = \min_{p\in \mathcal{p}^*_{k+1}} \|p(A)e^{(0)}\|_A^2 
