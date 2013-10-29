@@ -70,84 +70,6 @@
       \end{proof}
 
     \item[4] $^{2) + 3)} \Rightarrow \, x^{(k+1)}-x^{(k)}$ ist die Orthogonalprojektion des Anfangsfehlers $ x-x^{(0)} =: e^{(0)}$ auf den Krylovraum $\mathcal{K}_{k+1}(r^{(0)}$.\\
-=======
-\begin{proof}
-  Folgt den Argumenten von Quaternioni/Valle Numerical Mathematics for PDE, Springenr, S.48-50 und Quarteroni/Suer/Sater, Numerical Mathematics, S.154
-  \begin{itemize}
-    \item[1)] (*)$x^{(k+1)}= x^{(k)} + \alpha^{(k)}p^{(k)} \underbrace{=}_{Argument} x^{(0)} + \sum_{i=0}^{k} \alpha^{(i)}p^{(i)}$
-    \item[2)] Sei $x=A^{-1}b$ die exakte Lösung , dann folgt aus 1) 
-      \[
-        (Ap^{(j)}, x^{(k+1)}-x^{(0)}) = \sum_{i=0}^{k} \alpha^{(i)}\underbrace{(Ap^{(j)},p^{(i)})}_{=0, i\neq j} 
-        = \alpha^{(j)}(Ap^{(j)},p^{(j)}) \underbrace{=}_{Def. \alpha^{(j)}} (r^{(j)},p^{(j)}) = (b-Ax^{(j)},p^{(j)})
-        = (A(x-x^{(j)}),p^{(j)}) 
-        = (x-x^{(0)},Ap^{(j)}) + \underbrace{(\underbrace{x^{(0)}-x^{(j)}}_{\underbrace{=}_{1)}-\sum_{i=0}^{j-1}\alpha^{(i)}p^{(i)}},Ap^{j})}_{=0, \text{ da } (p^{(i)},Ap^{(j)})=0, i=0,\ldots,j-1}
-        = (x-x^{(0)},Ap^{(j)})
-        \Leftrightarrow (x^{(k+1)}-x^{(0)},p^{(j)})_A = (x-x^{(0)},p^{(j)})_A
-      \]
-    \item[3)] { \underline{Beh.:}
-\[span\{p^{(0)},\dots p^{(k)} \} = span \{ r^{(0)},Ar^{(0)},\dots A^kr^{(0)}\} =: \underbrace{\mathcal{K}_{k+1}(r^{(0)})}_{\text{Krylovraum}} \]
-Offensichtlich gilt: $span \{ p^{(0)},\dots p^{(k)}\} =span \{ r^{(0)},r^{(1)},\dots , r^{(k)}\}$\\
-\begin{proof}
-3) mit vollst. Induktion;\\
-IA: da $p^{(0)}=r^{(0)}$ \\
-$'\subset '$: IV: $ span \{ p^{(0)},\dots , p^{(k)} \} = \mathcal{K}_{k+1}(r^{(0)}) $\\
-IS: IV $\Rightarrow Ap^{(k)} \in \mathcal{K}_{k+2}(r^{(0)})$\\
-Aus $(\ast \ast)$ also $r^{(k+1)}=r^{(k)}-\alpha^{(k)}Ap^{(k)} \in \mathcal{K}_{k+2}(r^{(0)})$ 
-\begin{align*}
-^{(\ast \ast \ast)}\Rightarrow& p^{(k+1)}=r^{(k+1)}-\beta^{(k)}p^{(k)} \in \mathcal{K}_{k+2}(r^{(0)}) \\
-\Rightarrow & span \{ p^{(0)},\dots p^{(k+1)} \} \subset \mathcal{K}_{k+2}(r^{(0)})
-\end{align*}
-$'\supset '$\\
-IV $span \{p^{(0)},\dots p^{(k)}\} = \mathcal{K}_{k+1}(r^{(0)})$ \\
-IS: IV $\Rightarrow A^kr^{(0)} \in span \{ p^{(0)},\dots p^{(k)} \}$ \\
-\begin{align*}
-^{(\ast \ast)} \Rightarrow & A^{k+1}r^{(0)} \in span \{ r^{(0)},\dots , r^{(k+1)} \} = span \{ p^{(0)},\dots p^{(k+1)} \} \\
-\Rightarrow & '\supset '
-\end{align*}
-\end{proof}
-}
-\item[4)]{ $^{2) + 3)} \Rightarrow \, x^{(k+1)}-x^{(k)}$ ist die Orthogonalprojektion des Anfangsfehlers $ x-x^{(0)} =: e^{(0)}$ auf den Krylovraum $\mathcal{K}_{k+1}(r^{(0)}$.
-}
-\item[5)]{ es gilt mit 4) und $e^{(k+1)}=x-x^{(k+1)}$:
-\begin{align*}
-||e^{(k+1)}||A &= || (x-x^{(0)})-(x^{(k+1)} -x^{(0)} ||_A \\
-&= \min_{y \in \mathcal{K}_{k+1}(r^{(0)})} ||x-x^{(0)} - y ||_A = \min_{y \in \mathcal{K}_{k+1}(r^{(0)})} ||e^{(0)} - y ||_A 
-\end{align*}
-Da $r^{(0)} =A(x-x^{(0)})=Ae^{(0)}$  lässt sich ein bel. $y \in \mathcal{K}_{k+1}(r^{(0)})$ schreiben als:
-\[ y= \sum_{j=0}^k \tilde \gamma_j A^jr^{(0)} = \sum_{j=1}^{k+1}\gamma_j A^j e^{(0)} = \tilde p (A)e^{(0)}, \,  p \in \mathcal{P}_{k+1} \]
-      Also gilt $\|e^{(k+1)}\|_A = \min_{p\in \mathcal{P}^*_{k+1}} \|p(A)e^{(0)}\|_A$, wobei $\mathcal{P}^*_{k+1}=\left\{ q\in \mathcal{P}_{k+1} | q(0)=1 \right\}$
-    \item[6)] A ist s.p.d. $\Rightarrow A=Q^TDQ, Q$ orthogonale Matrix, $D=diag(\lambda_i), \lambda_i$ EV von $A$\\
-      $\Rightarrow p(A) = Q^Tp(D)Q$\\
-      $\Rightarrow \|e^{(k+1)}\|^2_A = \min_{p\in \mathcal{p}^*_{k+1}} \|p(A)e^{(0)}\|_A^2 
-      =  \min_{p\in \mathcal{p}^*_{k+1}} \|Q^Tp(D)Qe^{(0)}\|_A^2 $\\
-      $ \min_{p\in \mathcal{p}^*_{k+1}} \left( D\underbrace{QQ^T}_{=I}p(D)Qe^{(0)}\underbrace{QQ^T}_{=I} \underbrace{p(D)Qe^{(0)}}_{=z} \right)$\\
-      $  \min_{p\in \mathcal{p}^*_{k+1}} (Dp(D)z,p(D)z) = \sum_{i=1}^{n}\lambda_i z_i^2(p(\lambda_i))^2$\\
-      $\leq  \min_{p\in \mathcal{p}^*_{k+1}} \max_{\lambda_i \in \sigma(A)} (p(\lambda_i))^2 \underbrace{\sum_{i=1}^{n}\lambda_i z_i^2}_{=(PQe^{(0)},Qe^{(0)})=\|e^{(0)}\|_A^2}$
-      $= \left(  \min_{p\in \mathcal{p}^*_{k+1}}  \max_{\lambda_i \in \sigma(A)} (p(\lambda_i))^2 \right) \|e^{(0)}\|_A^2$\\
-      $\Leftrightarrow \frac{\|e^{(k+1)}\|_A}{\|e^{(0)}\|_A} 
-      \leq  \min_{p\in \mathcal{p}^*_{k+1}}  \max_{\lambda_i \in \sigma(A)} |p(\lambda)|$
-}
-\item[7)] Als nächstes versuchen wir ein Polynom $q\in \mathcal{P}^*_{k+1}$ zu konstruieren, s.d. $|q(\lambda)|$ möglichst klein ist für $\lambda\in [\lambda_{min}, \lambda_{max}]$. Dazu führen wir die \underline{Tschebyscheff-Polynome} ein (vgl. Martin Haute-Bourgois, Grundlagen d. Num. Math. und WissRech, Vieweg-Teubner, 3. Auflage S.284). 
-      Definition  $T_k(x) := \cos(k arccos(x)), \quad k\geq 0, x\in [-1,1]$ Tschebyscheff-Polynome k-ter Ordnung.
-  $T_0(x)=1, T_1(x)=x, t:=arccos(x)$
-  Behauptung: $T_{k-1}(x) + T_{k+1}(x) = \cos((k-1)t) + \cos ((k+1)t)$
-  %CHRISTOPH das Ende dieses Punktes plus Punkt 8
-Somit gilt die rekursive Darstellung
-\[ T_0(x)=1,\, T_1(x)=x,\, T_{k+1}(x)=2xT_k (x) - T_{k-1}(x),\, k=1,2,\dots \]
-$ \Rightarrow T_k \in \mathcal{P}_k$ \\
-\item[8)]Es gilt auch die Darstellung
-\[ T_K (x) =\cosh (k\cdot arccosh (x))\text{ für } x \geq 1,\, T_0(x)=1,\, T_1(x)=x \]
-Für den Rest muss man die Rekursionsformel anwenden:\\
-Setze für $x \geq 1$: $t:=arccosh(x) = ln (x+\sqrt{x^2-1})$\\
-Dann gilt
-\[ T_k(x) = cosh (kt) = \frac{1}{2} (e^{kt} + e^{-kt})\geq \frac{1}{2} (e^t)^k = \frac{1}{2} (x+\sqrt{x^2-1})^k \]
-%
-\item[9)] Wähle nun $q \in \mathcal{P}^*_{k+1}$ wie folgt
-\[ q(\lambda) := \frac{T_{k+1}\left( \frac{2\lambda - \lambda_{min} - \lambda_{max}}{\lambda_{min}-\lambda_{max}} \right) }{T_{k+1} \left( \frac{\lambda_{min}+\lambda_{max}}{\lambda_{max} - \lambda_{min}}\right)} \Rightarrow q(0)=1, q\in\mathcal{P}_{k+1} \rightarrow q\in\mathcal{P}^*_{k+1} 
-\]
-Weiterhin gilt: 
-\[\max_{\lambda \in \sigma (A)} |q(\lambda)| \leq \frac{1}{T_{k+1}\left( .......... \right)} \]
->>>>>>> 9e65132e24f32f8f6c664bb846c8ee6a1699aca4
 
     \item[5] es gilt mit 4) und $e^{(k+1)}=x-x^{(k+1)}$:
         \begin{align*}
@@ -158,7 +80,6 @@ Weiterhin gilt:
         \[ y= \sum_{j=0}^k \tilde \gamma_j A^jr^{(0)} = \sum_{j=1}^{k+1}\gamma_j A^j e^{(0)} = \tilde p (A)e^{(0)}, \,  p \in \mathcal{P}_{k+1} \]
         Also gilt $\|e^{(k+1)}\|_A = \min_{p\in \mathcal{P}^*_{k+1}} \|p(A)e^{(0)}\|_A$, wobei $\mathcal{P}^*_{k+1}=\left\{ q\in \mathcal{P}_{k+1} | q(0)=1 \right\}$
 
-<<<<<<< HEAD
     \item[6] A ist s.p.d. $\Rightarrow A=Q^TDQ, Q$ orthogonale Matrix, $D=diag(\lambda_i), \lambda_i$ EV von $A$\\
       $\Rightarrow p(A) = Q^Tp(D)Q$\\
       $\Rightarrow \|e^{(k+1)}\|^2_A = \min_{p\in \mathcal{p}^*_{k+1}} \|p(A)e^{(0)}\|_A^2 
@@ -194,10 +115,5 @@ Weiterhin gilt:
 
   \end{enumerate}
 \end{proof}
-
-=======
-  \end{itemize}
-\end{proof}
->>>>>>> 9e65132e24f32f8f6c664bb846c8ee6a1699aca4
 
 
