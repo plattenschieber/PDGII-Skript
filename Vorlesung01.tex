@@ -108,28 +108,28 @@ Für den Fehler im $k$-ten Schritt $e^{(k)} = x-x^{(k)}$ gilt $\|e^{(k)}\| \leq 
    \end{equation*}
    Aus Satz 1.1.1:[FÄNGT DIE NUMERIERUNG FÜR SATZ UND DEFINITION UNABHÄNGIG BEI DER SECTION AN?]\\
    Das Richardson-Verfahren konvergiert
-   \begin{equation*} 
-     \Leftrightarrow |\mu_i| <1, \quad \forall i = 1, \dots, n
-     \Leftrightarrow |1-\alpha\lambda_i| < 1\\
-     \Leftrightarrow -1 < 1 - \alpha \lambda_i < 1 
-     \Leftrightarrow 0 < \alpha < \frac{2}{\lambda_i} 
-     \Leftrightarrow 0 < \alpha < \frac{2}{\lambda_1} = \min_i \frac{2}{\lambda_i}
-   \end{equation*}
-   mit $\rho(B) = \max_i |1-\alpha\lambda_i = \max \left\{ |1-\alpha\lambda_i|, |1-\alpha\lambda_n| \right\}$
-   Der kleinste Spektralradius $\rho_{opt}$ ergibt sich durch Schnittpunktbildung der beiden Geraden. Berechne den opt Schnittpunkt von $|1-\alpha\lambda_1$ und $|1-\alpha\lambda_n|$\
+
+   \begin{align*} 
+     &\Leftrightarrow |\mu_i| <1, \quad \forall i = 1, \dots, n\\
+     &\Leftrightarrow |1-\alpha\lambda_i| < 1\\
+     &\Leftrightarrow -1 < 1 - \alpha \lambda_i < 1 \\
+     &\Leftrightarrow 0 < \alpha < \frac{2}{\lambda_i} \\
+     &\Leftrightarrow 0 < \alpha < \frac{2}{\lambda_1} = \min_i \frac{2}{\lambda_i}
+   \end{align*}
+
+   mit $\rho(B) = \max_i |1-\alpha\lambda_i = \max \left\{ |1-\alpha\lambda_i|, |1-\alpha\lambda_n| \right\}$.\\
+   Der kleinste Spektralradius $\rho_{opt}$ ergibt sich durch Schnittpunktbildung der beiden Geraden. Berechne den opt Schnittpunkt von $|1-\alpha\lambda_1|$ und $|1-\alpha\lambda_n|$\
 BILD
-   \begin{equation*}
-     -(1-\alpha\lambda_n) = 1-\alpha\lambda_1 
-     \Leftrightarrow \alpha_{opt} = \frac{2}{\lambda_1+\lambda_n}
-     \Rightarrow \rho_{opt} = 1-\alpha_{opt} \lambda_n = 1 - \frac{2}{\lambda_1+\lambda_n} \lambda_n = \frac{\lambda_1-\lambda_n}{\lambda_1+\lambda_n}
-   \end{equation*}
+   \begin{align*}
+     &-(1-\alpha\lambda_n) = 1-\alpha\lambda_1 \\
+     &\Leftrightarrow \alpha_{opt} = \frac{2}{\lambda_1+\lambda_n}\\
+     &\Rightarrow \rho_{opt} = 1-\alpha_{opt} \lambda_n\\
+                             &= 1 - \frac{2}{\lambda_1+\lambda_n} \lambda_n\\ 
+                             &= \frac{\lambda_1-\lambda_n}{\lambda_1+\lambda_n}\\
+   \end{align*}
  \end{proof}
 
- Die Konvergenz des stationären Richardson-Verfahrens ist also abhängig von der Konditionszahl von $M^{-1}A$ bzw. vom größten und kleinsten Eigenwert:
- \begin{equation*}
-   \lambda_1 := max \lambda_i, \quad \lambda_i \in \sigma(M^{-1}A)\\
-   \lambda_n := min \lambda_i
- \end{equation*}
+ Die Konvergenz des stationären Richardson-Verfahrens ist also abhängig von der Konditionszahl von $M^{-1}A$ bzw. vom größten $\lambda_1 := max \lambda_i$ und kleinsten $\lambda_n := min \lambda_i$ Eigenwert mit $\lambda_i \in \sigma(M^{-1}A)$
 
  \begin{bemerkung}
  Die Matrix $M$ ist frei wählbar und man kann die Kondition des Systems damit a-priori beeinflussen. Daher nennt man sie auch Vorkonditionierer (engl. preconditioner) oder Vorkonditionierungsmatrix
