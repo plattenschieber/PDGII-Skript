@@ -15,9 +15,11 @@ Ansatz: Sei $M\in \R^{n\times n}$ invertierbar. Wir betrachten das folgende Spli
 \end{equation}
 und setzen 
 \begin{equation}
-  Mx^{(k+1) + Nx^{(k)}} = b,\quad k=0,1,2\dots\\
-  \Leftrightarrow x^{(k+1)} = x^{(k)} + M^{-1}(b-Ax^{(k)})
-  = x^{(k)} M^{-1}r^{(k)} \text{ mit } r^{(k)} := b-Ax^{(k)} \text{ k-te Residuum} %aligne die gleicheitszeichen
+  \begin{split}
+    Mx^{(k+1)} + Ax^{(k)}     &= b \quad FEHLER? WO IST N?\\
+    \Leftrightarrow x^{(k+1)} &= x^{(k)} + M^{-1}(b-Ax^{(k)})\\
+    &= x^{(k)} + M^{-1}r^{(k)}
+  \end{split}
   \label{}
 \end{equation}
 
