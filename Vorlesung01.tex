@@ -57,51 +57,59 @@ Für den Fehler im $k$-ten Schritt $e^{(k)} = x-x^{(k)}$ gilt $\|e^{(k)}\| \leq 
 \begin{satz}
   Das stationäre Richardson-Verfahren \eqref{richardson} mit $\alpha \neq 0$ konvergiert genau dann, wenn 
   \begin{equation}
-    2* \frac{Re(\lambda_i)}{\alpha|\lambda_i|^2} > 1, \quad \forall i=1,\dots, n
+    2* \frac{Re(\lambda_i)}{\alpha|\lambda_i|^2} > 1 \qquad \forall i=1,\dots, n
     \label{}
   \end{equation}
-  wobei $\lambda_i \in \sigma(M^{-1}A), \quad i=1,\dots, n$
+  wobei $\lambda_i \in \sigma(M^{-1}A)$
 \end{satz}
 
 \begin{proof}
-  Wende (label itkonvergenz) auf $B=I-\alpha M^{-1}A$ an. Sei $\mu_i \in \sigma(B)$. Dann gilt
+  Wende \eqref{itkonvergenz} auf $B=I-\alpha M^{-1}A$ an. Sei $\mu_i \in \sigma(B)$. Dann gilt
   \begin{equation*}
-    \Leftrightarrow \mu_i = 1-\alpha \lambda_i, \quad \lambda_i \in \sigma(M^{-1}A)\\
-    \rho(B) < 1 \Leftrightarrow |1-\alpha\lambda_i| <1, \quad \forall \lambda_i \in \sigma(M^{-1}A)
-    \Leftrightarrow -2 \alpha Re(\lambda_i) + \alpha^2 |\lambda_i|^2 <0
+    \begin{split}
+      \mu_i = 1-\alpha \lambda_i, \quad \forall \lambda_i \in \sigma(M^{-1}A)\\
+      \rho(B) < 1 \Leftrightarrow |1-\alpha\lambda_i| <1, \quad \forall \lambda_i \in \sigma(M^{-1}A)\\
+      \Leftrightarrow -2 \alpha Re(\lambda_i) + \alpha^2 |\lambda_i|^2 <0
+    \end{split}
   \end{equation*}
+  SCHÖNERE AUSRICHTUNG MÖGLICH?
 \end{proof}
 
 \begin{satz}
-  Voraussetzungen: $M^{-1}A$ habe nur positive reelle Eigenwerte $\lambda_i, i=1,\dots, n$ (Invertierbarkeit nicht zwingend erforderlich), die wie folgt geordnet seien:
+  $M^{-1}A$ habe nur positive reelle Eigenwerte $\lambda_i$, $i=1,\dots, n$ (Invertierbarkeit nicht zwingend erforderlich), die wie folgt geordnet seien:
   \begin{equation*}
     0< \lambda_n \leq \lambda_{n-1} \leq \dots \leq \lambda_1
   \end{equation*}
-  \begin{itemize}
-    \item[1]  Dann ist das stationäre Richardson-Verfahren genau dann konvergent, wenn 
+
+  \begin{enumerate}[1)]
+    \item  Das stationäre Richardson-Verfahren ist genau dann konvergent, wenn 
              \begin{equation*}
                 0 < \alpha < \frac{2}{\lambda_1}
               \end{equation*}
-    \item[2] Der Spektralradius $\rho(B)$ ist minimal (und damit die Konvergenz am schnellsten), wenn 
+
+    \item Der Spektralradius $\rho(B)$ ist minimal (und damit die Konvergenz am schnellsten), wenn 
       \begin{equation*}
         \alpha = \alpha_{opt} := \frac{2}{\lambda_1+\lambda_n}
       \end{equation*}
       Dann gilt
       \begin{equation*}
-        \rho_{opt} = \min_{\alpha} \left( \rho(B_\alpha) \right) = \frac{\lambda_1-\lambda_n}{\lambda_1+\lambda_n} = \frac{\kappa - 1}{\kappa+1}= 1 - \frac{2}{\kappa+1}
+        \rho_{opt} = \min_{\alpha} \left( \rho(B_\alpha) \right) 
+                   = \frac{\lambda_1-\lambda_n}{\lambda_1+\lambda_n} 
+                   = \frac{\kappa - 1}{\kappa+1}= 1 - \frac{2}{\kappa+1}
       \end{equation*}
-      mit $\kappa = \kappa(M^{-1}A) = \frac{\lambda_1}{\lambda_n}$ Konditionszahl
-    
-
-  \end{itemize}
+      mit der Konditionszahl $\kappa = \kappa(M^{-1}A) = \frac{\lambda_1}{\lambda_n}$\\
+    FEHLT HIER NOCH ETWAS?
+  \end{enumerate}
  \end{satz}
 
  \begin{proof}
    \begin{equation*}
      \mu_i \in \sigma(B) \Leftrightarrow \mu_i = 1-\alpha \lambda_i, \quad \lambda_i\in \sigma(M^{-1}A)
    \end{equation*}
-   Aus Satz 1.1.1: Richardson-Verfahren konvergiert $\Leftrightarrow |\mu_i| <1, \quad \forall i = 1, \dots, n$
-   \begin{equation*}
+   Aus Satz 1.1.1:[FÄNGT DIE NUMERIERUNG FÜR SATZ UND DEFINITION UNABHÄNGIG BEI DER SECTION AN?]\\
+   Das Richardson-Verfahren konvergiert
+   \begin{equation*} 
+     \Leftrightarrow |\mu_i| <1, \quad \forall i = 1, \dots, n$
      \Leftrightarrow |1-\alpha\lambda_i| < 1\\
      \Leftrightarrow -1 < 1 - \alpha \lambda_i < 1 
      \Leftrightarrow 0 < \alpha < \frac{2}{\lambda_i} 
