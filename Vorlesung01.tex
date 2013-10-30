@@ -147,13 +147,15 @@ BILD
  \begin{algorithmus}[Vorkonditioniertes Richardson-Verfahren]
    \begin{algorithmic}[1]
      \Statex 
-     \Statex\Init $x^{(0)}\in \R^n$ (Startvektor), $\alpha\in\R \backslash \{0\}$, $\varepsilon >0$
+     \Statex\Procedure{PreCondRichardson}{$\alpha, \varepsilon,x^{(0)}$} 
+     \Comment $\alpha\in\R \backslash \{0\}, \varepsilon >0, x^{(0)}\in \R^n$
      \Statex
      \State  $r^{(0)} := b-Ax^{(0)}$ (Berechne Startresiduum)
      \While{ $\|r^{(k)}\| \leq \varepsilon r^{(0)}$ } 
       \State $y^{(k)} := M^{-1} r^{(k)}$
       \State $k:=k+1$
      \EndWhile  
+     \EndProcedure
    \end{algorithmic}
  \end{algorithmus}
 
