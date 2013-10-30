@@ -22,15 +22,22 @@ und setzen
   \end{split}
   \label{}
 \end{equation}
+mit $ r^{(k)} := b-Ax^{(k)}$ das $k$-te Residuum für $k=0,1,2,\dots$
 
-Dieses Iterationsverfahren lässt sich durch Einführen eines Relaxationsparameters $\alpha \in \R$ noch verallgemeinern.
-\begin{equation}
-  x^{(0)} \in \R^n \text{geg.}
-  x^{(k+1)} := x^{(k)} + \alpha M^{-1} r^{(k)},\quad k=0,1,2,\dots
-  \label{Iterationsverfahren}
-\end{equation}
-heißt (stationäres) Richardson-Verfahren. 
-$\Rightarrow$ Iterationsvorschrift: $\varphi(x) = Bx + c$ $B=I-\alpha M^{-1}A, C=\alpha M^{-1}b$
+ Dieses Iterationsverfahren lässt sich durch Einführen eines Relaxationsparameters $\alpha \in \R$ noch verallgemeinern. Sei dazu $x^{(0)}\in \R^n$ gegeben. 
+
+\begin{definition}[Richardson-Verfahren]
+   \label{richardson}
+   \[
+     x^{(k+1)} := x^{(k)} + \alpha M^{-1} r^{(k)} \qquad k=0,1,2,\dots
+   \]
+   heißt (stationäres) Richardson-Verfahren. Die dazugehörige Iterationsvorschrift lautet
+   \[
+     \varphi(x) = Bx + c\\
+   \]
+   wobei $B=I-\alpha M^{-1}A$ und $C=\alpha M^{-1}b$
+\end{definition}
+
 
 Für die Konvergenz kennen wir aus Numerik I folgenden Satz:
 
