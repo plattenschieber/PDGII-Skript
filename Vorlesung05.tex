@@ -1,0 +1,82 @@
+Christoph
+
+\end{enumerate}
+\end{proof}
+
+
+\begin{algorithmus}[PCG-Verfahren]
+  Init: $x^{(0)}\in \R$ (Startvektor)
+  $r^{(0)} = b-Ax^{(0)}$ (Startresiduum)
+  $y^{(0)}-M^{-1}r^{(0)}$
+  $p^{(0)}=y^{(0)}$
+  Iteration: $k=0,1,2,\cdots$ (bis Konvergenzkriterium erfüllt ist) 
+  \begin{align*}
+    \alpha^{(k)}&= \frac{(p^{(k)},p^{(k)})}{p^{(k)},Ap^{(k)}}\\
+    x^{(k+1)}&= x^{(k)}+\alpha^{(k)}p^{(k)}\\
+    r^{(k+1)}&= r^{(k)}+\alpha^{(k)}Ap^{(k)}\\
+    x^{(k+1)}&= M^{-1}r^{(k+1)}\\
+    \beta^{(k)}&= \frac{(y^{(k+1)},Ap^{(k)})}{(p^{(k)},Ap^{(k)}}\\
+    p^{(k+1)}&= y^{(k+1)}-\beta^{(k)}p^{(k)}
+  \end{align*}
+\end{algorithmus}
+
+\begin{bemerkung}
+  Dieser Algorithmus benötigt nicht die Anwendung von $M^{-1/2}$ auf einen Vektor, sondern nur die von $M^{-1}$. Es handelt sicht \underline{nicht} um das CG-Verfahren angewendet auf $M^{-1}A$
+\end{bemerkung}
+
+\chapter{Das Modellproblem}
+\section{Die Modellgleichung und Finite Elemente}
+Sei $\Omega\in\R^d$ ein Polygon oder Polyeder, $d=2,3$
+\begin{equation}
+  \begin{aligned}
+    -\nabla (u(x) \nabla u) &= f &\quad \inn \Omega\\
+    u &= 0 &\quad \auf \partial\Omega_D\\
+    \frac{\partial u}{\partial v} &= g &\quad \partial\Omega_N
+  \label{}
+  \end{aligned}
+\end{equation}
+wobei $\partial\Omega = \partial\Omega_D \cup \partial\Omega_N$ mit $\partial\Omega_D\cap\partial\Omega_N=\emptyset$ und $|\partial\Omega .. .$FEHLT
+Betrachte das zugehörige Variationsproblem:
+\begin{problem}
+  Finde
+  \begin{align*}
+    u\in H_0^1(\Omega,\partial\Omega_D) &= \left\{ v\in H^1(\Omega): v|_{\partial\Omega_D} =0 \right\}\\
+    \text{s.d. } a(u,v) &= F(v) \quad \forall v\in H_0^1(\Omega,\partial\Omega_D)
+  \end{align*}
+  mit $a(u,v) := \int_{\Omega} a(x) \nabla u \nabla v \ud x, 
+     \quad F(v):=\int_\Omega f\cdot v \ud x + \int_{\partial\Omega_N}g\cdot v \ud \sigma$ 
+\end{problem}
+
+Dieses Variationsproblem soll mit konformen finiten Elementen gelöst werden. Wenn nichts anderes gesagt wird, wenden wir lineare Dreiecks- oder Tetraederelemente an. \\
+Sei $V^h\subset V := H_0^1(\Omega,\partial\Omega)$ der zugehörige Finite Elemente Raum. 
+
+Christoph
+
+\begin{proof}
+  \begin{enumerate}
+    \item Zunächst beweisen wir die Aussage auf dem Referenzelement $\hat{T}$ und wenden dann die Transformationsformel für Integrale an.
+      Sei $F_T: \hat{T} \to T, \hat{x}\to B\hat{x}+d$ für jedes Element $T\in \tau_h$. $\hat{\Pc}$ sei der lokale Ansatzraum. $\hat{\Pc}$ ist endlichdimensional, daher sind dort alle Nenner äquivalent, somit auch $\norm{\hat{v}}_{l_2}$ und $\norm{\hat{v}}_{L^2(\hat{T})}, : \exists \hat{c_1}, \hat{c_2} > 0$ s.d.
+      \begin{equation} %(*)
+        \hat{c_1} \norm{\hat{v}}^2_{L^2(\hat{T})} \leq \sum_{i=1}^{M} |\hat{v}(a_i)|^2 \leq \hat{c_2} \norm{\hat{v}}^2_{L^2(\hat{T})}
+        \label{}
+      \end{equation}
+      wobei $\hat{a_i} = $Freiheitsgrade im Referenzelement $\hat{T}$ (Bild vom Ref. Dreieck mit Ecken $\hat{a_1},\hat{a_2},\hat{a_3}$)
+      Aus Analysis III, bzw. Numerik PDG I $\Rightarrow \vol(T) = |\det B| \cdot \vol(\hat{T})$
+
+      $(\tau_h)$ ist regulär, also $h_t \leq \sigma \rho_T, \quad \forall T\in \tau_h$
+      $\Rightarrow \exists \tilde{c_1}, \tilde{c_2}, \tilde{c_3} >0 $ s.d. 
+      %\begin{equation}[**] %(**)
+      \[
+        \tilde{c_1} h_T^d \leq \tilde{c_3} \rho_T^d \leq |\det(B)| \leq \tilde{c_2} h_T^d \tag{$\star$}
+      \]
+        \label{ }
+      %\end{equation}
+      Durch die Transformationsformel erhalten wir für $v \in \Pc_T$
+      \begin{align}
+        \hat{c_1} \norm{v}_{L^2(T)}^2 \overset{\hat{v}=v^\circ F_T}{=} \hat{c_1} |det (B)| \norm{\hat{v}}_{L^2}(\hat{T})^2 
+        \overset{*,**}{\leq} \tilde{c_2} h_T^d \sum_{i=1}^{M} |\hat{v}(\hat{a_i})|^2
+        \overset{a_i = F_T(\hat{a}_i)}{\underset{\hat{v}=v \circ F_T}{=}} \tilde{c_2} h_T^d \sum_{i=1}^{M}|v(a_i)|^2 = c_2 h_T^d \sum_{i=1}^{M} |\hat{v}(\hat{a_i})|^2
+      Christoph
+    \end{align}
+  \end{enumerate}
+\end{proof}
