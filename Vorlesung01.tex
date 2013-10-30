@@ -52,9 +52,7 @@ Für die Konvergenz kennen wir aus Numerik I folgenden Satz:
 \end{satz}
 
 Hinreichende Konvergenzbedingung ist $\|B\| <1$ wobei $\|\cdot \|$ eine beliebige Matrixnorm ist, die durch eine Vektornorm induziert wird.
-\begin{equation*}
-  \Rightarrow \|e^{(k)} \leq \eta^k \|e^{(k)}, \quad \eta := \|B\|, e^{(k)} = x-x^{(k)} \text{ Fehler im k-ten Schritt}
-\end{equation*}
+Für den Fehler im $k$-ten Schritt $e^{(k)} = x-x^{(k)}$ gilt $\|e^{(k)}\| \leq \eta^k e^{(k)}$ mit $\eta := \|B\|$ STIMMT DIE UNGLEICHUNG?
 
 \begin{satz}
   Das stationäre Richardson-Verfahren \eqref{richardson} mit $\alpha \neq 0$ konvergiert genau dann, wenn 
