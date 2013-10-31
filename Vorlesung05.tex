@@ -1,8 +1,23 @@
-Christoph
-
+Weiterhin gilt, da $|T_k(x)|\leq 1$:
+\[|q(\lambda)| \leq \frac{1}{\left|T_{k+1} \left( \frac{\lambda_{max}+\lambda_{min}}{\lambda_{max}+\lambda_{min}} \right) \right| }\]
+\item[10)] 
+\[\Rightarrow \max_{\lambda \in \sigma (A)} |q(\lambda)| \leq \frac{1}{\frac{1}{2}(x+\sqrt{x^2-1})^k} = 2\left( \frac{\sqrt{\kappa} +1}{\sqrt{\kappa}-1} \right)^{-k} \]
+wobei $x:=\frac{\lambda_{max}+\lambda_{min}}{\lambda_{max}+\lambda_{min}} = \frac{\kappa +1}{\kappa -1} $.
 \end{enumerate}
+
+Schlussendlich folgt aus 1)-10):
+\[\norm{e^{(k+1)}}_A \leq 2 \left( \frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1} \right^k \norm{e^{(0)}}_A\]
 \end{proof}
 
+\underline{Vorkonditioniertes CG-Verfahren}(preconditioned cg-method, pcg)\\
+\underline{Geg.:} $M \in \R^{n \times n}, \text{ s.p.d. } \Rightarrow \, M=M^{1/2}M^{1/2}$\\
+Betrachte folgendes System:
+\[M^{-1/2}AM^{-1/2}y=M^{-1/2}b, \, x=M^{-1/2}y \]
+\[\Leftrightarrow Ax=b \]
+Da $\tilde A:= M^{-1/2}AM^{-1/2} $ s.p.d., könne wir das CG-Verfahren \underline{formal} auf $\tilde Ay=\tilde b=: M^{-1/2}b$ anwenden. Die Lösung $x$ ist dann $x=M^{-1/2}y$.\\
+Die Konvergenzrate ist bestimmt durhc $\sqrt{\kappa (M^{-1/2}AM^{-1/2})}$ und somit gilt 
+\[ \norm{e^{(k+1)}}_{\tilde A} \leq 2 \left( \frac{\sqrt{\kappa(M^{-1} A)}-1}{\sqrt{\kappa(M^{-1}A)+1}}\right)^k \norm{e^{(0)}}_{\tilde A} \]
+Durch Anwenden des CG-Verfahrens auf $\tilde A y =\tilde b$ ergibt sich folgender Algorithmus:
 
 \begin{algorithmus}[PCG-Verfahren]
   Init: $x^{(0)}\in \R$ (Startvektor)
@@ -50,7 +65,36 @@ Betrachte das zugehörige Variationsproblem:
 Dieses Variationsproblem soll mit konformen finiten Elementen gelöst werden. Wenn nichts anderes gesagt wird, wenden wir lineare Dreiecks- oder Tetraederelemente an. \\
 Sei $V^h\subset V := H_0^1(\Omega,\partial\Omega)$ der zugehörige Finite Elemente Raum. 
 
-Christoph
+Das zugehörige diskrete Modellproblem lautet dann:
+\begin{equation}
+	\text{Finde } u_h \in V^h, \text{ s.d. } a(u_h,v_h)=F(v_h) \forall \, v_h \in V^h 
+\end{equation}
+Bekanntermaßen führt dies auf ein lin. GS.:
+\[ Ku=b \]
+mit $u=(u_1,\dots , u_N)^T , \, u_h = \sum_{i=1}^N u_i \varphi_i $, wobei $(\varphi_i)_{i=1,\dots , N}$ die nodale Basis sei und $K:= (a(\varphi_i,\varphi_j))_{i,j=1,\dots ,N}$ (Steifigkeitsmatrix) und $b:= (F(\varphi_1),\dots, F(\varphi_N))^T$ (Lastvektor)\\
+
+\section{Die Konditionszahl und ihre Abschätzungen}
+\underline{Ziel:} 
+\begin{enumerate}
+\item $\kappa (K)$ nach oben abzuschätzen
+\item $\kappa (M) nach oben abzuschätzen, wobei $M:= \big((\varphi_i,\varphi_j)\big)_{i,j=1,\dots N}$ die Masseenmatrix ist.
+\end{enumerate}•
+Auf $V^h$ führen wir zunächst folgende Norm ein:
+\[ \norm{v}_{0,h} := \left( \sum_{T \in \tau_h} h^d_T \sum_{a_i \in T} |v(a_i)|^2 \right)^2 \]
+$(\tau_h)_h$ sei eine \underline{reguläre} Familie von Triangulierungen von $\Omega$.
+
+\begin{satz}
+\begin{enumerate}
+\item
+ Es existieren Konstanten $c_1,c_2 >0$ unabh. von $h$, s.d. für alle $v \in V^h$ gilt:
+\[ c_1 \norm{v}^2_{L^2(\Omega)} \leq \norm{v}^2_{0,h} \leq c_2 \norm{v}^2_{L^2(\Omega)} \]
+\item
+Es existiert eine von $h$ unabh. Konstante $C>0$, s.d. für alle $v \in V^h$ gilt:
+\[ \norm{v}_{H^1(\Omega)} \leq \frac{C}{(\min_{T \in \tau_h})} \norm{v}_{L^2(\Omega)} \]
+(\textbf{Inverse Ungleichung})
+\end{enumerate}
+\end{satz}
+
 
 \begin{proof}
   \begin{enumerate}
@@ -76,7 +120,35 @@ Christoph
         \hat{c_1} \norm{v}_{L^2(T)}^2 \overset{\hat{v}=v^\circ F_T}{=} \hat{c_1} |det (B)| \norm{\hat{v}}_{L^2}(\hat{T})^2 
         \overset{*,**}{\leq} \tilde{c_2} h_T^d \sum_{i=1}^{M} |\hat{v}(\hat{a_i})|^2
         \overset{a_i = F_T(\hat{a}_i)}{\underset{\hat{v}=v \circ F_T}{=}} \tilde{c_2} h_T^d \sum_{i=1}^{M}|v(a_i)|^2 = c_2 h_T^d \sum_{i=1}^{M} |\hat{v}(\hat{a_i})|^2
-      Christoph
+      Christoph letzter Satz
     \end{align}
+    
+    Durch Summation über die Elemente $T\in \tau_h$ erhalten wir:
+    \begin{align*}
+      \hat{c_1} \norm{v}_{L^2(\Omega)}^2 &= \hat{c_1} \sum_{T\in \tau_h} \norm{v}_{L^2(T)}^2 \\
+                                         &\leq \tilde{c_2} \sum_{T\in\tau_h} h_t^d \sum_{i=1}^{M} |v(a_i)|^2
+                                         &= \tilde{c} \norm{v}^2_{0,h}
+    \end{align*}
+    Analaog erhalten wir:
+    \begin{align*}`
+      \tilde{c_2}\norm{v}_{0,h}^2 &= \tilde{c_2} \sum_{T\in\tau_h} h_T^d \sum_{i=1}^{M} |v(a_i)|^2
+      &\leq \sum_{T\in\tau_h} \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}_{L^2(T)}^2
+      &= \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}^2_{L^2(\Omega)}
+    \end{align*}
+    \Rightarrow \sqrt{\frac{\hat{c_1}}{\tilde{c_2}}} \norm{v}_{L^2(\Omega)} \leq \norm{v}_{0,h} \leq \sqrt{\frac{\hat{c_2}}{\tilde{c_1}}}\norm{v}_{L^2(\Omega)}
+  \item[Beweis der inversen Ungleichung]
+    Transformation auf Referenzelement und dann Transformationsformel benutzen: AnalysisIII/Numerik PDGI
+    \begin{equation*}
+      |\hat{v}|^2_{\hat{H}(\hat{\Omega})} \leq c \norm{\tilde{B}}^2 |\det \tilde{B}|^{-1} |v|^2_{H^1(\Omega)}
+    \end{equation*}
+    Setze hier $T:=\hat{\Omega}, \hat{T}:=\Omega, B:=\tilde{B}^{-1}$. Somit gilt dann für $T\in\tau_h$
+    \begin{align}
+      \norm{v}^2_{H^1(T)} &\underset{*}{\leq} c\norm{B^{-1}}^2 |\det B| \norm{\hat{v}}^2_{H^1(\hat{T})}
+      &\underset{*}{\leq} c\norm{B^{-1}}^2 \norm{v}^2_{L^2(\hat{T})}
+      &= c\norm{B^{-1}}^2 \norm{v}^2_{L^2(T)}
+      &\leq c h^{-2}_T \norm{v}^2_{L^2(T)}
+      \label{}
+    \end{align}
+    Es exisitiert eine Konstante $C_A>0$, unabhängig von $h$, so dass für jeden Knoten in $\tau_h$ die Anzahl der Elemente, zu denen dieser Knoten gehört, durch $C_A$ von oben beschränkt ist. 
   \end{enumerate}
 \end{proof}
