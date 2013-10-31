@@ -16,7 +16,7 @@ Ansatz: Sei $M\in \R^{n\times n}$ invertierbar. Wir betrachten das folgende Spli
 und setzen 
 \begin{equation}
   \begin{split}
-    Mx^{(k+1)} + Ax^{(k)}     &= b \quad FEHLER? WO IST N?\\
+    Mx^{(k+1)} + Ax^{(k)}     &= b \quad \text{FEHLER? WO IST N?}\\
     \Leftrightarrow x^{(k+1)} &= x^{(k)} + M^{-1}(b-Ax^{(k)})\\
     &= x^{(k)} + M^{-1}r^{(k)}
   \end{split}
@@ -129,13 +129,13 @@ BILD
    \end{align*}
  \end{proof}
 
- Die Konvergenz des stationären Richardson-Verfahrens ist also abhängig von der Konditionszahl von $M^{-1}A$ bzw. vom größten $\lambda_1 := max \lambda_i$ und kleinsten $\lambda_n := min \lambda_i$ Eigenwert mit $\lambda_i \in \sigma(M^{-1}A)$
+ Die Konvergenz des stationären Richardson-Verfahrens ist also abhängig von der Konditionszahl von $M^{-1}A$ bzw.\ vom größten $\lambda_1 := max \lambda_i$ und kleinsten $\lambda_n := min \lambda_i$ Eigenwert mit $\lambda_i \in \sigma(M^{-1}A)$
 
  \begin{bemerkung}
- Die Matrix $M$ ist frei wählbar und man kann die Kondition des Systems damit a-priori beeinflussen. Daher nennt man sie auch Vorkonditionierer (engl. preconditioner) oder Vorkonditionierungsmatrix
+ Die Matrix $M$ ist frei wählbar und man kann die Kondition des Systems damit a-priori beeinflussen. Daher nennt man sie auch Vorkonditionierer (engl.\ preconditioner) oder Vorkonditionierungsmatrix
  \begin{itemize}
    \item $M$ sollte eine gute Approximation an $A$ sein und $\kappa(M^{-1}A)$ sollte möglichst klein sein
-   \item $M^{-1}$ sollte sich einfach auf einem Vektor anwenden lassen, d.h. mit vertretbarem Rechenaufwand. 
+   \item $M^{-1}$ sollte sich einfach auf einem Vektor anwenden lassen, d.h.\ mit vertretbarem Rechenaufwand. 
  \end{itemize}
  \end{bemerkung}
 
@@ -151,7 +151,7 @@ BILD
      \Comment $\alpha\in\R \backslash \{0\}, \varepsilon >0, x^{(0)}\in \R^n$
      \Statex
      \State  $r^{(0)} := b-Ax^{(0)}$ (Berechne Startresiduum)
-     \While{ $\|r^{(k)}\| \leq \varepsilon r^{(0)}$ } 
+     \While {$\|r^{(k)}\| \leq \varepsilon r^{(0)}$ } 
       \State $y^{(k)} := M^{-1} r^{(k)}$
       \State $k:=k+1$
      \EndWhile  
