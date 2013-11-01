@@ -1,0 +1,33 @@
+Christoph
+
+\begin{satz}%2.2.4
+  Sei $K$ die Steifigkeitsmatrix und $M$ die Masseenmatrix. Dann existiert eine von $h$ unabhängige Konstante $c>0$, so dass für die spektrale Konditionszahl folgendes gilt:
+  \begin{enumerate}
+    \item $\kappa(M^{-1}K) \leq c(\min_{T\in\tau_h} h_T)^{-2}$
+    \item $\kappa(k) \leq c(\min_{T\in\tau_h} h_T)^{-2} \kappa(M)$
+  \end{enumerate}
+\end{satz}
+
+\begin{proof}[``Spielen mit dem Rayleigh Quotienten'']
+  Für $x\in\R^n$ gilt
+  \[
+    \frac{x^TKx}{x^Tx} = \underbrace{\frac{x^TKx}{x^TMx}}_{\underset{y=M^{1/2}x}{=}\frac{y^TM^{-1/2}KM^{-1/2}y}{y^Ty}} \frac{x^TMx}{x^Tx}
+  \]
+  Es genügt somit zu Zeigen: $\exists c_1, c_2 >0:$
+  \[
+    c1 \leq \frac{x^TKx}{x^TMx} \leq c_2
+  \]
+  mit $K=(a(\varphi_i, \varphi_j)_{i,j})$ wie gehabt. 
+
+  Es gilt für $x=(v(a_1),\ldots, v(a_n))^T$:
+  \[
+    \frac{x^TKx}{x^TMx} = \frac{a(v,v)}{(v,v)_{L^2(\Omega)}}
+  \]
+
+  \underline{V-Elliptisch:} $\forall v\in V^h: a(v,v) \gq \alpha \norm{v}^2_{H^1(\Omega)} \geq \alpha \norm{^2_{L^2(\Omega)}}$
+  Aus der \underline{Stetigkeit} folgt: $\forall v\in V^h: a(v,v) \leq C \norm{v}^2_{H^1(\Omega)} \underset{\text{inv. Ungl.}{\leq}} c(\min_{T\in\tau_h} h_T)^{-2} \norm{v}^2_{L^2(\Omega)}$
+  \[
+    \Rightarrow \alpha \leq \frac{a(v,v)}{(v,v)_{L^2(\Omega)}} = \frac{x^TKx}{x^TMx} = \frac{a(v,v)}{(v,v)_{L^2(\Omega)}} \leq c(\min_{T\in\tau_h}h_T)^{-2}
+  \]
+  $\Rightarrow$ Behauptung
+\end{proof}
