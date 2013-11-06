@@ -1,0 +1,99 @@
+\chapter {Das klassische FETI-Verfahren}
+
+\underline{Ziel:} Entwurf eines Vorkonditionierers bzw. eines vorkonditionieren CG-Verfahrens, welches besser konvergiert als CG.\\
+$\rightarrow$ Finite Element Tearing Interconnecting \\
+\underline{Notation:} Statt $a(x)$ im Modellproblem: $\rho (x)$\\
+
+\subsection{Der Algotrithmus}
+
+\begin{enumerate}
+\item
+Zerlege $\Omega$ in $N$ nicht-überlappende Teilgebiete $\Omega_i \subset \Omega,\, i=1,\dots N \, : \, \bar \Omega = \Cup_{i=1}^N \bar \Omega_i $. $ \Gamma := \Cup_{i=1}^N \partial \Omega_i \setminus \partial \Omega$ wird \underline{Interface} genannt.\\
+Die Zerlegung soll so vorgenommen werden, dass die FE-Knoten (der verschiedenen $\Omega_i$) auf dem Interface übereinstimmen.
+\item
+Für alle Teilgebiete $\Omega_i$ werden lokale Steifigkeitsmatrizen $K^{(i)}$ und lokale Lastvektoren $f^{(i)}$ aufgestellt; $i=1,\dots N$\\
+\underline{Notation:}
+\[ K:= \begin{pmatrix}  K^{(1)} & 0 & 0 & \cdots & 0 \\
+				0 & K^{(2)}   & 0 & \cdots  &0 \\
+				\vdots\\
+				 0 & 0 & \cdots & 0 & K^{(N)}
+	\end{pmatrix}, \,
+  f:= \begin{pmatrix} f^{(1)} \\ \vdots \\ f^{(N)} \end{pmatrix}, \, u:=  \begin{pmatrix} u^{(1)} \\ \vdots \\ u^{(N)} \end{pmatrix}
+\]
+Formal kann man die Gleichung 
+\begin{equation}
+Ku=f \quad (*)
+\end{equation}
+hinschreiben. Da wir auf dem Interface die Steifigkeitsmatrizen $K^{(i)}$ nicht assembliert haben, ist (*) nur bedingt sinnvoll $\rightarrow$ Übungsblatt!\\
+Die Lösung von (*), sofern sie existert, ist auf dem Interface merhwertig und im Allgemeinen müssen diese Werte nicht übereinstimmen. Die Lösung von (*) hat auf dem Interface im Allgemeinen Sprünge.\\
+\underline{Naheliegend:} Auf dem Interface wird die \textbf{Stetigkeit der Lösung} als Nebenbedingung zusätzlich eingeführt.
+
+
+
+
+%JERO
+
+
+Für die inneren Knotenwerte $u_I$ müssen keine Bedingungen vorgeschrieben werden. Es gilt also:
+\[ B=(b_{ij})_{i,j}\, , \, b_{ij}\in \{ 0,1,-1 \} \text{ und } 0 = (Bu)_k=u^{(i)}_k - u^{(j)}_k \]
+bei entsprechender Nummerierung.\\
+Sei $W^h(\Omega_i)$ der zu $\Omega_i$ gehörige FE-Raum. Das ursprüngliche FE-Problem, welches aus dem Modellproblem entsteht, ist dann äquivalent zu folgendem Minimierungsproblem:
+Fionde $u^* \in W^h := \prod_{i=1}^N W^h (\Omega_i)$, s.d.
+\[(3.1) \quad J(u^*) = \min_{v \in W^h, \, Bv=0} J(v) \text{ wobei } J(v):=\frac{1}{2} \langle Kv,v\rangle - \langle f,v \rangle\, , \, \langle v , w \rangle := x^Tv \]
+Mit Hilfe Lagrangescher Mulitplikatoren überführen wir (3.1) in ein gemischtes System. Die zugehörige Lagrangefunktion lautet:
+\[ \mathcal{L}(u,\lambda)=J(u)+\langle Bu,\lambda \rangle \]
+\[^{\text{ notw. Bed.}\Rightarrow \nabla_u \mathcal{L} (u,\lambda)=0,\, \nabla_\lambda \mathcal{L} (u,\lambda)=0  \]
+\[\Rightarrow \begin{cases} Ku-f+B^T\lambda &=0 \\ Bu &= 0 \end{cases} \]
+\[ \Leftrightarrow \begin{pmatrix} K & B^T \\ B & 0 \end{pmatrix} \begin{pmatrix}u \\ \lambda \end{pmatrix} = \begin{pmatrix} f \\ 0 \end{pmatrix}  \boxed{\text{FETI-MASTERSYSTEM}} \]
+Wir betrachten das gemischte System:\\
+Finde $(u,\lambda) \in W^h \times U $ mit $U=\text{range}(B)$
+\begin{equation}
+(3.2) \begin{aligned}Ku+B^T\lambda &= f \\ Bu &= 0 \end{aligned}
+\end{equation}
+Das Problem ist lösbar, wenn
+\[ \text{ker}(K)\cap \text{ker}(B) = \{ 0 \} \]
+Dies ist sicherlich der Fall!\\
+Angenommen $K$ invertierbar:
+\[ \begin{pmatrix} K & B^T \\ B & 0 \end{pmatrix} \rightarrow  \begin{pmatrix} K & B^T \\ 0 & -BK^{-1}B^T \end{pmatrix} = \begin{pmatrix}   K^{(1)} & 0 & 0 & \cdots & 0 & B^{(1)}^T \\
+				0 & K^{(2)}   & 0 & \cdots  &0 & B^{(2)}^T\\
+				\vdots\\
+				 0 & 0 & \cdots & 0 & K^{(N)} & B^{(N)}^T \\
+			           &     &      0    &   &            &  \underbrace{\sum_{i=1}^N B^{(i)}{K^{(i)}}^{-1} B^{(i)}}_{\text{Summe lok. Schurkomp.}}
+				\end{pmatrix}
+\]
+Diese Vorgehensweise ist i. Allg. so nicht möglich, da die $K^{(i)}$ i- Allg. pos. semi-definit.\\
+(Bsp.: Steifigkeitsmatrix mit hom. Neumannbed.)\\
+Daher betrachten wir in (3.2):
+\[ Ku=f-B^T\lambda \text{ ist lösbar } \Leftrightarrow f-B^T\lambda \in \text{range}(K) \]
+\[ \Leftrightarrow (f-B^T\lambda) \orth \text{ker}(K) \]
+\underline{Ann.:}
+\[ f-B^T\lambda \in \text{range}(K);\, K^+ : \text{ Pseudoinverse von } K: KK^+K=K \]
+Mit Hilfe der Pseudoinversen:
+\[(3.3)\quad  u=K^+(f-B^T\lambda)+R\alpha  \]
+falls $f-B^T\lambda \in \text{range}(K)$ und $R$ matrix mit vollem Rang mit $\text{range}(R)= \text{ker}(K)$ und $\alpha$ geeignet gewählt.\\
+Einsetzen von (3.3) in $Bu=0$ ergibt:
+\[ \underbrace{BK^+ B^T}_{=:F} \lambda = \underbrace{BK^+ f}_{=:d} + \underbrace{BR}_{=:G}\alpha \]
+\[ \Leftrightarrow \, (3.4) \quad \boxed{ F\lambda= d + G\alpha } \text{ mit geeignetem } $\alpha$ \]
+Sei $Q$ eine sym. pos. def. Matrix (z.B. $Q=I$). Dann definieren wir eine Orthogonalprojektion (im $Q$-inneren Produkt)
+\[ P:=I-QG(G^TQG)^{-1}G^T \text{ auf } V:= \text{ker}(G^T) \]
+Anwendung von $P^T$  auf (3.4):
+\[ P^TF\lambda = P^Td + \underbrace{(I-G(G^TQG)^{-1}G^TQ)G\alpha}_{=G\alpha - G\alpha=0} \]
+\[ \Leftrightarrow \boxed{P^TF\lambda = P^T d } \]
+Alle Umformungen wurden gemacht unter der Vorr., dass $ (f-B^T\lambda)\orth \text{ker}(K)=\text{range}(R)$ \\
+Es gilt:
+\begin{align*}
+ & (f-B^T\lambda)\orth \text{range}(R) \\
+\Leftrightarrow & (f-B^T\lambda) \in \text{ker} (R^T) \\
+\Leftrightarrow & R^T(f-B^T\lambda)=0 \\
+\Leftrightarrow & G^T\lambda = R^Tf =:e
+\end{align*}
+Aus (3.2) erhalten wir
+\[ \boxed{ \begin{aligned} P^TF\lambda &= P^Td \\ G^T\lambda &= e  \end{aligned}} \, (3.5) \]
+
+
+
+
+
+
+
+\end{enumerate}• 
