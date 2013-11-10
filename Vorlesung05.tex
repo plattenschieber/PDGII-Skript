@@ -6,7 +6,7 @@ wobei $x:=\frac{\lambda_{max}+\lambda_{min}}{\lambda_{max}+\lambda_{min}} = \fra
 \end{enumerate}
 
 Schlussendlich folgt aus 1)-10):
-\[\norm{e^{(k+1)}}_A \leq 2 \left( \frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1} \right^k \norm{e^{(0)}}_A\]
+\[\norm{e^{(k+1)}}_A \leq 2 \left( \frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1} \right) \norm{e^{(0)}}_A\]
 \end{proof}
 
 \underline{Vorkonditioniertes CG-Verfahren}(preconditioned cg-method, pcg)\\
@@ -77,7 +77,7 @@ mit $u=(u_1,\dots , u_N)^T , \, u_h = \sum_{i=1}^N u_i \varphi_i $, wobei $(\var
 \underline{Ziel:} 
 \begin{enumerate}
 \item $\kappa (K)$ nach oben abzuschätzen
-\item $\kappa (M) nach oben abzuschätzen, wobei $M:= \big((\varphi_i,\varphi_j)\big)_{i,j=1,\dots N}$ die Masseenmatrix ist.
+\item $\kappa (M)$ nach oben abzuschätzen, wobei $M:= \big((\varphi_i,\varphi_j)\big)_{i,j=1,\dots N}$ die Masseenmatrix ist.
 \end{enumerate}•
 Auf $V^h$ führen wir zunächst folgende Norm ein:
 \[ \norm{v}_{0,h} := \left( \sum_{T \in \tau_h} h^d_T \sum_{a_i \in T} |v(a_i)|^2 \right)^2 \]
@@ -135,7 +135,9 @@ Es existiert eine von $h$ unabh. Konstante $C>0$, s.d. für alle $v \in V^h$ gil
       &\leq \sum_{T\in\tau_h} \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}_{L^2(T)}^2
       &= \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}^2_{L^2(\Omega)}
     \end{align*}
-    \Rightarrow \sqrt{\frac{\hat{c_1}}{\tilde{c_2}}} \norm{v}_{L^2(\Omega)} \leq \norm{v}_{0,h} \leq \sqrt{\frac{\hat{c_2}}{\tilde{c_1}}}\norm{v}_{L^2(\Omega)}
+    \[
+      \Rightarrow \sqrt{\frac{\hat{c_1}}{\tilde{c_2}}} \norm{v}_{L^2(\Omega)} \leq \norm{v}_{0,h} \leq \sqrt{\frac{\hat{c_2}}{\tilde{c_1}}}\norm{v}_{L^2(\Omega)}
+    \]
   \item[Beweis der inversen Ungleichung]
     Transformation auf Referenzelement und dann Transformationsformel benutzen: AnalysisIII/Numerik PDGI
     \begin{equation*}
