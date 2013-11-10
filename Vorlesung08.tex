@@ -43,13 +43,11 @@ Unterteilen wir die Freiheitsgrade in jedem Teilgebiet $\Omega_i$ in Innere, $u^
     K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
     K^{(i)}_{\Gamma I} & K^{(i)}_{\Gamma \Gamma} 
   \end{pmatrix} 
-
  \longrightarrow^{Block-GE} 
  \begin{pmatrix} 
    K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
    0 & \underbrace{(K^{(i)}_{\Gamma \Gamma}-K^{(i)}_{\Gamma I} (K^{(i)}_{II})^{-1} K^{(i)}_{I \Gamma })}_{=: S^{(i)}_{\Gamma \Gamma}=: S^{(i)}}
 \end{pmatrix} 
-
 \]
 \begin{definition}
   $S:= \text{diag} (S^{(i)}) $. (Die $S^{(i)}$ von $i=1$ bis $i=N$ liegen auf der Diagonalen). Dann lautet der einfachste (Dirichlet)-Vorkonditionierer, den Farheit, Mandel und Roux (1994) vorschlagen, wie folgt:
