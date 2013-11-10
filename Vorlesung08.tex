@@ -1,6 +1,3 @@
-
-%Vorlesung 8 vom 07.11.2013
-
 Damit haben das zu lösende System
 \[ \boxed{P^TF\lambda =P^T d,\, G^T\lambda =e} \quad (3.5)  \]
 
@@ -19,11 +16,12 @@ Weiterhin betrachten wir folgende Räume:
 Das  FETI-Verfahren ist nun das vorkonditionierte CG-Verfahren in $V$ angewendet auf
 \[ P^TF\lambda = P^T d \text{ für } \lambda \in \lambda_0 +V \]
 mit einem Startvektor $\lambda_0: \, G^T\lambda_0=e $.\\
+
 Es gilt tatsächlich:
 \begin{align*}
-&	\lambda \in \lambda_0 + V \\
-\Leftrightarrow & \lambda=\lambda_0 + \lambda_1 \text{ mit } \lambda_1 \in V=\text{ker}(G^T) \\
-\Rightarrow & G^T\lambda = \underbrace{G^T \lambda_0}_{=e} + \underbrace{G^T \lambda_1}_{=0} =e
+  &	\lambda \in \lambda_0 + V \\
+  \Leftrightarrow & \lambda=\lambda_0 + \lambda_1 \text{ mit } \lambda_1 \in V=\text{ker}(G^T) \\
+  \Rightarrow & G^T\lambda = \underbrace{G^T \lambda_0}_{=e} + \underbrace{G^T \lambda_1}_{=0} =e
 \end{align*}
 Dafür muss über den Vorkonditionierer noch gewährleistet bleiben, dass die Iterierten in $V$ bleiben:\\
 Sei dazu $PM^{-1}$ der noch zu wählende Vorkonditionierer, dann gilt es noch
@@ -37,49 +35,56 @@ PM^{-1}P^TF\lambda = PM^{-1}P^T FP \lambda \underbrace{=}_{(P^T)^2=P^T} (PM^{-1}
 Daher kann man formal $PM^{-1}P^Tf$ auch als Produkt der zwei sym. Matrizen $( (PM^{-1}P^T)$ und $(P^TFP)$ ansehen.\\
 $\rightarrow$\underline{Später:} Diese sind auch positiv definit!\\
 \\
+
 \underline{\textbf{Ein einfacher Vorkonditionierer:}}\\
 Unterteilen wir die Freiheitsgrade in jedem Teilgebiet $\Omega_i$ in Innere, $u^{(i)}_I$, und solche auf dem Interface, $u^{(i)}_\Gamma$, dann ergibt sich folgende Partitionierung:
-\[K^{(i)}=\begin{pmatrix} K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
-  K^{(i)}_{\Gamma I} & K^{(i)}_{\Gamma \Gamma} \end{pmatrix} 
- \longrightarrow^{Bloch-GE} 
- \begin{pmatrix} K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
-0 & \underbrace{(K^{(i)}_{\Gamma \Gamma}-K^{(i)}_{\Gamma I} (K^{(i)}_{II})^{-1} K^{(i)}_{I \Gamma })}_{=: S^{(i)}_{\Gamma \Gamma}=: S^{(i)}}
+\[K^{(i)}=
+  \begin{pmatrix} 
+    K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
+    K^{(i)}_{\Gamma I} & K^{(i)}_{\Gamma \Gamma} 
+  \end{pmatrix} 
+
+ \longrightarrow^{Block-GE} 
+ \begin{pmatrix} 
+   K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
+   0 & \underbrace{(K^{(i)}_{\Gamma \Gamma}-K^{(i)}_{\Gamma I} (K^{(i)}_{II})^{-1} K^{(i)}_{I \Gamma })}_{=: S^{(i)}_{\Gamma \Gamma}=: S^{(i)}}
 \end{pmatrix} 
+
 \]
 \begin{definition}
-$S:= \text{diag} (S^{(i)}) $. (Die $S^{(i)}$ von $i=1$ bis $i=N$ liegen auf der Diagonalen). Dann lautet der einfachste (Dirichlet)-Vorkonditionierer, den Farheit, Mandel und Roux (1994) vorschlagen, wie folgt:
-\[M^{-1} := B_\Gamma S B^T_\Gamma = \sum_{i=1}^N B^{(i)}_\Gamma S^{(i)} {B^{(i)}_\Gamma}^T \text{ wobei } B=(0 \, B_\Gamma ) \]
+  $S:= \text{diag} (S^{(i)}) $. (Die $S^{(i)}$ von $i=1$ bis $i=N$ liegen auf der Diagonalen). Dann lautet der einfachste (Dirichlet)-Vorkonditionierer, den Farheit, Mandel und Roux (1994) vorschlagen, wie folgt:
+  \[M^{-1} := B_\Gamma S B^T_\Gamma = \sum_{i=1}^N B^{(i)}_\Gamma S^{(i)} {B^{(i)}_\Gamma}^T \text{ wobei } B=(0 \, B_\Gamma ) \]
 \end{definition}
 
 \begin{algorithmus}
 \underline{Initialisierung:}\\
 \begin{align*}
-\lambda^{(0)} &:= QG(G^TQG)^{-1} e + \mu \\
-r^{(0)} &:= d- F \lambda^{(0)}
+  \lambda^{(0)} &:= QG(G^TQG)^{-1} e + \mu \\
+  r^{(0)} &:= d- F \lambda^{(0)}
 \end{align*}
 \underline{Iteration:} $k=1,2,...$ bis Konv. : \\
 \begin{align*}
-\text{\underline{Projektion:}} & q^{(k-1)} := P^T r^{(k-1)} \\
-\text{\underline{Vorkondition:}} & z^{(k-1)} := M^{-1} q^{(k-1)} \\
-\text{\underline{Projektion:}} & y^{(k-1)} := P z^{(k-1)}
+  \text{\underline{Projektion:}} & q^{(k-1)} := P^T r^{(k-1)} \\
+  \text{\underline{Vorkondition:}} & z^{(k-1)} := M^{-1} q^{(k-1)} \\
+  \text{\underline{Projektion:}} & y^{(k-1)} := P z^{(k-1)}
 \end{align*}
 \begin{align*}
-\beta^{(k)} &= \frac{\langle y^{(k-1)} , q^{(k-1)} \rangle}{\langle y^{(k-2)} , q^{(k-2)} \rangle}, \, (\beta^{(1)}:=0 ) \\
-p^{(k)} &= y^{(k-1)} + \beta^{(k)}p^{(k-1)} , \, (p^{(1)}:=y^{(0)}) \\
-\alpha^{(k)} &:= \frac{\langle y^{(k-1)} , q ^{(k-1)} \rangle}{ \langle p^{(k)} , F p^{(k)} \rangle } \\
-\lambda^{(k)} &:= \lambda^{(k-1)} + \alpha^{(k)}p^{(k)} \\
-r^{(k)} &:= r^{(k-1)} - \alpha^{(k)}Fp^{(k)}
+  \beta^{(k)} &= \frac{\langle y^{(k-1)} , q^{(k-1)} \rangle}{\langle y^{(k-2)} , q^{(k-2)} \rangle}, \, (\beta^{(1)}:=0 ) \\
+  p^{(k)} &= y^{(k-1)} + \beta^{(k)}p^{(k-1)} , \, (p^{(1)}:=y^{(0)}) \\
+  \alpha^{(k)} &:= \frac{\langle y^{(k-1)} , q ^{(k-1)} \rangle}{ \langle p^{(k)} , F p^{(k)} \rangle } \\
+  \lambda^{(k)} &:= \lambda^{(k-1)} + \alpha^{(k)}p^{(k)} \\
+  r^{(k)} &:= r^{(k-1)} - \alpha^{(k)}Fp^{(k)}
 \end{align*}
 \end{algorithmus}
 Folgende Fragen:
 \begin{itemize}
-\item
-Wie wählt man $M^{-1}$?
-\item
-Wie wählt man $B$?\\
-(redundant vs. nicht-redund. L.M.)
-\item
-Konditionsabhängigkeit bzw. Konvergenzanalyse?
+  \item
+    Wie wählt man $M^{-1}$?
+  \item
+    Wie wählt man $B$?\\
+    (redundant vs. nicht-redund. L.M.)
+  \item
+    Konditionsabhängigkeit bzw. Konvergenzanalyse?
 \end{itemize}
 
 \subsection{Nicht-redundante Lagrangesche Multiplikatoren}
@@ -88,6 +93,7 @@ Die Wahl des Sprungoperators $B$ ist nicht eindeutig! \\
 Diese Fälle führen auf verschiedene Sprungoperatoren. Der nicht-redundante Fall (jeder Randpunkt wird nur mit einem anderen Randpunkt bzgl. Steitgkeit verglichen) führt auf ein $B$ mit vollem Rang und der redunate Fall (alle randkntoen werden entsprechend verglichen) nicht. \\
 Vorteil des redundanten Falls: Man muss beim Programmieren keine spezielle Wahl der L.M. treffen. man minimiert einfach alle.\\
 \textbf{Ab jetzt. nicht-redundante L.M. }\\
+
 Wir betrachten folgenden Vorkonditionierer:
 \[\hat M^{-1} := (B_\Gamma D^{-1} B^T_\Gamma )^{-1} B_\Gamma S B^T_\Gamma (B_\Gamma D^{-1} B^T_\Gamma)^{-1} \]
 (Klawonn/Wildkunst, 2001). $D$ ist Diagonalmatrix mit pos. Diagonalelementen.\\

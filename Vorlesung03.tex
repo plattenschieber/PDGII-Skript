@@ -7,11 +7,11 @@ Es gilt:
 \underline{Beweis der Folgerung:}\\
 $y:=M^{1/2}x$
 \begin{align*}
-\frac{(M^{-1}Ax,x)_M(A^{-1}Mx,x)_M}{(x,x)^2_M} \\
-^{y=M^{1/2}x} &= \frac{ (AM^{-1/2}y,M^{-1/2}y)(A^{-1}M^{1/2}y,M^{1/2}y)}{(y,y)^2} \\
-&= \frac{ (M^{-1/2}AM^{-1/2}y,y)(M^{1/2}A^{-1}M^{1/2}y,y)}{(y,y)^2} \\
-^{\tilde A:=M^{-1/2}AM^{-1/2}} &= \frac{(\tilde A y ,y)(\tilde A^{-1}y,y)}{(y,y)^2} \\
-^{\text{Kant. Ungl. } + \tilde A \, s.p.d.} &= \frac{(\lambda_{max}(\tilde A) + \lambda_{min}(\tilde A))^2}{4\lambda_{max}(\tilde A)\lambda_{min}(\tilde A)}
+  \frac{(M^{-1}Ax,x)_M(A^{-1}Mx,x)_M}{(x,x)^2_M} \\
+  ^{y=M^{1/2}x} &= \frac{ (AM^{-1/2}y,M^{-1/2}y)(A^{-1}M^{1/2}y,M^{1/2}y)}{(y,y)^2} \\
+  &= \frac{ (M^{-1/2}AM^{-1/2}y,y)(M^{1/2}A^{-1}M^{1/2}y,y)}{(y,y)^2} \\
+  ^{\tilde A:=M^{-1/2}AM^{-1/2}} &= \frac{(\tilde A y ,y)(\tilde A^{-1}y,y)}{(y,y)^2} \\
+  ^{\text{Kant. Ungl. } + \tilde A \, s.p.d.} &= \frac{(\lambda_{max}(\tilde A) + \lambda_{min}(\tilde A))^2}{4\lambda_{max}(\tilde A)\lambda_{min}(\tilde A)}
 \end{align*}
 $\lambda(\tilde A)=\lambda (M^{-1}A)$ \\
 %$\hfill \box$
@@ -78,10 +78,10 @@ Frage: Kann man $p^{(k)}$ besser wählen als im Gradientenverfahren? (Wie will m
 \[ \lambda \in\mathbb{R} : \, \phi (x + \lambda p) = \phi(x) + \lambda (\underbrace{Ax-b}_{=-r},p)+ \frac{\lambda^2}{2}\underbrace{(Ap,p)}_{\geq 0} \]
 Dann gilt:
 \begin{align*}
-	\phi(x) &\leq \phi(x+\lambda p ) \forall \, \lambda \in\mathbb{R} \\
-\Leftrightarrow 0 & \leq -\lambda (r,p)+\underbrace{\frac{\lambda^2}{2}(Ap,p)}_{\geq 0} \forall \, \lambda \in \mathbb{R} \\
-\Leftrightarrow (r,p) &=0 \\
-\Leftrightarrow r & \bot p
+  \phi(x) &\leq \phi(x+\lambda p ) \forall \, \lambda \in\mathbb{R} \\
+  \Leftrightarrow 0 & \leq -\lambda (r,p)+\underbrace{\frac{\lambda^2}{2}(Ap,p)}_{\geq 0} \forall \, \lambda \in \mathbb{R} \\
+  \Leftrightarrow (r,p) &=0 \\
+  \Leftrightarrow r & \bot p
 \end{align*}
 %$\hfilll \box$
 Für das Gradientenverfahren mit $M=I$ gilt:\\

@@ -22,8 +22,8 @@ Durch Anwenden des CG-Verfahrens auf $\tilde A y =\tilde b$ ergibt sich folgende
 \begin{algorithmus}[PCG-Verfahren]
   Initialisierung:
   \begin{align*}
-   x^{(0)}\in \R& \text{ (Startvektor) },\,  r^{(0)} = b-Ax^{(0)} \text{ (Startresiduum) } \\
-  y^{(0)}=M^{-1}r^{(0)}&, \, p^{(0)}=y^{(0)}
+    x^{(0)}\in \R& \text{ (Startvektor) },\,  r^{(0)} = b-Ax^{(0)} \text{ (Startresiduum) } \\
+    y^{(0)}=M^{-1}r^{(0)}&, \, p^{(0)}=y^{(0)}
   \end{align*}
   Iteration: $k=0,1,2,\cdots$ (bis Konvergenzkriterium erfüllt ist) 
   \begin{align*}
@@ -68,7 +68,7 @@ Sei $V^h\subset V := H_0^1(\Omega,\partial\Omega)$ der zugehörige Finite Elemen
 
 Das zugehörige diskrete Modellproblem lautet dann:
 \begin{equation}
-	\text{Finde } u_h \in V^h, \text{ s.d. } a(u_h,v_h)=F(v_h) \forall \, v_h \in V^h 
+  \text{Finde } u_h \in V^h, \text{ s.d. } a(u_h,v_h)=F(v_h) \forall \, v_h \in V^h 
 \end{equation}
 Bekanntermaßen führt dies auf ein lin. GS.:
 \[ Ku=b \]
@@ -77,23 +77,23 @@ mit $u=(u_1,\dots , u_N)^T , \, u_h = \sum_{i=1}^N u_i \varphi_i $, wobei $(\var
 \section{Die Konditionszahl und ihre Abschätzungen}
 \underline{Ziel:} 
 \begin{enumerate}
-\item $\kappa (K)$ nach oben abzuschätzen
-\item $\kappa (M)$ nach oben abzuschätzen, wobei $M:= \big((\varphi_i,\varphi_j)\big)_{i,j=1,\dots N}$ die Masseenmatrix ist.
+  \item $\kappa (K)$ nach oben abzuschätzen
+  \item $\kappa (M)$ nach oben abzuschätzen, wobei $M:= \big((\varphi_i,\varphi_j)\big)_{i,j=1,\dots N}$ die Masseenmatrix ist.
 \end{enumerate}•
 Auf $V^h$ führen wir zunächst folgende Norm ein:
 \[ \norm{v}_{0,h} := \left( \sum_{T \in \tau_h} h^d_T \sum_{a_i \in T} |v(a_i)|^2 \right)^2 \]
 $(\tau_h)_h$ sei eine \underline{reguläre} Familie von Triangulierungen von $\Omega$.
 
 \begin{satz}
-\begin{enumerate}
-\item
- Es existieren Konstanten $c_1,c_2 >0$ unabh. von $h$, s.d. für alle $v \in V^h$ gilt:
-\[ c_1 \norm{v}^2_{L^2(\Omega)} \leq \norm{v}^2_{0,h} \leq c_2 \norm{v}^2_{L^2(\Omega)} \]
-\item
-Es existiert eine von $h$ unabh. Konstante $C>0$, s.d. für alle $v \in V^h$ gilt:
-\[ \norm{v}_{H^1(\Omega)} \leq \frac{C}{(\min_{T \in \tau_h})} \norm{v}_{L^2(\Omega)} \]
-(\textbf{Inverse Ungleichung})
-\end{enumerate}
+  \begin{enumerate}
+    \item
+      Es existieren Konstanten $c_1,c_2 >0$ unabh. von $h$, s.d. für alle $v \in V^h$ gilt:
+      \[ c_1 \norm{v}^2_{L^2(\Omega)} \leq \norm{v}^2_{0,h} \leq c_2 \norm{v}^2_{L^2(\Omega)} \]
+    \item
+      Es existiert eine von $h$ unabh. Konstante $C>0$, s.d. für alle $v \in V^h$ gilt:
+      \[ \norm{v}_{H^1(\Omega)} \leq \frac{C}{(\min_{T \in \tau_h})} \norm{v}_{L^2(\Omega)} \]
+      (\textbf{Inverse Ungleichung})
+  \end{enumerate}
 \end{satz}
 
 
@@ -114,44 +114,44 @@ Es existiert eine von $h$ unabh. Konstante $C>0$, s.d. für alle $v \in V^h$ gil
       \[
         \tilde{c_1} h_T^d \leq \tilde{c_3} \rho_T^d \leq |\det(B)| \leq \tilde{c_2} h_T^d \tag{$\star$}
       \]
-        \label{ }
+      \label{ }
       %\end{equation}
       Durch die Transformationsformel erhalten wir für $v \in \Pc_T$
       \begin{align}
         \hat{c_1} \norm{v}_{L^2(T)}^2 \overset{\hat{v}=v^\circ F_T}{=}& \hat{c_1} |det (B)| \norm{\hat{v}}_{L^2}(\hat{T})^2 
         \overset{*,**}{\leq} \tilde{c_2} h_T^d \sum_{i=1}^{M} |\hat{v}(\hat{a_i})|^2 \\
         \overset{a_i = F_T(\hat{a}_i)}{\underset{\hat{v}=v \circ F_T}{=}} & \tilde{c_2} h_T^d \sum_{i=1}^{M}|v(a_i)|^2 = c_2 h_T^d \sum_{i=1}^{M} |\hat{v}(\hat{a_i})|^2 \\
-      ^{*}& \leq \tilde c_2 h^d_T \hat c_2 \norm{\hat v}^2_{L^2(\hat T)} = \tilde c_2 h^d_T \hat c_2 | \det (B)|^{-1} \norm{v}^2_{L^2(T)} \\
-^{**}& \leq \frac{\tilde c_2}{\tilde c_1}\hat c_2 \norm{v}^2_{L^2(T)}
-\end{align}
-    Durch Summation über die Elemente $T\in \tau_h$ erhalten wir:
-    \begin{align*}
-      \hat{c_1} \norm{v}_{L^2(\Omega)}^2 &= \hat{c_1} \sum_{T\in \tau_h} \norm{v}_{L^2(T)}^2 \\
-                                         &\leq \tilde{c_2} \sum_{T\in\tau_h} h_t^d \sum_{i=1}^{M} |v(a_i)|^2
-                                         &= \tilde{c} \norm{v}^2_{0,h}
-    \end{align*}
-    Analog erhalten wir:
-    \begin{align*}`
-      \tilde{c_2}\norm{v}_{0,h}^2 &= \tilde{c_2} \sum_{T\in\tau_h} h_T^d \sum_{i=1}^{M} |v(a_i)|^2
-      &\leq \sum_{T\in\tau_h} \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}_{L^2(T)}^2
-      &= \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}^2_{L^2(\Omega)}
-    \end{align*}
-   \[
-      \Rightarrow \sqrt{\frac{\hat{c_1}}{\tilde{c_2}}} \norm{v}_{L^2(\Omega)} \leq \norm{v}_{0,h} \leq \sqrt{\frac{\hat{c_2}}{\tilde{c_1}}}\norm{v}_{L^2(\Omega)} 
-    \]
-  \item \textbf{Beweis der inversen Ungleichung} \\ 
-    Transformation auf Referenzelement und dann Transformationsformel benutzen: AnalysisIII/Numerik PDGI
-    \begin{equation*}
-      |\hat{v}|^2_{\hat{H}(\hat{\Omega})} \leq c \norm{\tilde{B}}^2 |\det \tilde{B}|^{-1} |v|^2_{H^1(\Omega)}
-    \end{equation*}
-    Setze hier $T:=\hat{\Omega}, \hat{T}:=\Omega, B:=\tilde{B}^{-1}$. Somit gilt dann für $T\in\tau_h$
-    \begin{align}
-      \norm{v}^2_{H^1(T)} &\underset{*}{\leq} c\norm{B^{-1}}^2 |\det B| \norm{\hat{v}}^2_{H^1(\hat{T})}
-      &\underset{*}{\leq} c\norm{B^{-1}}^2 \norm{v}^2_{L^2(\hat{T})}
-      &= c\norm{B^{-1}}^2 \norm{v}^2_{L^2(T)}
-      &\leq c h^{-2}_T \norm{v}^2_{L^2(T)}
-      \label{}
-    \end{align}
-    Es exisitiert eine Konstante $C_A>0$, unabhängig von $h$, so dass für jeden Knoten in $\tau_h$ die Anzahl der Elemente, zu denen dieser Knoten gehört, durch $C_A$ von oben beschränkt ist. 
+        ^{*}& \leq \tilde c_2 h^d_T \hat c_2 \norm{\hat v}^2_{L^2(\hat T)} = \tilde c_2 h^d_T \hat c_2 | \det (B)|^{-1} \norm{v}^2_{L^2(T)} \\
+        ^{**}& \leq \frac{\tilde c_2}{\tilde c_1}\hat c_2 \norm{v}^2_{L^2(T)}
+      \end{align}
+      Durch Summation über die Elemente $T\in \tau_h$ erhalten wir:
+      \begin{align*}
+        \hat{c_1} \norm{v}_{L^2(\Omega)}^2 &= \hat{c_1} \sum_{T\in \tau_h} \norm{v}_{L^2(T)}^2 \\
+        &\leq \tilde{c_2} \sum_{T\in\tau_h} h_t^d \sum_{i=1}^{M} |v(a_i)|^2
+        &= \tilde{c} \norm{v}^2_{0,h}
+      \end{align*}
+      Analog erhalten wir:
+      \begin{align*}`
+        \tilde{c_2}\norm{v}_{0,h}^2 &= \tilde{c_2} \sum_{T\in\tau_h} h_T^d \sum_{i=1}^{M} |v(a_i)|^2
+        &\leq \sum_{T\in\tau_h} \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}_{L^2(T)}^2
+        &= \frac{\tilde{c_2}}{\tilde{c_1}} \hat{c_2} \norm{v}^2_{L^2(\Omega)}
+      \end{align*}
+      \[
+        \Rightarrow \sqrt{\frac{\hat{c_1}}{\tilde{c_2}}} \norm{v}_{L^2(\Omega)} \leq \norm{v}_{0,h} \leq \sqrt{\frac{\hat{c_2}}{\tilde{c_1}}}\norm{v}_{L^2(\Omega)} 
+      \]
+    \item \textbf{Beweis der inversen Ungleichung} \\ 
+      Transformation auf Referenzelement und dann Transformationsformel benutzen: AnalysisIII/Numerik PDGI
+      \begin{equation*}
+        |\hat{v}|^2_{\hat{H}(\hat{\Omega})} \leq c \norm{\tilde{B}}^2 |\det \tilde{B}|^{-1} |v|^2_{H^1(\Omega)}
+      \end{equation*}
+      Setze hier $T:=\hat{\Omega}, \hat{T}:=\Omega, B:=\tilde{B}^{-1}$. Somit gilt dann für $T\in\tau_h$
+      \begin{align}
+        \norm{v}^2_{H^1(T)} &\underset{*}{\leq} c\norm{B^{-1}}^2 |\det B| \norm{\hat{v}}^2_{H^1(\hat{T})}
+        &\underset{*}{\leq} c\norm{B^{-1}}^2 \norm{v}^2_{L^2(\hat{T})}
+        &= c\norm{B^{-1}}^2 \norm{v}^2_{L^2(T)}
+        &\leq c h^{-2}_T \norm{v}^2_{L^2(T)}
+        \label{}
+      \end{align}
+      Es exisitiert eine Konstante $C_A>0$, unabhängig von $h$, so dass für jeden Knoten in $\tau_h$ die Anzahl der Elemente, zu denen dieser Knoten gehört, durch $C_A$ von oben beschränkt ist. 
   \end{enumerate}
 \end{proof}

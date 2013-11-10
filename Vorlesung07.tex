@@ -7,11 +7,11 @@ $\rightarrow$ Finite Element Tearing Interconnecting \\
 \subsection{Der Algotrithmus}
 
 \begin{enumerate}
-\item 
-Zerlege $\Omega$ in $N$ nicht-überlappende Teilgebiete $\Omega_i \subset \Omega,\, i=1,\dots N \, : \, \bar \Omega = \Cup_{i=1}^N \bar \Omega_i $. $ \Gamma := \Cup_{i=1}^N \partial \Omega_i \setminus \partial \Omega$ wird \underline{Interface} genannt.\\
-Die Zerlegung soll so vorgenommen werden, dass die FE-Knoten (der verschiedenen $\Omega_i$) auf dem Interface übereinstimmen.
-\item
-Für alle Teilgebiete $\Omega_i$ werden lokale Steifigkeitsmatrizen $K^{(i)}$ und lokale Lastvektoren $f^{(i)}$ aufgestellt; $i=1,\dots N$\\
+  \item 
+    Zerlege $\Omega$ in $N$ nicht-überlappende Teilgebiete $\Omega_i \subset \Omega,\, i=1,\dots N \, : \, \bar \Omega = \Cup_{i=1}^N \bar \Omega_i $. $ \Gamma := \Cup_{i=1}^N \partial \Omega_i \setminus \partial \Omega$ wird \underline{Interface} genannt.\\
+    Die Zerlegung soll so vorgenommen werden, dass die FE-Knoten (der verschiedenen $\Omega_i$) auf dem Interface übereinstimmen.
+  \item
+    Für alle Teilgebiete $\Omega_i$ werden lokale Steifigkeitsmatrizen $K^{(i)}$ und lokale Lastvektoren $f^{(i)}$ aufgestellt; $i=1,\dots N$\\
 \end{enumerate} 
 
 \underline{Notation:}
@@ -36,7 +36,7 @@ Für alle Teilgebiete $\Omega_i$ werden lokale Steifigkeitsmatrizen $K^{(i)}$ un
 
 Formal kann man die Gleichung 
 \begin{equation}
-Ku=f \quad (*)
+  Ku=f \quad (*)
 \end{equation}
 hinschreiben. Da wir auf dem Interface die Steifigkeitsmatrizen $K^{(i)}$ nicht assembliert haben, ist (*) nur bedingt sinnvoll $\rightarrow$ Übungsblatt!\\
 Die Lösung von (*), sofern sie existert, ist auf dem Interface mehrwertig und im Allgemeinen müssen diese Werte nicht übereinstimmen. Die Lösung von (*) hat auf dem Interface im Allgemeinen Sprünge.\\
@@ -202,5 +202,12 @@ Es gilt:
 \end{align*}
 
 Aus (3.2) erhalten wir
-\[ \boxed{ \begin{aligned} P^TF\lambda &= P^Td \\ G^T\lambda &= e  \end{aligned}} \, (3.5) \]
+\[ 
+  \boxed{
+    \begin{aligned}
+      P^TF\lambda &= P^Td \\
+      G^T\lambda &= e  
+    \end{aligned}
+  } \, (3.5) 
+\]
 
