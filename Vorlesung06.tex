@@ -1,4 +1,29 @@
-Christoph
+\begin{satz}{2.2.3}\\
+Es existiert eine Konstante $c>0$, unabhängig von $h$, s.d. 
+\[\kappa (M) \leq c \frac{h^d}{(\min_{T \in \tau_h} h_T)^d} \]
+wobei $M=(\varphi_i,\varphi_j)_{i,j}$ die Massenmatrix, $(\varphi_i)_i$ die nodale Basis und $\kappa (M)$ die spektrale Konditionszahl sei.
+\end{satz}
+\begin{proof}
+\[\lambda_{max}=\max_{x  \in \mathbb{R}^n\setminus \{ 0 \}} \frac{x^TMx}{x^Tx} , \, \lambda_{min}=\min_{x  \in \mathbb{R}^n\setminus \{ 0 \}} \frac{x^TMx}{x^Tx} \]
+$ \frac{x^TMx}{x^Tx}=\frac{x^TMx}{\norm{v}^2_{0,h}}\frac{\norm{v}^2_{0,h}}{x^Tx}$, wobei $v=\sum_{i=1}^n x_i\varphi_i \in V^h$ und es gilt:
+\[x^TMx=(v,v)_{L^2(\Omega)}\, ^{Satz 2.2.1,i)} \Rightarrow\, (*) \, c_1 \leq \frac{x^TMx}{\norm{v}^2_{0,h}} \leq c_2 \, \forall x \in \mathbb{R}^n \]
+Weiterhin ergibt sich für $x=(v(a_1),\dots,v(a_n))^T$:
+\begin{align*}
+(**) \, \min_{T \in \tau_h} h^d_T \norm{x}^2_{l_2} &= \min_{T \in \tau_h} h^2_T \sum_{i=1}^n (v(a_i))^2 \\
+&= \sum_{T \in \tau_h} h^2_T \sum_{i=1}^n (v(a_i))^2 = \norm{v}^2_{0,h} \\
+&=  \sum_{T \in \tau_h} h^2_T \sum_{i=1}^n (v(a_i))^2 \leq c_A h^d \norm{x}^2_{l_2}
+\end{align*}
+mit $h:= \max_{T \in \tau_h} |h_T| $.
+\begin{align*}
+^{(*),(**)}\Rightarrow& c_A \min_{T \in \tau_h} h^d_T \leq \frac{x^TMx}{x^Tx} \leq c_2c_1 h^d\\
+\Rightarrow & \lambda_{min}(M) \geq c_A \min_{T \in \tau_h} h^d_T, \, \lambda_{max} (M) \leq c_2c_1 h^d \\
+\Rightarrow & Beh. 
+\end{align*}
+\end{proof}
+\underline{Bemerkung:} Für eine Familie quasi-uniformer Triangulierungen $(\tau_h)_h$ gilt nach Def.:\\
+Es existiert eine Konstante $c>0$, s.d. 
+\[ h:= \max_{T \in \tau_h} h_T \leq c h_T \, \forall  T \in \tau_h \, \Rightarrow \kappa (M) \leq \tilde C \]
+$\rightarrow$ Für quasi-uniforme Triangulierungen ist die Massenmatrix gut konditioniert bzw. gleichmäßig beschränkt.\\
 
 \begin{satz}%2.2.4
   Sei $K$ die Steifigkeitsmatrix und $M$ die Masseenmatrix. Dann existiert eine von $h$ unabhängige Konstante $c>0$, so dass für die spektrale Konditionszahl folgendes gilt:
@@ -24,10 +49,23 @@ Christoph
     \frac{x^TKx}{x^TMx} = \frac{a(v,v)}{(v,v)_{L^2(\Omega)}}
   \]
 
-  \underline{V-Elliptisch:} $\forall v\in V^h: a(v,v) \gq \alpha \norm{v}^2_{H^1(\Omega)} \geq \alpha \norm{^2_{L^2(\Omega)}}$
+  \underline{V-Elliptisch:} $\forall v\in V^h: a(v,v) \geq \alpha \norm{v}^2_{H^1(\Omega)} \geq \alpha \norm{^2_{L^2(\Omega)}}$
   Aus der \underline{Stetigkeit} folgt: $\forall v\in V^h: a(v,v) \leq C \norm{v}^2_{H^1(\Omega)} \underset{\text{inv. Ungl.}{\leq}} c(\min_{T\in\tau_h} h_T)^{-2} \norm{v}^2_{L^2(\Omega)}$
   \[
     \Rightarrow \alpha \leq \frac{a(v,v)}{(v,v)_{L^2(\Omega)}} = \frac{x^TKx}{x^TMx} = \frac{a(v,v)}{(v,v)_{L^2(\Omega)}} \leq c(\min_{T\in\tau_h}h_T)^{-2}
   \]
   $\Rightarrow$ Behauptung
 \end{proof}
+
+\underline{Bemerkungen:}
+\begin{enumerate}
+\item
+Für die Konditionszahl der Steifigkeitsmatrix einer regulären Familie von Triangulierungen gilt:
+\[ \kappa (K)  \leq C \frac{h^d}{(\min_{t \in \tau_h} h_T)^{d+2}} \]
+Für quasi-uniforme Triangulierungen gilt:
+\[\kappa (K) \leq C \frac{1}{h^2} \]
+\item
+Das (nicht vorkonditionierte) CG-Verfahren konvergiert als mit einer Konvergenzrate von $\mathcal{O}(\sqrt{\kappa})=\mathcal{O}(h^{-1})$. \\
+$\Rightarrow$ zunehmend schlechtere Konvergenz bei Gitterverfeinerung \\
+$\Rightarrow$ Konstruktion effizienter Vorkonditionierer!
+\end{enumerate}
