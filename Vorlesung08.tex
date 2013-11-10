@@ -1,0 +1,109 @@
+
+%Vorlesung 8 vom 07.11.2013
+
+Damit haben das zu lösende System
+\[ \boxed{P^TF\lambda =P^T d,\, G^T\lambda =e} \quad (3.5)  \]
+
+nehmen wir an, dass (3.5) lösbar ist. Dann erfüllt $\lambda$ mit 
+\[ \alpha := (G^TQG)^{-1} G^TQ (F\lambda -d) \]
+die Gleichung (3.4):
+\[ F\lambda = d+G\alpha \]
+denn
+\[ F\lambda = \d+G\alpha = d + \underbrace{G  (G^TQG)^{-1} G^TQ}_{=: (I-P^T)} (F\lambda -d) = d + (I-P^T)(F\lambda -d) \]
+\[ \Leftrightarrow 0= -P^TF\lambda +P^Td \]
+Hieraus berechnet man 
+\[ u=K^+ (f-B^T\lambda) + R(G^T Q G)^{-1} G^TQ (F\lambda -d) \]
+Weiterhin betrachten wir folgende Räume:
+\[V:= \{ \lambda \in U :=\text{range} (B) \, :\,  \langle \lambda, Bz \rangle =0 \, \forall \, z \in \text{ker}(K) \} = \text{ker} (G^T) \]
+\[V' := \{ \mu \in U \, :\,  \langle \mu, Bz \rangle_Q =0 \,  \forall \, z \in \text{ker}(K) \} = \text{ker} (P^T) \]
+Das  FETI-Verfahren ist nun das vorkonditionierte CG-Verfahren in $V$ angewendet auf
+\[ P^TF\lambda = P^T d \text{ für } \lambda \in \lambda_0 +V \]
+mit einem Startvektor $\lambda_0: \, G^T\lambda_0=e $.\\
+Es gilt tatsächlich:
+\begin{align*}
+&	\lambda \in \lambda_0 + V \\
+\Leftrightarrow & \lambda=\lambda_0 + \lambda_1 \text{ mit } \lambda_1 \in V=\text{ker}(G^T) \\
+\Rightarrow & G^T\lambda = \underbrace{G^T \lambda_0}_{=e} + \underbrace{G^T \lambda_1}_{=0} =e
+\end{align*}
+Dafür muss über den Vorkonditionierer noch gewährleistet bleiben, dass die Iterierten in $V$ bleiben:\\
+Sei dazu $PM^{-1}$ der noch zu wählende Vorkonditionierer, dann gilt es noch
+\[ PM^{-1}P^TF\lambda = PM^{-1} P^T d \, \lambda \in \lambda_0 + V \]
+mit PCG zu löden, wobei $G^T\lambda_0 = e$.\\
+\underline{Bemerkung:}\\
+Für $\lambda \in V=\text{range} (P)$:
+\begin{align*}
+PM^{-1}P^TF\lambda = PM^{-1}P^T FP \lambda \underbrace{=}_{(P^T)^2=P^T} (PM^{-1}P^T)(P^TFP)\lambda
+\end{align*}
+Daher kann man formal $PM^{-1}P^Tf$ auch als Produkt der zwei sym. Matrizen $( (PM^{-1}P^T)$ und $(P^TFP)$ ansehen.\\
+$\rightarrow$\underline{Später:} Diese sind auch positiv definit!\\
+\\
+\underline{\textbf{Ein einfacher Vorkonditionierer:}}\\
+Unterteilen wir die Freiheitsgrade in jedem Teilgebiet $\Omega_i$ in Innere, $u^{(i)}_I$, und solche auf dem Interface, $u^{(i)}_\Gamma$, dann ergibt sich folgende Partitionierung:
+\[K^{(i)}=\begin{pmatrix} K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
+  K^{(i)}_{\Gamma I} & K^{(i)}_{\Gamma \Gamma} \end{pmatrix} 
+ \longrightarrow^{Bloch-GE} 
+ \begin{pmatrix} K^{(i)}_{II} & K^{(i)}_{I\Gamma} \\
+0 & \underbrace{(K^{(i)}_{\Gamma \Gamma}-K^{(i)}_{\Gamma I} (K^{(i)}_{II})^{-1} K^{(i)}_{I \Gamma })}_{=: S^{(i)}_{\Gamma \Gamma}=: S^{(i)}}
+\end{pmatrix} 
+\]
+\begin{definition}
+$S:= \text{diag} (S^{(i)}) $. (Die $S^{(i)}$ von $i=1$ bis $i=N$ liegen auf der Diagonalen). Dann lautet der einfachste (Dirichlet)-Vorkonditionierer, den Farheit, Mandel und Roux (1994) vorschlagen, wie folgt:
+\[M^{-1} := B_\Gamma S B^T_\Gamma = \sum_{i=1}^N B^{(i)}_\Gamma S^{(i)} {B^{(i)}_\Gamma}^T \text{ wobei } B=(0 \, B_\Gamma ) \]
+\end{definition}
+
+\begin{algorithmus}
+\underline{Initialisierung:}\\
+\begin{align*}
+\lambda^{(0)} &:= QG(G^TQG)^{-1} e + \mu \\
+r^{(0)} &:= d- F \lambda^{(0)}
+\end{align*}
+\underline{Iteration:} $k=1,2,...$ bis Konv. : \\
+\begin{align*}
+\text{\underline{Projektion:}} & q^{(k-1)} := P^T r^{(k-1)} \\
+\text{\underline{Vorkondition:}} & z^{(k-1)} := M^{-1} q^{(k-1)} \\
+\text{\underline{Projektion:}} & y^{(k-1)} := P z^{(k-1)}
+\end{align*}
+\begin{align*}
+\beta^{(k)} &= \frac{\langle y^{(k-1)} , q^{(k-1)} \rangle}{\langle y^{(k-2)} , q^{(k-2)} \rangle}, \, (\beta^{(1)}:=0 ) \\
+p^{(k)} &= y^{(k-1)} + \beta^{(k)}p^{(k-1)} , \, (p^{(1)}:=y^{(0)}) \\
+\alpha^{(k)} &:= \frac{\langle y^{(k-1)} , q ^{(k-1)} \rangle}{ \langle p^{(k)} , F p^{(k)} \rangle } \\
+\lambda^{(k)} &:= \lambda^{(k-1)} + \alpha^{(k)}p^{(k)} \\
+r^{(k)} &:= r^{(k-1)} - \alpha^{(k)}Fp^{(k)}
+\end{align*}
+\end{algorithmus}
+Folgende Fragen:
+\begin{itemize}
+\item
+Wie wählt man $M^{-1}$?
+\item
+Wie wählt man $B$?\\
+(redundant vs. nicht-redund. L.M.)
+\item
+Konditionsabhängigkeit bzw. Konvergenzanalyse?
+\end{itemize}
+
+\subsection{Nicht-redundante Lagrangesche Multiplikatoren}
+
+Die Wahl des Sprungoperators $B$ ist nicht eindeutig! \\
+Diese Fälle führen auf verschiedene Sprungoperatoren. Der nicht-redundante Fall (jeder Randpunkt wird nur mit einem anderen Randpunkt bzgl. Steitgkeit verglichen) führt auf ein $B$ mit vollem Rang und der redunate Fall (alle randkntoen werden entsprechend verglichen) nicht. \\
+Vorteil des redundanten Falls: Man muss beim Programmieren keine spezielle Wahl der L.M. treffen. man minimiert einfach alle.\\
+\textbf{Ab jetzt. nicht-redundante L.M. }\\
+Wir betrachten folgenden Vorkonditionierer:
+\[\hat M^{-1} := (B_\Gamma D^{-1} B^T_\Gamma )^{-1} B_\Gamma S B^T_\Gamma (B_\Gamma D^{-1} B^T_\Gamma)^{-1} \]
+(Klawonn/Wildkunst, 2001). $D$ ist Diagonalmatrix mit pos. Diagonalelementen.\\
+$\Rightarrow \, (B_\Gamma D^{-1}B^T_\Gamma)^{-1} $ lässt sich numerisch günstig berechnen.\\
+Um ein Verfahren zu bekommen, welches möglichst unabh. von Sprüngen in den Koeff. der DGL konvergiert, def. wir $D$ wie folgt:
+\[ D= \text{diag}\left( D^{(1)},\dots D^{(N)} \right) \]
+wobei die $D^{(i)}$ auf den Knoten von $\partial \Omega_i$ operieren, d.h. jeder Eintrag gehört zu einem Knoten $x \in \partial \Omega_{i,h}$.\\
+Dieser wird def. als:
+\[ \delta^+_i := \delta^+_i (x) := \rho^\gamma_i(x)\mu^+_i(x), \quad \gamma \in [1/2,\infty) \]
+(normalerweise $\gamma=1$), $\mu^+_i(x) :=\frac{1} { \sum_{j \in N_x} \rho^\gamma_j (x)} ,\, N_x := \{ j \in \{ 1,\dots N\} : x \in \Omega_{j,h} \}$.\\
+\underline{Beispiele}\\
+\[ (zeichnung 2 knoten)  N_x=\{i,j\} , \delta^+_i(x)=\frac{\rho^\gamma_i(x) }{\rho^\gamma_i(x)  + \rho^\gamma_j(x) } \]
+\[ (Zeichnugn 4 Knoten) N_x=\{i,j,k,l \}, \,  \delta^+_i(x)=\frac{\rho^\gamma_i(x) }{\rho^\gamma_i(x)  + \rho^\gamma_j(x) + \rho^\gamma_k(x)  + \rho^\gamma_l(x) } \]
+
+
+
+
+
+

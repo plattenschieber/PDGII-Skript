@@ -42,7 +42,7 @@ Fionde $u^* \in W^h := \prod_{i=1}^N W^h (\Omega_i)$, s.d.
 \[(3.1) \quad J(u^*) = \min_{v \in W^h, \, Bv=0} J(v) \text{ wobei } J(v):=\frac{1}{2} \langle Kv,v\rangle - \langle f,v \rangle\, , \, \langle v , w \rangle := x^Tv \]
 Mit Hilfe Lagrangescher Mulitplikatoren überführen wir (3.1) in ein gemischtes System. Die zugehörige Lagrangefunktion lautet:
 \[ \mathcal{L}(u,\lambda)=J(u)+\langle Bu,\lambda \rangle \]
-\[^{\text{ notw. Bed.}\Rightarrow \nabla_u \mathcal{L} (u,\lambda)=0,\, \nabla_\lambda \mathcal{L} (u,\lambda)=0  \]
+\[^{\text{ notw. Bed.}}\Rightarrow \nabla_u \mathcal{L} (u,\lambda)=0,\, \nabla_\lambda \mathcal{L} (u,\lambda)=0  \]
 \[\Rightarrow \begin{cases} Ku-f+B^T\lambda &=0 \\ Bu &= 0 \end{cases} \]
 \[ \Leftrightarrow \begin{pmatrix} K & B^T \\ B & 0 \end{pmatrix} \begin{pmatrix}u \\ \lambda \end{pmatrix} = \begin{pmatrix} f \\ 0 \end{pmatrix}  \boxed{\text{FETI-MASTERSYSTEM}} \]
 Wir betrachten das gemischte System:\\
@@ -54,10 +54,10 @@ Das Problem ist lösbar, wenn
 \[ \text{ker}(K)\cap \text{ker}(B) = \{ 0 \} \]
 Dies ist sicherlich der Fall!\\
 Angenommen $K$ invertierbar:
-\[ \begin{pmatrix} K & B^T \\ B & 0 \end{pmatrix} \rightarrow  \begin{pmatrix} K & B^T \\ 0 & -BK^{-1}B^T \end{pmatrix} = \begin{pmatrix}   K^{(1)} & 0 & 0 & \cdots & 0 & B^{(1)}^T \\
-				0 & K^{(2)}   & 0 & \cdots  &0 & B^{(2)}^T\\
+\[ \begin{pmatrix} K & B^T \\ B & 0 \end{pmatrix} \rightarrow  \begin{pmatrix} K & B^T \\ 0 & -BK^{-1}B^T \end{pmatrix} = \begin{pmatrix}   K^{(1)} & 0 & 0 & \cdots & 0 & {B^{(1)}}^T \\
+				0 & K^{(2)}   & 0 & \cdots  &0 & {B^{(2)}}^T\\
 				\vdots\\
-				 0 & 0 & \cdots & 0 & K^{(N)} & B^{(N)}^T \\
+				 0 & 0 & \cdots & 0 & K^{(N)} & {B^{(N)}}^T \\
 			           &     &      0    &   &            &  \underbrace{\sum_{i=1}^N B^{(i)}{K^{(i)}}^{-1} B^{(i)}}_{\text{Summe lok. Schurkomp.}}
 				\end{pmatrix}
 \]
@@ -65,7 +65,7 @@ Diese Vorgehensweise ist i. Allg. so nicht möglich, da die $K^{(i)}$ i- Allg. p
 (Bsp.: Steifigkeitsmatrix mit hom. Neumannbed.)\\
 Daher betrachten wir in (3.2):
 \[ Ku=f-B^T\lambda \text{ ist lösbar } \Leftrightarrow f-B^T\lambda \in \text{range}(K) \]
-\[ \Leftrightarrow (f-B^T\lambda) \orth \text{ker}(K) \]
+\[ \Leftrightarrow (f-B^T\lambda) \perp \text{ker}(K) \]
 \underline{Ann.:}
 \[ f-B^T\lambda \in \text{range}(K);\, K^+ : \text{ Pseudoinverse von } K: KK^+K=K \]
 Mit Hilfe der Pseudoinversen:
@@ -73,16 +73,16 @@ Mit Hilfe der Pseudoinversen:
 falls $f-B^T\lambda \in \text{range}(K)$ und $R$ matrix mit vollem Rang mit $\text{range}(R)= \text{ker}(K)$ und $\alpha$ geeignet gewählt.\\
 Einsetzen von (3.3) in $Bu=0$ ergibt:
 \[ \underbrace{BK^+ B^T}_{=:F} \lambda = \underbrace{BK^+ f}_{=:d} + \underbrace{BR}_{=:G}\alpha \]
-\[ \Leftrightarrow \, (3.4) \quad \boxed{ F\lambda= d + G\alpha } \text{ mit geeignetem } $\alpha$ \]
+\[ \Leftrightarrow \, (3.4) \quad \boxed{ F\lambda= d + G\alpha } \text{ mit geeignetem } \alpha \]
 Sei $Q$ eine sym. pos. def. Matrix (z.B. $Q=I$). Dann definieren wir eine Orthogonalprojektion (im $Q$-inneren Produkt)
 \[ P:=I-QG(G^TQG)^{-1}G^T \text{ auf } V:= \text{ker}(G^T) \]
 Anwendung von $P^T$  auf (3.4):
 \[ P^TF\lambda = P^Td + \underbrace{(I-G(G^TQG)^{-1}G^TQ)G\alpha}_{=G\alpha - G\alpha=0} \]
 \[ \Leftrightarrow \boxed{P^TF\lambda = P^T d } \]
-Alle Umformungen wurden gemacht unter der Vorr., dass $ (f-B^T\lambda)\orth \text{ker}(K)=\text{range}(R)$ \\
+Alle Umformungen wurden gemacht unter der Vorr., dass $ (f-B^T\lambda)\perp \text{ker}(K)=\text{range}(R)$ \\
 Es gilt:
 \begin{align*}
- & (f-B^T\lambda)\orth \text{range}(R) \\
+ & (f-B^T\lambda)\perp \text{range}(R) \\
 \Leftrightarrow & (f-B^T\lambda) \in \text{ker} (R^T) \\
 \Leftrightarrow & R^T(f-B^T\lambda)=0 \\
 \Leftrightarrow & G^T\lambda = R^Tf =:e

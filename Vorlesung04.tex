@@ -1,19 +1,17 @@
 \begin{algorithmus}[Konjugiertes Gradientenverfahren (cg-Verfahren)]
-  \[
+  \begin{align*}
     \alpha^{(k)} := \frac{(p^{(k)},r^{(k)})}{(p^{(k)},Ap^{(k)})},\quad
-    \beta^{(k)} := \frac{(p^{(k)},r^{(k+1)})_A}{(p^{(k)},p^{(k)})_A}\\
-  \]
-  \[
-    \text{mit } p^{(0)}:=r^{(0)}, r^{(0)}=b-Ax^{(0)}
-    k=0,1,2,\ldots\\
-    p^{(0)}:= r^{(0)} = b-Ax^{(0)}\\
-  \]
-  berechne $\alpha^{(k)}$
-  \[
-    x^{(k+1)}:=x^{(k)}+\alpha^{(k)}p^{(k)}\\ (*)
-    r^{(k+1)}:=r^{(k)} -\alpha^{(k)}Ap^{(k)} (**)
-  \]
-  berechne $\beta^{(k)}$
+    \beta^{(k)} := \frac{(p^{(k)},r^{(k+1)})_A}{(p^{(k)},p^{(k)})_A}
+  \end{align*}
+mit $ p^{(0)}:= r^{(0)}=b-Ax^{(0)}$.\\
+Für $k=0,1,2,\ldots $:\\
+
+  Berechne $\alpha^{(k)}$
+  \begin{align*}
+    x^{(k+1)}&:=x^{(k)}+\alpha^{(k)}p^{(k)} (*)\\
+    r^{(k+1)}&:=r^{(k)} -\alpha^{(k)}Ap^{(k)} (**)
+  \end{align*}
+  Berechne $\beta^{(k)}$
   \[
     p^{(k+1)}:=r^{(k+1)}-\beta^{(k)}p^{(k)} (***)
   \]
