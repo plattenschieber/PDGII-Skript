@@ -33,10 +33,9 @@ Betrachte dazu:
 BILD1
 Es soll gelten: 
 \begin{align}
-  \underbrace{u''(x^{(i)}_k)}_{u_k^{(i)}} &= \underbrace{u^{(j)}_k}_{u_k^{(j)}} \quad \forall k=1,\cdots,5\\
-  \Leftrightarrow u_k^{(i)} - u^{(j)}_k &= 0 \quad \forall k=1,\cdots,5
+  \underbrace{u''(x_k^{(i)})}_{u_k^{(i)}} &= \underbrace{u_k^{(j)}}_{u_k^{(j)}} \quad \forall k=1,\cdots ,5\\
+  \Leftrightarrow u_k^{(i)} - u_k^{(j)} &= 0 \quad \forall k=1,\cdots ,5\\
   \Leftrightarrow 
-
   \begin{pmatrix}
     u_1^{(i)}-u_1^{(j)}\\
     u_2^{(i)}-u_2^{(j)}\\
@@ -47,13 +46,12 @@ Es soll gelten:
   \begin{pmatrix}
     0\\ \vdots 0
   \end{pmatrix}
-
   \begin{pmatrix}
-    1& 0& 0& 0& 0& | -1& 0& 0& 0& 0&\\
-    0& 1& 0& 0& 0& | 0& -1& 0& 0& 0&\\
-    0& 0& 1& 0& 0& | 0& 0& -1& 0& 0&\\
-    0& 0& 0& 1& 0& | 0& 0& 0& -1& 0&\\
-    0& 0& 0& 0& 1& | 0& 0& 0& 0& -1&
+    1& 0& 0& 0& 0& | -1& 0& 0& 0& 0\\
+    0& 1& 0& 0& 0& | 0& -1& 0& 0& 0\\
+    0& 0& 1& 0& 0& | 0& 0& -1& 0& 0\\
+    0& 0& 0& 1& 0& | 0& 0& 0& -1& 0\\
+    0& 0& 0& 0& 1& | 0& 0& 0& 0& -1
   \end{pmatrix}
  % \underbrace{=:B^{(i)}    =: B^{(j)}}_{:=B=(B^{(i)},B^{(j)})}
   \begin{pmatrix}
@@ -65,22 +63,18 @@ Es soll gelten:
     u^{(j)}_5
   \end{pmatrix}
   = 
-
   \Leftrightarrow
-  
   (B^{(i)} B^{(j)}) %mal
   \begin{pmatrix}
     u^{(i)}\\
     u^{(j)}
-  \end{pmatrix}
+  \end{pmatrix}\\
   =
   \begin{pmatrix}
     0\\
     0
   \end{pmatrix}
-
   \Leftrightarrow 
-
   Bu=0
 \end{align}
 
@@ -89,9 +83,8 @@ Sei $u_\gamma$ der Knotenvektor zu den Interfacesknoten (bei entsprechender Numm
 \begin{align}
   0 = Bu = (\underbrace{0}_{convex Knoten?})
   \begin{pmatrix}
-    u_I\\
-    
-  \end{pmatrix}<
+    u_I 
+  \end{pmatrix}
   \label{}
 \end{align}
 
