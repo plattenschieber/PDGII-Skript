@@ -1,0 +1,151 @@
+\[
+  K^{(i)}=:K=
+  \begin{pmatrix}
+    K_{II}& K_{I\Gamma}\\
+    K_{\Gamma I}& K_{\Gamma\Gamma}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    I& 0\\
+    K_{\Gamma I} K_{II}^{-1}& I
+  \end{pmatrix}
+  \begin{pmatrix}
+    K_{II}& 0\\
+    0& S_{\Gamma\Gamma}
+  \end{pmatrix}
+  \begin{pmatrix}
+    I& K_{II}^{-1}K_{I\Gamma}\\
+    0& I
+  \end{pmatrix}\\
+  \text{mit } S_{\Gamma\Gamma}=K_{\Gamma\Gamma}-K_{\Gamma I}K_{II}^{-1}K_{I\Gamma}
+\]
+$K^{(i)}$ ist positiv semidefinit $\underset{\overset{\text{Silvester}}{\text{Trägheitssatz}}}{\Longrightarrow}$ $S_{\Gamma\Gamma}=S_{\Gamma\Gamma}^{(i)}$ auch positiv semidefinit. Dazu mache man sich klar, dass $K_{II}$ positiv definit ist. Somit können wir $K^+$ wie folgt darstellen:
+
+\[
+  (*) K^+ = 
+  \begin{pmatrix}
+    I& K_{II}^{-1}K_{I\Gamma}\\
+    0& I
+  \end{pmatrix}
+  \begin{pmatrix}
+    K_{II}^{-1}& 0\\
+    0& S_{\Gamma\Gamma}^+
+  \end{pmatrix}
+  \begin{pmatrix}
+    I& 0\\
+    -K_{\Gamma I}K_{II}^{-1}& I
+  \end{pmatrix}\\
+  \text{mit } S_{\Gamma\Gamma}S_{\Gamma\Gamma}^+S_{\Gamma\Gamma}=S_{\Gamma\Gamma}
+\]
+
+\begin{align*}
+  \Rightarrow KK^+K &= 
+  K
+  \begin{pmatrix}
+    I& -K_{II}^{-1}K_{I\Gamma}\\
+    0& I
+  \end{pmatrix}
+  \begin{pmatrix}
+    K_{II}^{-1}& 0\\
+    0& S_{\Gamma\Gamma}^+
+  \end{pmatrix}
+  \begin{pmatrix}
+    I& 0\\
+    -K_{\Gamma I}K_{II}^{-1}& I
+  \end{pmatrix}
+  K\\
+  &=
+  K 
+ \begin{pmatrix}
+    I& -K_{II}^{-1}K_{I\Gamma}\\
+    0& I
+  \end{pmatrix}
+  \begin{pmatrix}
+    K_{II}^{-1}& 0\\
+    0& S_{\Gamma\Gamma}^+
+  \end{pmatrix}
+  \begin{pmatrix}
+    K_{II}& 0\\
+    0& S_{\Gamma\Gamma}
+  \end{pmatrix}
+  \begin{pmatrix}
+    I& K_{II}^{-1}K_{I\Gamma}\\
+    0& I
+  \end{pmatrix}\\
+  &=
+  \begin{pmatrix}
+    I& 0\\
+    K_{\Gamma I}K_{II}^{-1}& I
+  \end{pmatrix}
+  \begin{pmatrix}
+    K_{II}& 0\\
+    0&  \underbrace{S_{\Gamma\Gamma}S_{\Gamma\Gamma}^+S_{\Gamma\Gamma}}_{=S_{\Gamma\Gamma}}
+  \end{pmatrix}
+  \begin{pmatrix}
+    I& K_{II}^{-1}K^{I\Gamma}\\
+    0& I
+  \end{pmatrix}\\
+  &= K
+\end{align*}
+
+
+und somit ist $K^+$, wie in (*) definiert, eine Pseudoinverse von K.
+
+CHIRSTOPHER
+
+Sei $\hat{W}$ der Unterraum von $W$, dessen Elemente auf $\Gamma$ stetig sind. 
+
+\begin{lemma}%3.2.2
+  Für alle $w\in W$ gilt: 
+  \[
+    E_{D}w := w-P_Dw = (I-P_D)w \in \hat{W}
+  \]
+  d.h. $E_D w$ ist stetig über $\Gamma$ hinweg.
+\end{lemma}
+
+\begin{proof}
+ Beweis über die Sprungerhaltende Eigenschaft. 
+ \[
+   BE_Dw=Bw-BP_Dw \underset{P_D\text{ sprungerh.}}{=} Bw-Bw =0
+ \]
+\end{proof}
+
+\begin{lemma} %3.2.3
+  Sei $w\in W$, dann ist $E_Dw(x)$ für $x\in\Gamma^h$ (also ein FE-Knoten auf $\Gamma$) der $D$-gewichtete Mittelwert aller Werte von $w$ in $x$
+\end{lemma}
+
+\begin{proof}
+  Für ein $w\in W \overset{\text{Lemma 3.2.2}}{\Longrightarrow} E_Dw\in \hat{W}$ (also stetig). Sei $x\in\Gamma^h$ und $e_x\in\hat{W}$ wie folgt definiert:
+  \[
+    e_x(y) := 
+    \begin{cases}
+      1& x=y\\
+      0& \text{sonst}
+    \end{cases},
+    \quad B_\Gamma e_x =0
+  \]
+  Der $D$-gewichtete Mittelwert von $w(x)$ ist wie folgt: (D ist eine Blockdiagonalmatrix; die Blöcke haben entweder x vertreten, oder gar nicht)
+  \begin{align*}
+    e_x^TDP_Dw = (P_D^TDe_x)^Tw =(B^T(BD^{-1}B^T)^{-1} \underbrace{B\underbrace{D^{-1}D}_{=I}e_x}_{=0})^Tw=0\\
+    \Rightarrow e_x^TD_Dw = e_x^TDw=D\text{-gewichteter Mittelwert von W in x}
+  \end{align*}
+\end{proof}
+
+Es gilt also 
+\begin{equation}%3.6
+  E_Dw = \sum_{x\in \Gamma^h} \langle e_x, Dw \rangle e_x
+\end{equation}
+
+Da $E_D$ nicht von der Wahl von $B$ abhängt, gilt dies auch für $P_D$!\\
+Für $P_Dw=:v=(v_i)_{i=1,\ldots,N}\in W$ ergibt sich aus (3.6) folgende Beziehung für $x\in \partial\Omega_{i,h}, i=1,\cdots,N$
+\[ %Zentraler Zugang zu dem analytischen Beweis von \ldots {BOXED?}
+  (P_Dw(x))^{(i)} = v^{(i)}(x) = \sum_{j\in \mathcal{N}_x} \delta_j^+(x) (w^{(i)}(x)-w^{(j)}(x))
+\]
+
+Für unsere Analysis benötigen wir folgende Norm auf $V'=\range(P^T)$. Sei $\mu\in V'$, dann definieren wir
+\[%seminorm, weil wir nicht triviale Kerne haben
+  \norm{\mu}_{V'}^2 := |D^{-1}B^T(BD^{-1}B^T)^{-1}\mu|_S^2 = \langle\hat{M}^{-1}\mu,\mu \rangle
+\]
+mit $|u|_S^2:=\langle u,u \rangle_S = u^TSu$ und $S$ Seminorm auf $W$
+
+CHIRSTOPHER
