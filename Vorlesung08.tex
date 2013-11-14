@@ -93,7 +93,7 @@ Vorteil des redundanten Falls: Man muss beim Programmieren keine spezielle Wahl 
 \textbf{Ab jetzt. nicht-redundante L.M. }\\
 
 Wir betrachten folgenden Vorkonditionierer:
-\[\hat M^{-1} := (B_\Gamma D^{-1} B^T_\Gamma )^{-1} B_\Gamma S B^T_\Gamma (B_\Gamma D^{-1} B^T_\Gamma)^{-1} \]
+\[\hat M^{-1} := (B_\Gamma D^{-1} B^T_\Gamma )^{-1} B_\Gamma D^{-1} S D^{-1} B^T_\Gamma (B_\Gamma D^{-1} B^T_\Gamma)^{-1} \]
 (Klawonn/Wildkunst, 2001). $D$ ist Diagonalmatrix mit pos. Diagonalelementen.\\
 $\Rightarrow \, (B_\Gamma D^{-1}B^T_\Gamma)^{-1} $ lässt sich numerisch günstig berechnen.\\
 Um ein Verfahren zu bekommen, welches möglichst unabh. von Sprüngen in den Koeff. der DGL konvergiert, def. wir $D$ wie folgt:
@@ -106,7 +106,10 @@ Dieser wird def. als:
 \[ (zeichnung 2 knoten)  N_x=\{i,j\} , \delta^+_i(x)=\frac{\rho^\gamma_i(x) }{\rho^\gamma_i(x)  + \rho^\gamma_j(x) } \]
 \[ (Zeichnugn 4 Knoten) N_x=\{i,j,k,l \}, \,  \delta^+_i(x)=\frac{\rho^\gamma_i(x) }{\rho^\gamma_i(x)  + \rho^\gamma_j(x) + \rho^\gamma_k(x)  + \rho^\gamma_l(x) } \]
 
-
+Dann benötigen wir noch folgenden Operator:
+\[ P_D := D^{-1}B^T_\Gamma (B_\Gamma D^{-1} B^T_\Gamma)^{-1} B_\Gamma \]
+$P_D$ ist die orth. Projektion bzgl. $(x,y)=y^TDx$ und es gilt:
+\[ B_\Gamma P_D = B_\Gamma \text{ (sprungerhaltend) } \]
 
 
 

@@ -1,0 +1,72 @@
+%JERO
+
+Benutzen wir die Darstellung (*) und $B=(0 \, B_\Gamma)$,so:
+\[ F=BF^+B^T =\underbrace{ (0 \, B^T_\Gamma)
+ \begin{pmatrix}
+I & - K^{-1}_{I\Gamma} K_{I \Gamma} \\
+0 & I
+\end{pmatrix}
+\begin{pmatrix}
+K^{-1}_{II} & 0 \\
+0 & S^+_{\Gamma \Gamma}
+\end{pmatrix}}_{=(0 \, B_\Gamma)}
+\underbrace{
+\begin{pmatrix}
+I & 0 \\
+-K_{\Gamma \Gamma }K^{-1}_{II} & I 
+\end{pmatrix}
+\begin{pmatrix}
+0 \\ B^T_\Gamma
+\end{pmatrix}}_{=\begin{pmatrix}
+0 \\ B^T_\Gamma
+\end{pmatrix}}
+= B_\Gamma S^+_{\Gamma \Gamma B^T_\Gamma
+\]
+Analog: $d=BK^+f = BS^+_{\Gamma \Gamma}f_\Gamma$.\\
+Sofern keine Verwechslung möglich ist, lassen wir den Index $\Gamma$ fort und schreiben:
+\[ F=BS^+B^T,\, d=BS^+f,\, S=\text{diag}(S^{(i)}) \]
+\underline{Zur Erinnerung:}
+\begin{enumerate}
+\item
+$W_i := W^h(\partial \Omega_i),\, W := \prod_{i=1}^N W_i $
+\item
+${\hat M}^{-1} := (BD^{-1}B^T)^{-1} BD^{-1}SD^{-1}B^T (BD^{-1}B^T){-1} $
+\item
+$P_D := D^{-1}B^T (BD^{-1}B^T)^{-1}B
+\end{enumerate}
+
+\begin{lemma}(3.2.1)\\
+Für jedes $\mu \in U=\text{range} (B)$ existiert ein $\hat w \in \text{range}(P_D)$,s.d. $\mu = B\hat w$.
+\end{lemma}
+\begin{proof}
+Sei $\mu \in U \, \Rightarrow \, \exist \tilde w \in W,\text{ s.d. } \mu =B\tilde w$.\\
+Sei $\hat w := P_D\tilde w \in \text{range}(P_D)$, dann gilt:
+\[ B\hat w =BP_D\tilde w \underbrace{=}_{P_D \text{ sprungerh.}} B\tilde w = \mu \]
+\end{proof}
+
+%JERO
+
+\begin{lemma}(3.2.4)\\
+$|| \cdot ||_{V'}$ definiert eine Norm auf $V'$.
+\end{lemma}
+\begin{proof}
+$||\cdot ||_{V'}$ ist offensichtlich eine Seminorm.\\
+\underline{b.z.z.:} $||\mu||_{V'} =0 \Rightarrow \, \mu=0$ \\
+Sei $\mu \in V'$ bel. mit $||\mu||_{V'} =0$.\\
+$^{Lem. 3.2.1}\Rightarrow \, \exist \hat w\in\text{ range}(P_D)$ mit $\mu =B\hat w;\, \hat w =P_D \hat w $\\
+\[ \Rightarrow 0=||\mu||_{V'} =|| B\hat w||_{V'} =| \underbrace{D^{-1}B^T(BD^{-1}B^T)^{-1}B}_{=P_D}\hat w|_S =|P_D \hat w|_S =|\hat w|_S \]
+\[\Rightarrow \hat w \in \text{ker}(S) \]
+Andererseits: $\mu \in V' = \{ \lambda \in U : \langle \lambda,Bz\rangle_Q=0 \, \forall \, z \in \text{ker}(S) \}$\\
+\[ \rightarrow ||\mu||_Q^2 =\langle \mu,\mu \rangle_Q = \langle \mu, B\underbrace{\hat w}_{\in \text{ker}(S)} \rangle_Q =0 \, \Rightarrow \mu=0 \]
+\end{proof}
+\underline{Bemerkung:} $P{\hat M}^{-1} : V' \to V$ ist sym und pos. def.. \\
+\begin{proof}
+\begin{itemize}
+\item \underline{Sym:}
+\[ \mu \in V' \Rightarrow \langle P{\hat M}^{-1}\mu,\mu\rangle = \langle {\hat M}^{-1}P^T\mu,P^T\mu\rangle = \langle P^T\mu,{\hat M}^{-1}P^T\mu\rangle = \langle \mu, P {\hat M}^{-1} \mu \rangle \]
+\item
+\underline{pos. Def.:}\\
+Sei $\lambda \in V'=\text{range}(P^T)$\\
+\[\Rightarrow  = \langle P^T {\hat M}^{-1}\lambda,\lambda \rangle\langle {\hat M}^{-1}\lambda,\lambda \rangle = || \lambda ||^2_{V'} > 0 \, \forall \lambda \in V',\, \lambda \neq 0 \]
+mit lem. 3.2.4. folgt die Beh.
+\end{proof}
