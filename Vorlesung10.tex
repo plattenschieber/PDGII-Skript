@@ -1,0 +1,47 @@
+Auf $V$ führen wir folgende Norm ein 
+\begin{definition}
+  \[
+    \norm{\lambda}_V:=\sup_{\mu\in V'} \frac{\langle \lambda, \mu\rangle}{\norm{\mu}_{V'}}
+  \]
+  Aus $\norm{\mu}_{V'}^2 = \langle \hat{M}^{-1}\mu, \mu\rangle$ folgt mit direktem Rechnen
+  \[
+    \norm{\lambda}_V^2 = \langle \hat{M}\lambda,\lambda\rangle \\
+    \Rightarrow P^T\hat{M}: V\to V's.p.d.
+  \]
+\end{definition}
+
+\begin{lemma}
+  Für jedes $w\in W$ exisitiert ein eindeutig bestimmtes $z_w\in \ker(S), s.d. B(w+z_w)\in V'$
+  Weiterhin gilt: %(Der Sprung von w und zw ist in V')
+  \[
+    \norm{Bz_w}_Q \leq \norm{Bw}_Q
+  \]
+  \label{}
+\end{lemma}
+
+\begin{proof}
+  \[
+    B(w+z_w)\in V' \overset{\text{Def. } V'}{\Leftrightarrow} \langle B(w+z_w), Bz\rangle_Q = 0 \quad \forall z\in \ker(S)
+  \]
+
+  Diese Galerkinbedinung erlaubt es $z_w\in \ker(S)$ als Lösung des Variationsproblems 
+  \begin{equation}
+    \label{eqn:stern}
+    \tag{$*$}
+    \langle B^TQBz_w,z\rangle = -\langle B^TQBw,z\rangle \quad \forall z\in\ker(S)
+  \end{equation}
+  zu betrachten.\\
+  
+  Frage: Ist dies denn überhaupt lösbar? \\
+
+  Da $\ker(S) \cap \ker(B) = \{0\}$ und $Q$ s.p.d., ist $B^TQB$ s.p.d. auf $\ker(S)$. Daher exisitiert eine eindeutige Lösung $z_w\in\ker(S)$, die $\norm{B(w+z_w)}_Q^2$ über $z\in\ker(S)$ minimiert. 
+  
+  Die Orthogonaleigenschaft \eqref{eqn:stern} garantiert auch
+  \begin{align*}
+    \norm{Bz_w}_Q^2 &= |\langle Bz_w,Bz_w\rangle_Q| = |-\langle Bw, Bz_w\rangle_Q|\\
+    &\overset{C.S.}{\leq} \norm{Bw}_Q \norm{Bz_w}_Q\\
+    \Rightarrow \norm{Bz_w}_Q \leq \norm{Bw}_Q
+  \end{align*}
+\end{proof}
+
+CHRISTOPHER
