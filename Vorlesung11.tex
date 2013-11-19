@@ -1,0 +1,98 @@
+CHRISTOPHER
+
+\begin{proof}
+  Es genügt folgendes zu zeigen: 
+  \begin{align*}
+    \langle \hat{M}\lambda,\lambda\rangle &\underset{*}{\leq} \langle F\lambda,\lambda\rangle\\
+    &\leq C(1+\log \frac{H}{h})^2 \langle \hat{M}\lambda,\lambda\rangle \quad \forall \lambda\in V
+  \end{align*}
+  \[
+    P^TF\lambda=\mu I\hat{M}\lambda, \quad 
+    \mu_{max} = \max_{\lambda\in V} \frac{\langle F\lambda,\lambda\rangle}{\langle\hat{M}\lambda,\lambda\rangle}
+    \lambda_{min}(P\hat{M}^{-1}P^TF) \geq 1
+    \lambda_{max}(P\hat{M}^{-1}P^F) \leq C(1+\log \frac{H}{h})^2
+  \]
+
+  Zur Erinnerung: Sei $\lambda\in V$:
+  \begin{enumerate}
+      \item
+        \[
+          \langle F\lambda,\lambda\rangle = \sup_{w\in\range(S)} \frac{\langle\lambda,Bw\rangle^2}{|w|_S^2}
+        \]
+      \item
+        \[
+          \langle\hat{M}\lambda,\lambda\rangle = \sup_{\lambda\in V'} \frac{\langle\lambda,\mu\rangle^2}{\norm{\mu}_{V'}^2}
+        \]
+      \item 
+        \[
+          \norm{\mu}_{V'}^2 = \langle\hat{M}^{-1}\mu,\mu\rangle
+        \]
+  \end{enumerate}
+
+  Untere Schranke (*): 
+  Sei $\mu\in V'$ beliebig. Aus Lemma 3.2.1 folgt, dass eine $\tilde{w}\in\range(P_D)$ existert, so dass $\mu=B\tilde{w}$. Sei nun $\tilde{w}^{\perp}$ die Komponennte von $\tilde{w}$, die orthogonal zu $\ker(S)$ ist, d.h. $\tilde{w}=\underbrace{\tilde{w}^{\perp}}_{\in\range(S)} + \underbrace{\tilde{w}^{(0)}}_{\in\ker(S)}$
+
+  Dann gilt: 
+  \begin{enumerate}
+    \item $\langle S\tilde{w},\tilde{w}\rangle = \langle S\tilde{w}^{\perp},\tilde{w}^{\perp}$
+    \item $\langle\lambda,B\tilde{w}\rangle = \langle\lambda,B\tilde{w}^{\perp} \quad \forall \lambda\in V = \left\{ \nu\in U: \langle\nu,Bz\rangle =0 \forall z\in\ker(S) \right\}$
+  \end{enumerate}
+
+  Für $\lambda\in V$ beliebig folgt 
+  \begin{align*}
+    \langle F\lambda,\lambda\rangle &= \subset_{\mu\in \range{S}} \frac{\langle\lambda,Bw\rangle^2}{|w|_S^2} \geq \frac{\rangle\lambda,B\tilde{w}^{\perp}\rangle^2}{|\tilde{w}^{\perp}|_S^2}\\
+    &\underset{1),2)}{=} \frac{\langle\lambda,B\tilde{w}\rangle^2}{|\tilde{w}|_S^2} \underset{\tilde{w}=P_D\tilde{w}} \frac{\langle\lambda,B\tilde{w}\rangle^2}{|P_D\tilde{w}|_S^2}
+    &= \frac{\langle\lambda,\mu\rangle^2}{|D^{-1}B^T(BD^{-1}B^T)^{-1}\mu|_S^2} = \frac{\langle\lambda,\mu\rangle^2}{\langle\hat{M}^{-1}\mu,\mu\rangle}
+    &= \frac{\langle\lambda,\mu\rangle^2}{\norm{\mu}_{V'}^2}
+  \end{align*}
+  Da $\mu\in V'$ beliebig gewählt war, folgt:
+  \[
+    \langle F\lambda,\lambda\rangle \geq \langle \hat{M}\lambda,\lambda\rangle \quad \forall \lambda\in V \text{mit} \langle\hat{M}\lambda,\lambda\rangle = \sup_{\mu\in V} \frac{\langle\lambda,\mu \rangle^2}{\norm{\mu}_{V'}^2}
+  \]
+
+  Obere Schranke (**):
+Sei $w\in\range(S)$ beliebig, aber fest. Nach Lemma 3.2.5. $\exists! z_w\in\ker(S)$, so dass $B(w+z_w)\in V'$
+\[
+  \underset{Lemma 3.2.6,3.2.7}{\Longrightarrow} |P_D(w+z_w)|_S^2 \leq C(1+\log \frac{H}{h})^2 |w|_S^2 (***)
+\]
+Für $\lambda\in V$ folgt mit den Darstellungsformeln für $\hat{M}$ und $F$: 
+\begin{align*}
+  \langle F\lambda,\lambda\rangle &= \sup_{w\in\rangle(S)}\frac{\langle\lambda,Bw\rangle^2}{|w|_S^2} \underset{(***)}{\leq} C(1+\log \frac{H}{h})^2 \sup_{w\in\range(S)\frac{\langle\lambda,Bw\rangle^2}{|P_D(w+z_w)}|_S^2}\\
+  &\underset{\lambda\in V}{=} C(1+\log \frac{H}{h})^2 \sup_{w\in\range(S)} \frac{\langle\lambda,\overbrace{B(w+z_w)}^{\in V'}\rangle^2}{|_D(w+z_w)|_S^2}\\
+  &\leq C(1+\log \frac{H}{h})^2 \sup_{\tilde{w}\in W\\B\tilde{w}\in V'} \frac{\langle\lambda,B\tilde{w}\rangle^2}{|P_D\tilde{w}|_S^2}\\
+  &\underset{\text{Darst.} \langle\hat{M}\lambda,\lambda\rangle}{=} C(1+\log \frac{H}{h})^2 \langle\hat{M}\lambda,\lambda\rangle
+\end{align*}
+\end{proof}
+
+Es bleibt noch der Beweis von Lemma 3.2.6 übrig. Dafür benötigen wir noch einige technische Hilfsmittel. Vorerst beschränken wir uns auf den $\R^2$. \\
+
+Zunächst zerlegen wir das Interface 
+\[
+  \Gamma = \left( \bigcup_{i=1}^N \partial\Omega_i \right) \backslash \partial\Omega
+\]
+in Ecken $\nu$ und Kanten $\varepsilon$. Eine Kante ist dabei eine zusammenhängende Menge von Punkten, die alle zu genau zwei Teilgebieten gehören. Jede Kante ist eine offene Menge. Ecken sind Endpunkte von Kanten und gehören zu mehr als zwei Teilgebieten. Wir führen auf dem Interface eine Partition der Eins ein: 
+Sei $\varepsilon$ eine Kante, dann definieren wir $\Teta_{\varepsilon} \in W^h(\Omega)$ durch
+\[
+  \Teta_{\varepsilon}(x):= 
+  \begin{cases}
+    1 &x\in \sum_h^n\\
+    0 &x\in \Gamma_h\backslash\varepsilon_h
+  \end{cases}
+\]
+
+und zusätzlich sei $\Teta_\varepsilon$ diskret harmonisch in $\Omega$. Zu einer Ecke $\nu$ sei $\Teta_\nu\in W^h(\Omega)$ die zugehörige nodale (lineare) Basisfunktion. Dann gilt: 
+\[
+  \sum_{\nu\in\partial\Omega_i} \Teta_\nu(x) + \sum_{\varepsilon\subset\partial\Omega_i} \Teta_\varepsilon(x) =1 \quad \forall x\in \partial\Omega_i, i=1,\cdots,N
+\]
+und für $w^{(i)}\inW^h(\partial\Omega_i)=: W_i$:
+\[
+  w^{(i)}=\sum_{\nu\in\partial\Omega_i} I^h(\Teta_\nuw^{(i)})+\sum_{\varepsilon\subset\partial\Omega_i} I^h(\Teta_\varepsilon)w^{(i)})
+\],
+wobei $I^h$ der FE-Interpolationsoperator nach $W^h(\Omega_i)$ ist. 
+
+
+Wir benutzen hier und im Folgenden den Begriff der diskret harmonischen Fortsetzung: 
+Eine Funktion $u^{(i)}\in W^h(\partial\Omega_i)$ heißt \underlinne{diskret harmonisch}, wenn für $u^{(i)}=(u_I^{(i)},u_\Gamma^{(i)})^T$ gilt:
+\[
+  K_{II}^{(i)}u_I^{(i)}+K_{I\Gamma}^{(i)}u_\Gamma^{(i)} = 0 
+\]
