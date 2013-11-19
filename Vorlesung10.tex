@@ -44,4 +44,46 @@ Auf $V$ führen wir folgende Norm ein
   \end{align*}
 \end{proof}
 
-CHRISTOPHER
+
+
+Wir benötigen folgende Darstellung:
+\begin{enumerate}
+\item
+$\langle F\lambda,\lambda\rangle = \sup_{w\in \text{range}(S)} \frac{\langle \lambda, Bw \rangle }{|w|^2_S}$
+\item
+$\langle \hat M\lambda,\lambda\rangle = \sup_{w\in W,\, Bw \in V'} \frac{\langle \lambda, Bw \rangle }{|P_D w|^2_S}$
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}
+\item
+\begin{align*}
+\lambda \in V&=\{ \mu \in U : \, \langle \mu,Bz \rangle =0 \, \forall z \in \text{ker}(S) \} \\
+ \Rightarrow &  \, B^T\lambda \in\text{ range } (S) , \, S^+ =: S^{-1/2}S^{-1/2} \\
+\Rightarrow & \, S^{-1/2}B^T\lambda \text{ ist wohldefiniert}
+\end{align*}
+Dann gilt:
+\begin{align*}
+ \langle F\lambda, \lambda \rangle &= \langle S^+ B^T\lambda , B^T \lambda \rangle = \langle S^{-1/2} B^T\lambda , S^{-1/2}B^T \lambda \rangle \\
+&= || S^{-1/2} B^T \lambda||^2_{l_2} \\
+&= \sup_{v \in \text{range} (S)} \frac{\langle S^{-1/2}B^T\lambda,v\rangle^2}{||v||^2_{l_2}} \quad \text{(Dualnorm)} \\
+&= \sup_{w \in \text{range} (S)} \frac{\langle B^T\lambda,w \rangle^2}{|w|^2_S} 
+\end{align*}
+\end{enumerate}
+\begin{align*}
+\langle \hat M \lambda , \lambda \rangle &= ||\lambda||^2_V = \sup_{\mu \in V'} \frac{\langle \lambda , \mu \rangle^2}{||\mu ||^2_{V'}} \\
+&= \sup_{\mu \in V'} \frac{\langle \lambda , \mu \rangle^2}{\langle {\hat M}^{-1} \mu, \mu \rangle} \\
+&= \sup_{w \in W,\, Bw \in V'}	 \frac{\langle \lambda , Bw \rangle^2}{|P_D w|^2_S}
+\end{align*}
+wobei wir benutzt haben:
+\[ \langle {\hat M}^{-1} \mu, \mu \rangle \underbrace{=}_{\mu =Bw} = \langle (BD^{-1}B^T)^{-1} B D^{-1} S \underbrace{D^{-1} B^T (B D^{-1} B^T)^{-1} B}_{=P_D w}w, Bw \rangle \]
+\end{proof}
+Wir benötigen folgende Abschätzung für $P_D$:
+\begin{lemma}(3.2.6)\\
+Sei $w \in \text{ range}(S)$, dann gilt:
+\[ |P_D w |^2_S \leq C(1+\text{log} \left( \frac{H}{h}\right))^2|w|^2_S \]
+Hierbei ist $C$ eine positive Konstante unabhängig von $H,h$ und $S$.
+\end{lemma}
+\begin{proof}
+später in der Vorlesung!
+\[ H_i := \text{diam} (\Omega_i),\,  h^{(i)}_j := \text{diam} T^{(i)}_j,\, h_i := \max_j h^{(i)}_j , \, \frac{H}{h} := \max_j \left( \frac{H_i}{h_i} \right) \]
+\end{proof}

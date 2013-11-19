@@ -1,4 +1,28 @@
-CHRISTOPHER
+\begin{lemma} (3.2.7) \\
+Sei $w \in \text{range}(S)$, dann gilt für das eindeutig bestimmte $z_w \in \text{ker}(S)$ aus Lemma 3.2.5 und für $Q:= {\hat M}^{-1}$
+\[ |P_Dz_w |_S^2 \leq C \left( 1 + \text{log}\big( \frac{H}{h}\big) \right)^2 |w|^2_S \]
+mit einer von $H,h$ und $\rho_i$ unabh. Konstanten $C>0$. 
+\end{lemma}
+\begin{proof}
+Sei $u\in W$ beliebig, dann:
+\begin{align*}
+|P_D u|^2_S &= \langle SD^{-1}B^T (BD^{-1}B^T )Bu,\, D^{-1}B^T (BD^{-1}B^T)^{-1}Bu \rangle \\
+		   &= \langle {\hat M}^{-1}Bu,\, Bu \rangle =||Bu||^2_Q
+\end{align*}
+Nach Lemma 3.2.5. gilt:\\
+Zu jedem $w \in \text{range}(S)$ ex. genau ein $z_w \inn \text{ker}(S)$, s.d. $B(w+z_w) \in V'$ und $|| Bz_w||_Q \leq ||Bw||_Q$.\\
+Also gilt:
+\begin{align*}
+|P_Dz_w|^2_S &= ||Bz_w||^2_Q \leq || Bw||^2_Q \\
+			&= |P_Dw|^2_S \leq C\left(1+ \text{log}\big( H/h\big) \right)^2|w|^2_S
+\end{align*}
+\end{proof}
+Wir können jetzt unseren Hauptsatz über die Konditionszahlabschätzung formulieren:
+\begin{satz}(3.2.8)\\
+Mit $Q:={\hat M}^{-1}$ gilt für das FETI-Verfahren:
+\[ \kappa(P{\hat M}^{-1}P^TF) \leq C(1+\text{log}(H/h))^2 \]
+$C>0$ unabh. von $H,h,\rho_i, \kappa =\frac{\lambda_{max}}{\lambda_{min}}$.
+\end{satz}
 
 \begin{proof}
   Es genügt folgendes zu zeigen: 
