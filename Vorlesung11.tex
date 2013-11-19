@@ -10,7 +10,7 @@ Sei $u\in W$ beliebig, dann:
 		   &= \langle {\hat M}^{-1}Bu,\, Bu \rangle =||Bu||^2_Q
 \end{align*}
 Nach Lemma 3.2.5. gilt:\\
-Zu jedem $w \in \text{range}(S)$ ex. genau ein $z_w \inn \text{ker}(S)$, s.d. $B(w+z_w) \in V'$ und $|| Bz_w||_Q \leq ||Bw||_Q$.\\
+Zu jedem $w \in \text{range}(S)$ existert genau ein $z_w \inn \text{ker}(S)$, s.d. $B(w+z_w) \in V'$ und $|| Bz_w||_Q \leq ||Bw||_Q$.\\
 Also gilt:
 \begin{align*}
 |P_Dz_w|^2_S &= ||Bz_w||^2_Q \leq || Bw||^2_Q \\
@@ -21,7 +21,7 @@ Wir können jetzt unseren Hauptsatz über die Konditionszahlabschätzung formuli
 \begin{satz}(3.2.8)\\
 Mit $Q:={\hat M}^{-1}$ gilt für das FETI-Verfahren:
 \[ \kappa(P{\hat M}^{-1}P^TF) \leq C(1+\text{log}(H/h))^2 \]
-$C>0$ unabh. von $H,h,\rho_i, \kappa =\frac{\lambda_{max}}{\lambda_{min}}$.
+$C>0$ unabhängig von $H,h,\rho_i, \kappa =\frac{\lambda_{max}}{\lambda_{min}}$.
 \end{satz}
 
 \begin{proof}
@@ -102,8 +102,7 @@ und für $w^{(i)}\in W^h(\partial\Omega_i)=: W_i$:
 \],
 wobei $I^h$ der FE-Interpolationsoperator nach $W^h(\Omega_i)$ ist. 
 
-
-Wir benutzen hier und im Folgenden den Begriff der diskret harmonischen Fortsetzung: 
+Wir benutzen hier und im Folgenden den Begriff der diskreten harmonischen Fortsetzung: 
 Eine Funktion $u^{(i)}\in W^h(\partial\Omega_i)$ heißt \underline{diskret harmonisch}, wenn für $u^{(i)}=(u_I^{(i)},u_\Gamma^{(i)})^T$ gilt:
 \[
   K_{II}^{(i)}u_I^{(i)}+K_{I\Gamma}^{(i)}u_\Gamma^{(i)} = 0 
