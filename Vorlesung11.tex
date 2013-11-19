@@ -71,22 +71,22 @@ Zunächst zerlegen wir das Interface
   \Gamma = \left( \bigcup_{i=1}^N \partial\Omega_i \right) \backslash \partial\Omega
 \]
 in Ecken $\nu$ und Kanten $\varepsilon$. Eine Kante ist dabei eine zusammenhängende Menge von Punkten, die alle zu genau zwei Teilgebieten gehören. Jede Kante ist eine offene Menge. Ecken sind Endpunkte von Kanten und gehören zu mehr als zwei Teilgebieten. Wir führen auf dem Interface eine Partition der Eins ein: 
-Sei $\varepsilon$ eine Kante, dann definieren wir $\Teta_{\varepsilon} \in W^h(\Omega)$ durch
+Sei $\varepsilon$ eine Kante, dann definieren wir $\theta_{\varepsilon} \in W^h(\Omega)$ durch
 \[
-  \Teta_{\varepsilon}(x):= 
+  \theta_{\varepsilon}(x):= 
   \begin{cases}
     1 &x\in \sum_h^n\\
     0 &x\in \Gamma_h\backslash\varepsilon_h
   \end{cases}
 \]
 
-und zusätzlich sei $\Teta_\varepsilon$ diskret harmonisch in $\Omega$. Zu einer Ecke $\nu$ sei $\Teta_\nu\in W^h(\Omega)$ die zugehörige nodale (lineare) Basisfunktion. Dann gilt: 
+und zusätzlich sei $\theta_\varepsilon$ diskret harmonisch in $\Omega$. Zu einer Ecke $\nu$ sei $\theta_\nu\in W^h(\Omega)$ die zugehörige nodale (lineare) Basisfunktion. Dann gilt: 
 \[
-  \sum_{\nu\in\partial\Omega_i} \Teta_\nu(x) + \sum_{\varepsilon\subset\partial\Omega_i} \Teta_\varepsilon(x) =1 \quad \forall x\in \partial\Omega_i, i=1,\cdots,N
+  \sum_{\nu\in\partial\Omega_i} \theta_\nu(x) + \sum_{\varepsilon\subset\partial\Omega_i} \theta_\varepsilon(x) =1 \quad \forall x\in \partial\Omega_i, i=1,\cdots,N
 \]
-und für $w^{(i)}\inW^h(\partial\Omega_i)=: W_i$:
+und für $w^{(i)}\in W^h(\partial\Omega_i)=: W_i$:
 \[
-  w^{(i)}=\sum_{\nu\in\partial\Omega_i} I^h(\Teta_\nuw^{(i)})+\sum_{\varepsilon\subset\partial\Omega_i} I^h(\Teta_\varepsilon)w^{(i)})
+  w^{(i)}=\sum_{\nu\in\partial\Omega_i} I^h(\theta_\nu w^{(i)})+\sum_{\varepsilon\subset\partial\Omega_i} I^h(\theta_\varepsilon)w^{(i)})
 \],
 wobei $I^h$ der FE-Interpolationsoperator nach $W^h(\Omega_i)$ ist. 
 
