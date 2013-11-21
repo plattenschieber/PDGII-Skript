@@ -102,8 +102,29 @@ und für $w^{(i)}\in W^h(\partial\Omega_i)=: W_i$:
 \],
 wobei $I^h$ der FE-Interpolationsoperator nach $W^h(\Omega_i)$ ist. 
 
-Wir benutzen hier und im Folgenden den Begriff der diskreten harmonischen Fortsetzung: 
-Eine Funktion $u^{(i)}\in W^h(\partial\Omega_i)$ heißt \underline{diskret harmonisch}, wenn für $u^{(i)}=(u_I^{(i)},u_\Gamma^{(i)})^T$ gilt:
-\[
-  K_{II}^{(i)}u_I^{(i)}+K_{I\Gamma}^{(i)}u_\Gamma^{(i)} = 0 
-\]
+Wir benutzen hier und im Folgenden den Begriff der diskreten harmonischen Fortsetzung
+
+\begin{definition}
+  Eine Funktion $u^{(i)}\in W^h(\partial\Omega_i)$ heißt \underline{diskret harmonisch}, wenn für $u^{(i)}=(u_I^{(i)},u_\Gamma^{(i)})^T$ gilt:
+  \[
+    K_{II}^{(i)}u_I^{(i)}+K_{I\Gamma}^{(i)}u_\Gamma^{(i)} = 0 
+  \]
+
+  \begin{align*}
+    u^{(i)}_{\text{harmonisch}} &= \H^{(i)}(u_{\Gamma}^{(i)})\\
+    K^{(i)}u_{\text{harmonisch}}^{(i)} &= 
+    \begin{pmatrix}
+      K_{II}^{(i)} & K_{I\Gamma}^{(i)}\\
+      K_{\Gamma I}^{(i)} & K_{\Gamma\Gamma}^{(i)}
+    \end{pmatrix}
+    \begin{pmatrix}
+      u_{\text{harmonisch},I}^{(i)}\\
+      u_{\text{harmonisch},\Gamma}^{(i)}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0\\
+      u_{\Gamma}^{(i)}
+    \end{pmatrix}
+  \end{align*}
+\end{definition}
