@@ -1,0 +1,72 @@
+Es ist leicht zu sehen, dass $u_{\text{harm}}^{(i)}=\mathcal{H}^{(i)}(u_{\Gamma}^{i})$ vollkommen bestimmt ist durch $u_{\Gamma}^{(i)}$, denn 
+\[
+  u_{\text{harm},I}^{(i)} = - (K_{II}^{(i)})^{-1} K_{I\Gamma}^{(i)}u_{\Gamma}^{(i)}
+\]
+
+Diskret harmonische Funktionen haben folgende Eigenschaft
+
+\begin{align*}
+  u^{(i)}=\mathcal{H}^{(i)}(u_{\Gamma}^{(i)}): |u^{(i)}|_{K^{(i)}}^2 &= \langle K^{(i)}u^{(i)},u^{(i)}\rangle
+  &= (u_I^{(i)^T}), u_{\Gamma}^{(i)^T} 
+  \begin{pmatrix}
+    K_{II}^{(i)} & K_{I\Gamma}^{(i)}\\
+    K_{\Gamma I}^{(i)} & K_{\Gamma,\Gamma}^{(i)}
+  \end{pmatrix}
+  \begin{pmatrix}
+    u_I^{(i)}\\
+    u_\Gamma^{(i)}
+  \end{pmatrix}\\
+  &= u_{I}^{(i)^T} K_{II}^{(i)}u_I^{(i)}+u_I^{(i)^T}K_{I\Gamma}^{(i)}u_\Gamma^{(i)} + u_\Gamma^{(i)^T} + u_\Gamma^{(i)^T}K_{\Gamma\Gamma}^{(i)}u_\Gamma^{(i)}\\
+  &\underset{(u_I^{(i)}=-K_{II}^{(i)}K_{I\Gamma}^{(i)}u_\Gamma^{(i)})}{=} %nur das gleichheitszeichen kein Umbruch
+  u_\Gamma^{(i)^T}K_{\Gamma I}^{(i)}(K_{II}^{(i)})^{-1}K_{II}^{(i)} (K_{II}^{(i)})^{-1} K_{I\Gamma}^{(i)}u_\Gamma^{(i)}
+  - 2u_\Gamma^{(i)^T} K_{\Gamma I}^{(i)} (K_{II}^{(i)})^{-1} K_{I\Gamma}^{(i)}u_\Gamma^{(i)} + u_\Gamma^{(i)^T}K_{\Gamma\Gamma}^{(i)}u_\Gamma^{(i)}\\
+  &= u_\Gamma^{(i)^T}S_{\Gamma\Gamma}u_\Gamma^{(i)}
+\end{align*}
+
+Also $|u^{(i)}|_{K^{(i)}}^2 = |u_\Gamma^{(i)}|_{S_{\Gamma\Gamma}^{(i)}}^2$ für $u^{(i)}$ diskret harmonisch.\\
+
+Da für unser Modellproblem gilt: $|u^{(i)}|_{K^{(i)}}^2=\rho_i |u^{(i)}|_{H^1(\Omega_i)}$
+
+CHRISTOPHER
+
+\begin{proof}
+  Da $\Omega_i$ freies Teilgebiet ist, also $\partial\Omega_i \cap \partial\Omega_D = \emptyset$, gilt 
+  \[
+    l_i(w^{(i)}):=h_i^d(w^{(i)},1^{(i)})_{l_2} = 0 \quad \forall w^{(i)}\in\range(K^{(i)}), 1^{(i)}=(1,1,\cdots,1)^T\\
+  \]
+  \begin{equation}
+    %\tag{(***)}
+    l_i(w^{(i)})= 0 \Leftrightarrow w^{(i)}\in\range(K^{(i)}) 
+    \label{}
+  \end{equation}
+  Sei nun $w^{(i)}\in W^h(\Omega_i)$, dann gilt
+  \begin{align*}
+    |l_i(w^{(i)})|^2 &\underset{C.S.}{\leq} h_i^d \langle w^{(i)},w^{(i)}\rangle_{l_2} h_i^d \langle 1^{(i)},1^{(i)}\rangle_{l_2}\\
+    &\underset{\text{NPDGL I}} C\norm{w^{(i)}}_{L^2(\Omega_i)}^2 \norm{1^{(i)}}_{L^2(\Omega_i)}^2\\
+    &= \int_{\Omega_i} (1^{(i)})^2 dx C \norm{w^{(i)}}_{L^2(\Omega_i)}^2 \leq CH_i^d \norm{w^{(i)}}_{L^2(\Omega_i)}^2\\
+    &\leq C H_i^{d+2} \left( |w^{(i)}|_{H^1(\Omega_i)}^2 + \frac{1}{H_i^2} \norm{w^{(i)}}_{L^2(\Omega_i)} \right)\\
+    &= C H_i^{d+2} \norm{w^{(i)}}_{H^1(\Omega_i)}^2 \Leftrightarrow |l_i(w^{(i)})| \leq CH_i^{\frac{d+2}{2}} \norm{w^{(i)}}_{H^1(\Omega_i)} \quad \forall w^{(i)}\in W^h(\Omega_i)
+  \end{align*}
+
+  Also: $l_i(\cdot): W^h(\Omega_i)\to\R$ ist ein stetiges, lineares Funktional auf dem Unterraum $W^h(\Omega_i)$ von $H^1(\Omega_i)$. Nach dem Satz von Hahn-Banach existert also eine stetige Fortsetzung auf $H^1(\Omega_i)$, die wir ohne Einschränkung auch mit $l_i(\cdot)$ bezeichnen. Mit $\nu=\text{const}$: 
+  \[
+    l_i(\nu)\underset{\text{Def.}}{=} h_i^d(\nu,1^{(i)})_{l_2} \underset{\nu=\text{const}}{=} h_i^d\nu(1^{(i)},1^{(i)})_{l_2} = 0 
+  \]
+  $\Leftrightarrow \nu=0$
+
+  Die Anwendung von Satz 3.19 (aus dem SS13) und ein Skalierungsargument ergeben für $w^{(i)}\in W^h(\Omega_i)$
+  \begin{align*}
+    \norm{w^{(i)}}_{H^1(\Omega_i)}^2 &= |w^{(i)}|_{H^1(\Omega_i)}^2 + \frac{1}{H_i^2} \norm{w^{(i)}}_{L^2(\Omega_i)}^2\\
+    &\undeset{Trafo}{=} \int_{\hat{\Omega}} (\nabla_{\tilde{x}}\hat{w}^{(i)})^2 H_i^{-2}H_i^d d\hat{x} + \frac{1}{H_i^2} \int_{\hat{\Omega}}(\hat{w}^{(i)})^2 H_i^d d\hat{x}\\
+    &= H_i^{d-2} (|\hat{w}^{(i)}|_{H^1(\hat{\Omega})}^2 + \norm{\hat{w}^{(i)}_{L^2(\hat{\Omega})}^2})\\
+    &\underset{Satz 3.19}{\leq} C_iH_i^{d-2} (|\hat{w}^{(i)}|_{H^1(\hat{\Omega})}^2 + (l_i(\hat{w}^{(i)}))^2)\\
+    &\underset{\hat{w}^{(i)}(\hat{x})=w^{(i)}(x)}{\leq} C(\|w^{(i)}|_{H^1(\Omega_i)}^2 + H_i^{d-2}(l_i(w^{(i)})^2))
+  \end{align*}.
+
+  Für $w^{(i)}\in\range(k^{(i)})$ gilt mit \eqref{**} $l_i(w^{(i)})=0$ und somit gilt: $\norm{w^{(i)}}_{H^1(\Omega_i)}^2 \leq C|w^{(i)}|_{H^1(\Omega_i)}^2 \quad \forall w^{(i)}\in\range(K^{(i)})$
+  \[
+    \Rightarrow \frac{1}{H_i^2} \norm{w^{(i)}}_{L^2(\Omega_i)}^2 \leq C |w^{(i)}|_{H^1(\Omega_i)}^2 \quad \forall w^{(i)}\in\range(K^{(i)})
+  \]
+  Also $\norm{w^{(i)}}_{L^2(\Omega_i)} \leq CH_i |w^{(i)}|_{H^1(\Omega_i)} \quad \forll w^{(i)}\in\range(K^{(i)})$
+
+\end{proof}
