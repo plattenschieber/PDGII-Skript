@@ -49,11 +49,12 @@ $g(x)=f(x)  \, \forall x \in F$
 \item
 $\norm{g}=\norm{f}$
 \end{itemize}
+\end{satz}
 \begin{proof}
 z.B. heuser, FA, 2. Auflage, Satz 3.6.2, S. 323
 \end{proof}
 \begin{lemma}
-Sei $w^{(i)} \in \range (K^{(i)})$ und $\omega_i \subset \R^{d} ein Teilgebiet mit $\partial \Omega_i \cap \partial \Omega_D = \phi$, d.h. frei oder 'floating' und $\text{diam}(\Omega_i)=H_i$. Dann existiert eine Konstante $C>0$, s.d. 
+Sei $w^{(i)} \in \range (K^{(i)})$ und $\omega_i \subset \R^{d}$ ein Teilgebiet mit $\partial \Omega_i \cap \partial \Omega_D = \phi$, d.h. frei oder 'floating' und $\text{diam}(\Omega_i)=H_i$. Dann existiert eine Konstante $C>0$, s.d. 
 \[\norm{w^{(i)}}^2_{L^2(\Omega_i)} \leq C H_i^2 | w^{(i)}|^2_{H^1(\Omega_i)} \]
 Die Konstante $C>0$ ist unabhängig von $H_i,h_i$ und $w^{(i)}$.
 \end{lemma}
@@ -86,16 +87,16 @@ Die Konstante $C>0$ ist unabhängig von $H_i,h_i$ und $w^{(i)}$.
   Die Anwendung von Satz 3.19 (aus dem SS13) und ein Skalierungsargument ergeben für $w^{(i)}\in W^h(\Omega_i)$
   \begin{align*}
     \norm{w^{(i)}}_{H^1(\Omega_i)}^2 &= |w^{(i)}|_{H^1(\Omega_i)}^2 + \frac{1}{H_i^2} \norm{w^{(i)}}_{L^2(\Omega_i)}^2\\
-    &\undeset{Trafo}{=} \int_{\hat{\Omega}} (\nabla_{\tilde{x}}\hat{w}^{(i)})^2 H_i^{-2}H_i^d d\hat{x} + \frac{1}{H_i^2} \int_{\hat{\Omega}}(\hat{w}^{(i)})^2 H_i^d d\hat{x}\\
-    &= H_i^{d-2} (|\hat{w}^{(i)}|_{H^1(\hat{\Omega})}^2 + \norm{\hat{w}^{(i)}_{L^2(\hat{\Omega})}^2})\\
-    &\underset{Satz 3.19}{\leq} C_iH_i^{d-2} (|\hat{w}^{(i)}|_{H^1(\hat{\Omega})}^2 + (l_i(\hat{w}^{(i)}))^2)\\
-    &\underset{\hat{w}^{(i)}(\hat{x})=w^{(i)}(x)}{\leq} C(\|w^{(i)}|_{H^1(\Omega_i)}^2 + H_i^{d-2}(l_i(w^{(i)})^2))
+    &\underset{\text{Trafo}}{=} \int_{\hat{\Omega}} (\nabla_{\tilde{x}}\hat{w}^{(i)})^2 H_i^{-2}H_i^d d\hat{x} + \frac{1}{H_i^2} \int_{\hat{\Omega}}(\hat{w}^{(i)})^2 H_i^d d\hat{x}\\
+    &= H_i^{d-2} (|\hat{w}^{(i)}|_{H^1(\hat{\Omega})}^2 + \norm{\hat{w}^{(i)}}_{L^2(\hat{\Omega})}^2)\\
+    &\underset{Satz 3.19}{\leq} C_iH_i^{d-2} (|{\hat{w}}^{(i)}|_{H^1(\hat{\Omega})}^2 + (l_i(\hat{w}^{(i)}))^2)\\
+    &\underset{{\hat{w}}^{(i)}(\hat{x})=w^{(i)}(x)}{\leq} C(\|w^{(i)}|_{H^1(\Omega_i)}^2 + H_i^{d-2}(l_i(w^{(i)})^2))
   \end{align*}.
 
   Für $w^{(i)}\in\range(k^{(i)})$ gilt mit \eqref{**} $l_i(w^{(i)})=0$ und somit gilt: $\norm{w^{(i)}}_{H^1(\Omega_i)}^2 \leq C|w^{(i)}|_{H^1(\Omega_i)}^2 \quad \forall w^{(i)}\in\range(K^{(i)})$
   \[
     \Rightarrow \frac{1}{H_i^2} \norm{w^{(i)}}_{L^2(\Omega_i)}^2 \leq C |w^{(i)}|_{H^1(\Omega_i)}^2 \quad \forall w^{(i)}\in\range(K^{(i)})
   \]
-  Also $\norm{w^{(i)}}_{L^2(\Omega_i)} \leq CH_i |w^{(i)}|_{H^1(\Omega_i)} \quad \forll w^{(i)}\in\range(K^{(i)})$
+  Also $\norm{w^{(i)}}_{L^2(\Omega_i)} \leq CH_i |w^{(i)}|_{H^1(\Omega_i)} \quad \forall w^{(i)}\in\range(K^{(i)})$
 
 \end{proof}
