@@ -27,7 +27,36 @@ Also $|u^{(i)}|_{K^{(i)}}^2 = |u_\Gamma^{(i)}|_{S_{\Gamma\Gamma}^{(i)}}^2$ für 
 
 Da für unser Modellproblem gilt: $|u^{(i)}|_{K^{(i)}}^2=\rho_i |u^{(i)}|_{H^1(\Omega_i)}$
 
-CHRISTOPHER
+Für $u^{(i)}_\Gamma \in W_i\, (=W^h(\partial \Omega_i))$ gilt:
+\[ |u_\Gamma^{(i)}|^2_{S^{(i)}_{\Gamma \Gamma}} = \rho_i |\mathcal{H}^{(i)}(u^{(i)}_\Gamma )|^2_{H^1(\Omega_i)} \]
+Zunächst zur Erinnerung: 
+\begin{satz}(Satz 3.19, Num. p. Dgl. I SS2013) \\
+Sei $\Omega \subset \mathbb{R}^d\text{ lipschitz },\, k\in \mathbb{N},\, l_i : H^k(\Omega) \to \R ,\, i=1,\dots l $ seien lineare und stetige Funktionale mit der Eigenschaft:\\
+Für alle Polynome vom Grad $\leq k-1$ gilt
+\[ \sum_{i=1}^l l_i(v)=0 \, \Rightarrow \, v=0 \]
+Dann existiert eine Konstante $C>0$, so dass 
+\[ C \norm{u}^2_{H^k(\Omega)} \leq |u|^2_{H^k(\Omega)} + \sum_{i=1}^l |l_i (u)|^2 \, \forall u \in H^k(\Omega) \]
+\end{satz}
+\begin{proof}
+Mit dem Rellichschen Auswahlsatz.
+\end{proof}
+
+\begin{satz}(3.2.9)(Hahn-Banach für normierte Räume) \\
+Zu einem stetigen Funktional $f$ auf dem Unterraum $F$ des normierten Raumes $E$ gibt es immer ein stetiges Funtional $g$ auf dem Gesamtraum $E$ mit
+\begin{itemize}
+\item
+$g(x)=f(x)  \, \forall x \in F$
+\item
+$\norm{g}=\norm{f}$
+\end{itemize}
+\begin{proof}
+z.B. heuser, FA, 2. Auflage, Satz 3.6.2, S. 323
+\end{proof}
+\begin{lemma}
+Sei $w^{(i)} \in \range (K^{(i)})$ und $\omega_i \subset \R^{d} ein Teilgebiet mit $\partial \Omega_i \cap \partial \Omega_D = \phi$, d.h. frei oder 'floating' und $\text{diam}(\Omega_i)=H_i$. Dann existiert eine Konstante $C>0$, s.d. 
+\[\norm{w^{(i)}}^2_{L^2(\Omega_i)} \leq C H_i^2 | w^{(i)}|^2_{H^1(\Omega_i)} \]
+Die Konstante $C>0$ ist unabhängig von $H_i,h_i$ und $w^{(i)}$.
+\end{lemma}
 
 \begin{proof}
   Da $\Omega_i$ freies Teilgebiet ist, also $\partial\Omega_i \cap \partial\Omega_D = \emptyset$, gilt 

@@ -30,27 +30,25 @@ $C>0$ unabhängig von $H,h,\rho_i, \kappa =\frac{\lambda_{max}}{\lambda_{min}}$.
     \langle \hat{M}\lambda,\lambda\rangle &\underset{*}{\leq} \langle F\lambda,\lambda\rangle\\
     &\leq C(1+\log \frac{H}{h})^2 \langle \hat{M}\lambda,\lambda\rangle \quad \forall \lambda\in V
   \end{align*}
-  \[
-    P^TF\lambda=\mu I\hat{M}\lambda, \quad 
-    \mu_{max} = \max_{\lambda\in V} \frac{\langle F\lambda,\lambda\rangle}{\langle\hat{M}\lambda,\lambda\rangle}
-    \lambda_{min}(P\hat{M}^{-1}P^TF) \geq 1
-    \lambda_{max}(P\hat{M}^{-1}P^F) \leq C(1+\log \frac{H}{h})^2
-  \]
-
+  \begin{align*}
+    P^TF\lambda&=\mu P \hat{M}\lambda \\
+    \mu_{max} &= \max_{\lambda\in V} \frac{\langle F\lambda,\lambda\rangle}{\langle\hat{M}\lambda,\lambda\rangle} \\
+    \lambda_{min}(P\hat{M}^{-1}P^TF) &\geq 1 \quad    \lambda_{max}(P\hat{M}^{-1}P^F) \leq C(1+\log \frac{H}{h})^2
+  \end{align*}
   Zur Erinnerung: Sei $\lambda\in V$:
   \begin{enumerate}
       \item
-        \[
+        $
           \langle F\lambda,\lambda\rangle = \sup_{w\in\range(S)} \frac{\langle\lambda,Bw\rangle^2}{|w|_S^2}
-        \]
+        $
       \item
-        \[
-          \langle\hat{M}\lambda,\lambda\rangle = \sup_{\lambda\in V'} \frac{\langle\lambda,\mu\rangle^2}{\norm{\mu}_{V'}^2}
-        \]
+        $
+          \langle\hat{M}\lambda,\lambda\rangle = \sup_{\mu \in V'} \frac{\langle\lambda,\mu\rangle^2}{\norm{\mu}_{V'}^2}
+        $
       \item 
-        \[
+        $
           \norm{\mu}_{V'}^2 = \langle\hat{M}^{-1}\mu,\mu\rangle
-        \]
+        $
   \end{enumerate}
 
   Untere Schranke (*): 
@@ -58,9 +56,22 @@ $C>0$ unabhängig von $H,h,\rho_i, \kappa =\frac{\lambda_{max}}{\lambda_{min}}$.
 
   Dann gilt: 
   \begin{enumerate}
-    \item $\langle S\tilde{w},\tilde{w}\rangle = \langle S\tilde{w}^{\perp},\tilde{w}^{\perp}$
+    \item $\langle S\tilde{w},\tilde{w}\rangle = \langle S\tilde{w}^{\perp},\tilde{w}^{\perp} \rangle$
     \item $\langle\lambda,B\tilde{w}\rangle = \langle\lambda,B\tilde{w}^{\perp} \quad \forall \lambda\in V = \left\{ \nu\in U: \langle\nu,Bz\rangle =0 \forall z\in\ker(S) \right\}$
   \end{enumerate}
+
+Für $\lambda \in V$ bel. folgt:
+\begin{align*}
+\langle F\lambda , \lambda \rangle &= \sup_{w \in \range (S)} \frac{\langle \lambda, Bw \rangle^2}{|w|^2_S}  \geq \frac{\langle \lambda, B\tilde{w}^{\perp} \rangle^2 }{|w|^2_S} \\
+&\overset{=}{1),2)}  \frac{\langle \lambda, B\tilde{w} \rangle^2 }{|w|^2_S} \overset{=}{\tilde w=P_D\tilde w}  \frac{\langle \lambda, B\tilde{w} \rangle^2 }{|P_D w|^2_S} \\
+& =  \frac{\langle \lambda,\mu \rangle^2 }{\norm{DB^{-1}(BDB^T)\mu}^2} =  \frac{\langle \lambda, \mu \rangle^2 }{\langle {\hat M}^{-1} \mu, \mu \rangle} \\
+&= \frac{\langle \lambda , \mu \rangle^2 }{\norm{\mu}^2_V}
+\end{align*}
+Da $\mu \in V'$ bel. gewählt war, folgt
+\[\langle F\lambda, \lambda \rangle \geq \langle {\hat M}^{-1} \lambda ,\lambda \rangle \, \forall \lambda \in V \]
+mit $\langle \hat M \lambda , \lambda \rangle = \sup_{\mu \in V'} \frac{\langle \lambda, \mu \rangle }{\norm{\mu}^2_V}$.\\
+
+
 
   Obere Schranke (**):
 Sei $w\in\range(S)$ beliebig, aber fest. Nach Lemma 3.2.5. $\exists! z_w\in\ker(S)$, so dass $B(w+z_w)\in V'$
