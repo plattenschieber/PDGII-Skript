@@ -1,7 +1,7 @@
 \begin{proof}(zu Lemma 3.2.6)\\
 \underline{zu zeigen:} \[ w \in \range (S) \, \Rightarrow \, |P_Dw|^2_S \leq C(1+ \log (H/h))^2|w|^2_S \]
 Sei $w \in \range (S)$, dann $w=(w^{(i)})_{i=1,\dots,N} \, \Rightarrow w^{(i)}\in \range (S)$:\\
-Sei $v := P_Dw = (v^{(i)})_{i=1,\dots,N}$. Also : \[v^{(i)}= (P_Dw)^{(i)\]
+Sei $v := P_Dw = (v^{(i)})_{i=1,\dots,N}$. Also : \[v^{(i)}= (P_Dw)^{(i)}\]
 Dann gilt : 
 \begin{align*}
 |P_Dw|^2_S &= \sum_{i=1}^N |(P_Dw)^{(i)}|^2_{S^{(i)}} = \sum_{i=1}^N |v^{(i)}|^2_{S^{(i)}} \\
@@ -20,7 +20,7 @@ v^{(i)} &= (P_Dw(x))^{(i)} = \sum_{j \in \mathcal{N}_x} \rho_j \mu^{\dagger}_j (
 \end{aligned} \]
 (Dies folgt aus Lemmata 3.2.2 und 3.2.3)\\
 Hierbei ist:
-\[ mu^{\dagger}_j := \left\{ \begin{aligned} \mu^{-1}_j (x) &: \mu_j(x) \neq 0 \\ 0 &: \text{sonst} \end{aligned} \right, \quad \mu_j := \left\{ \begin{aligned} \sum_{j \in \mathcal{N}_x} \rho_j(x) &: x \in \partial\Omega_{i,h} \cap \partial \Omega_{j,h} \\ \rho_i (x) &: x \in \partial \Omega_{i,h}\cap (\partial\Omega_h\setminus \Gamma_h ) \\ 0 &: \text{ sonst} \end{aligned} \right, 
+\[ mu^{\dagger}_j := \left\{ \begin{aligned} \mu^{-1}_j (x) &: \mu_j(x) \neq 0 \\ 0 &: \text{sonst} \end{aligned} \right\} \quad \mu_j := \left\{ \begin{aligned} \sum_{j \in \mathcal{N}_x} \rho_j(x) &: x \in \partial\Omega_{i,h} \cap \partial \Omega_{j,h} \\ \rho_i (x) &: x \in \partial \Omega_{i,h}\cap (\partial\Omega_h\setminus \Gamma_h ) \\ 0 &: \text{ sonst} \end{aligned} \right\}
 \]
 Wir haben angewendet, dass $\sum_{i=1}^N \rho_i(x)\mu^{\dagger}_i(x) =1\, \forall \, x\in \Gamma_h \cup \partial\Omega_h$. \\
 Es gilt: $\delta^{dagger}_i =\rho_i(x)\mu^{\dagger}_i(x) $ \\
@@ -55,7 +55,6 @@ Part. der Eins $\{\Theta_{\epsilon^{1,j}},\dots , \Theta_{\epsilon^{?,j}}\}\, \R
     \[
       |\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^{(j)}))|_{H^1(\Omega_i)}^2 \leq |E_{ji}(\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^{(j)})))|_{H^1(\Omega_i)}^2
       \underset{Fortsetzungssatz}{\leq} C|\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^{(j)}))|_{H^1(\Omega_j)}^2 \underset{Kantenlemma}{leq} C(1+\log(\frac{H_j}{h_j})^2) \left\{ |\mathcal{H}(w^{(j)})|_{H^1(\Omega_i)}^2 + \frac{1}{H_j^2} \norm{\mathcal{H}(w^{(j)})}_{L^2(\Omega_j)}^2\right\}
-
     \]
 
     Benutzen wir nun Lemma 3.2.11 und $w^{(i)}\in range(S^{(i)}), w^{(j)}\in \range(S^{(j)})$, so erhalten wir:
