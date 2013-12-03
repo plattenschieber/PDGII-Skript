@@ -1,0 +1,36 @@
+CHRISTOPHER
+
+\begin{enumerate}
+  \item[1) Katenbeiträge:] Für jede Kante $\varepsilon^{ij}$ gilt mit $(*')$ und $\delta_j^+(x)$ konstant auf $\varepsilon^{ij}$
+    \[
+      I^h(\theta_{\varepsilon^{ij}} \nu^{(i)} = I^h(\theta_{\varepsilon^{ij}} \delta_j^+(w^{(i)}-w^{(j)}))
+    \]
+    Wir wollen nun folgende Abschätzung beweisen:
+    \begin{align*}
+      \rho_i|\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}\delta_j^+(w^{(i)}-w^{(j)})))|^2_{H^1(\Omega_i)}
+      &\leq C(1+\log(\frac{H_i}{h_i}))^2 \rho_i \left\{ |\mathcal{H}(w^{(i)})|^2_{H^1(\Omega_i)} + \frac{1}{H_i^2} \norm{\mathcal{H} (w^{(i)})}_{L62(\Omega_i)} \right\}  + 
+      C(1+\log(\frac{H_j}{h_j}))^2 \rho_j \left\{ |\mathcal{H}(w^{(j)})|^2_{H^1(\Omega_i)} + \frac{1}{H_j^2} TAFEL \right\}
+      \delta_i |\mathcal{H}(I^h(\theta_{\varepsilon^{ij}} \nu^{(i)}))|_{H^1(\Omega_i)}^2 
+      = \delta_i |\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}\delta_j^+(w^{(i)}-w^{(j)})))|_{H^{1(\Omega_i)}}^2
+      &\underset{\delta_j^+ konst auf \varepsilon^{ij}, Lemma 3.2.13}{\leq} \min(\delta_i,\delta_j) |\mathcal{H} (I^h(\theta_{\varepsilon^{ij}}(w^{(i)}-w^{(j)})))|_{H^{1}(\Omega_i)}^2
+      &\underset{Dreiecks-Ungl.}{\leq} 2 \min(\delta_i,\delta_j) \left( \underbrace{|{\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^(i)))}|_{H^1(\Omega_i)}^2}_{=(I)}
+      + \underbrace{|{\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^{(j)}))}|_{H^1(\Omega_i)}^2}_{=(II)} \right)
+    \end{align*}
+    Zu (I): 
+    \[
+      |\mathcal{H} (I^h(\theta_{_\varepsilon^{ij}})w^{(i)})|_{H^1(\Omega_i)}^2 \underset{Lemma 3.2.1.2}{\leq} C(1+\log(\frac{H_i}{h_i}))^2 
+      \left\{ |\mathcal{H}(w^{(i)})|_{H^1(\Omega_i)}^2 + \frac{1}{H_i^2} \norm{\mathcal{H}(w^{(i)})}_{L^2(\Omega_i)}^2 \right\}
+    \]
+    Zu (II): 
+    \[
+      |\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^{(j)}))|_{H^1(\Omega_i)}^2 \leq |E_{ji}(\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^{(j)})))|_{H^1(\Omega_i)}^2
+      \underset{Fortsetzungssatz}{\leq} C|\mathcal{H}(I^h(\theta_{\varepsilon^{ij}}w^{(j)}))|_{H^1(\Omega_j)}^2 \underset{Kantenlemma}{leq} C(1+\log(\frac{H_j}{h_j})^2) \left\{ |\mathcal{H}(w^{(j)})|_{H^1(\Omega_i)}^2 + \frac{1}{H_j^2} \norm{\mathcal{H}(w^{(j)})}_{L^2(\Omega_j)}^2\right\}
+
+    \]
+
+    Benutzen wir nun Lemma 3.2.11 und $w^{(i)}\in range(S^{(i)}), w^{(j)}\in \range(S^{(j)})$, so erhalten wir:
+    \[
+      \delta_i |\mathcal{H}(I^h(\theta_{\varepsilon^{ij}})\nu^{(i)})|_{H^!(\Omega_i)}^2
+      \leq C(1+\log(/\frac{H_i}{h_i}))^2 |\mathcal{H}(w^{(i)})|_{H^1(\Omega_i)}^2 + C(1+\log(\frac{H_j}{h_j}))^2 |\mathcal{H}(w^{(j)})|_{H^1(\Omega_i)}^2
+    \]
+\end{enumerate}
