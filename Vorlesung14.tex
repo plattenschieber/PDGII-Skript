@@ -1,3 +1,34 @@
+\begin{proof}(zu Lemma 3.2.6)\\
+\underline{zu zeigen:} \[ w \in \range (S) \, \Rightarrow \, |P_Dw|^2_S \leq C(1+ \log (H/h))^2|w|^2_S \]
+Sei $w \in \range (S)$, dann $w=(w^{(i)})_{i=1,\dots,N} \, \Rightarrow w^{(i)}\in \range (S)$:\\
+Sei $v := P_Dw = (v^{(i)})_{i=1,\dots,N}$. Also : \[v^{(i)}= (P_Dw)^{(i)\]
+Dann gilt : 
+\begin{align*}
+|P_Dw|^2_S &= \sum_{i=1}^N |(P_Dw)^{(i)}|^2_{S^{(i)}} = \sum_{i=1}^N |v^{(i)}|^2_{S^{(i)}} \\
+&= \sum_{i=1}^N |\mathcal{H} (v^{(i)})|^2_{K^{(i)}} \underset{=}{\text{Modellproblem}} \sum_i\rho_i |\mathcal{H} (v^{(i)})|^2_{H^1(\Omega_i)}
+\end{align*}
+\underline{Analog:}
+\[|w|^2_S = \sum_{i=1}^N |w^{(i)}|^2_{S^{(i)}} = \sum_{i=1}^N \rho_i |\mathcal{H} (w^{(i)})|^2_{H^1(\Omega_i)} \]
+Um die Abschätzung 
+\[ |P_Dw|^2_S \leq C(1+\log (H/h))^2 |w|^2_S \]
+zu beweisen, genügt es offenbar
+\[ \boxed{\rho_i |\mathcal{H} (v^{(i)})|^2_{H^1(\Omega_i)} \leq C(1+\log(H/h))^2 \sum_{j \in I_i} \rho_j |\mathcal{H} (w^{(j)})|^2_{H^1(\Omega_j)}}\]
+zu zeigen, wobei $I_i := \left\{ k\in \{1,\dots,N\}: \, \bar{\Omega}_i \cap \bar{\Omega}_k \neq \phi \right\}$.\\
+\[(*) \, \begin{aligned}
+v^{(i)} &= (P_Dw(x))^{(i)} = \sum_{j \in \mathcal{N}_x} \rho_j \mu^{\dagger}_j (w^{(i)}(x) - w^{(j)}(x)) \\
+&= w^{(i)}(x) - \sum_{j \in \mathcal{N}_x}\rho_j \mu^{\dagger}_j w^{(j)}(x) = \left( (w-E_Dw)(x) \right)^{(i)}
+\end{aligned} \]
+(Dies folgt aus Lemmata 3.2.2 und 3.2.3)\\
+Hierbei ist:
+\[ mu^{\dagger}_j := \left\{ \begin{aligned} \mu^{-1}_j (x) &: \mu_j(x) \neq 0 \\ 0 &: \text{sonst} \end{aligned} \right, \quad \mu_j := \left\{ \begin{aligned} \sum_{j \in \mathcal{N}_x} \rho_j(x) &: x \in \partial\Omega_{i,h} \cap \partial \Omega_{j,h} \\ \rho_i (x) &: x \in \partial \Omega_{i,h}\cap (\partial\Omega_h\setminus \Gamma_h ) \\ 0 &: \text{ sonst} \end{aligned} \right, 
+\]
+Wir haben angewendet, dass $\sum_{i=1}^N \rho_i(x)\mu^{\dagger}_i(x) =1\, \forall \, x\in \Gamma_h \cup \partial\Omega_h$. \\
+Es gilt: $\delta^{dagger}_i =\rho_i(x)\mu^{\dagger}_i(x) $ \\
+(*) reduziert sich damit auf
+\[ (*') :\quad v^{(i)} = \sum_{j \in \mathcal{N}_x} \delta^{\dagger}_j(x) (w^{(i)}(x)-w^{(j)}(x)) \quad x\in \partial \Omega_{i,h} \]
+Part. der Eins $\{\Theta_{\epsilon^{1,j}},\dots , \Theta_{\epsilon^{?,j}}\}\, \Rightarrow  \, v^{(i)} = \sum_{\epsilon^{ij} \subset \partial\Omega_i} I^h (\Theta_{\epsilon^{ij}}v^{(i)})(x) + \sum_{\epsilon \in \partial\Omega_j} I^h (\Theta_{\epsilon^{ij}}v^{(i)})(x) $. 
+
+\end{proof}
 
 \begin{enumerate}
   \item[1) Katenbeiträge:] Für jede Kante $\varepsilon^{ij}$ gilt mit $(*')$ und $\delta_j^+(x)$ konstant auf $\varepsilon^{ij}$
@@ -33,34 +64,4 @@
       \leq C(1+\log(/\frac{H_i}{h_i}))^2 |\mathcal{H}(w^{(i)})|_{H^1(\Omega_i)}^2 + C(1+\log(\frac{H_j}{h_j}))^2 |\mathcal{H}(w^{(j)})|_{H^1(\Omega_i)}^2
     \]
 \end{enumerate}
-
-begin{proof}(zu Lemma 3.2.6)\\
-\underline{zu zeigen:} \[ w \in \range (S) \, \Rightarrow \, |P_Dw|^2_S \leq C(1+ \log (H/h))^2|w|^2_S \]
-Sei $w \in \range (S)$, dann $w=(w^{(i)})_{i=1,\dots,N} \, \Rightarrow w^{(i)}\in \range (S)$:\\
-Sei $v := P_Dw = (v^{(i)})_{i=1,\dots,N}$. Also : \[v^{(i)}= (P_Dw)^{(i)\]
-Dann gilt : 
-\begin{align*}
-|P_Dw|^2_S &= \sum_{i=1}^N |(P_Dw)^{(i)}|^2_{S^{(i)}} = \sum_{i=1}^N |v^{(i)}|^2_{S^{(i)}} \\
-&= \sum_{i=1}^N |\mathcal{H} (v^{(i)})|^2_{K^{(i)}} \underset{=}{\text{Modellproblem}} \sum_i\rho_i |\mathcal{H} (v^{(i)})|^2_{H^1(\Omega_i)}
-\end{align*}
-\underline{Analog:}
-\[|w|^2_S = \sum_{i=1}^N |w^{(i)}|^2_{S^{(i)}} = \sum_{i=1}^N \rho_i |\mathcal{H} (w^{(i)})|^2_{H^1(\Omega_i)} \]
-Um die Abschätzung 
-\[ |P_Dw|^2_S \leq C(1+\log (H/h))^2 |w|^2_S \]
-zu beweisen, genügt es offenbar
-\[ \boxed{\rho_i |\mathcal{H} (v^{(i)})|^2_{H^1(\Omega_i)} \leq C(1+\log(H/h))^2 \sum_{j \in I_i} \rho_j |\mathcal{H} (w^{(j)})|^2_{H^1(\Omega_j)}}\]
-zu zeigen, wobei $I_i := \left\{ k\in \{1,\dots,N\}: \, \bar{\Omega}_i \cap \bar{\Omega}_k \neq \phi \right\}$.\\
-\[(*) \, \begin{aligned}
-v^{(i)} &= (P_Dw(x))^{(i)} = \sum_{j \in \mathcal{N}_x} \rho_j \mu^{\dagger}_j (w^{(i)}(x) - w^{(j)}(x)) \\
-&= w^{(i)}(x) - \sum_{j \in \mathcal{N}_x}\rho_j \mu^{\dagger}_j w^{(j)}(x) = \left( (w-E_Dw)(x) \right)^{(i)}
-\end{aligned} \]
-(Dies folgt aus Lemmata 3.2.2 und 3.2.3)\\
-Hierbei ist:
-\[ mu^{\dagger}_j := \left\{ \begin{aligned} \mu^{-1}_j (x) &: \mu_j(x) \neq 0 \\ 0 &: \text{sonst} \end{aligned} \right, \quad \mu_j := \left\{ \begin{aligned} \sum_{j \in \mathcal{N}_x} \rho_j(x) &: x \in \partial\Omega_{i,h} \cap \partial \Omega_{j,h} \\ \rho_i (x) &: x \in \partial \Omega_{i,h}\cap (\partial\Omega_h\setminus \Gamma_h ) \\ 0 &: \text{ sonst} \end{aligned} \right, 
-\]
-Wir haben angewendet, dass $\sum_{i=1}^N \rho_i(x)\mu^{\dagger}_i(x) =1\, \forall \, x\in \Gamma_h \cup \partial\Omega_h$. \\
-Es gilt: $\delta^{dagger}_i =\rho_i(x)\mu^{\dagger}_i(x) $ \\
-(*) reduziert sich damit auf
-\[ (*') :\quad v^{(i)} = \sum_{j \in \mathcal{N}_x} \delta^{\dagger}_j(x) (w^{(i)}(x)-w^{(j)}(x)) \quad x\in \partial \Omega_{i,h} \]
-Part. der Eins $\{\Theta_{\epsilon^{1,j}},\dots , \Theta_{\epsilon^{?,j}}\}\, \Rightarrow  \, v^{(i)} = \sum_{\epsilon^{ij} \subset \partial\Omega_i} I^h (\Theta_{\epsilon^{ij}}v^{(i)})(x) + \sum_{\epsilon \in \partial\Omega_j} I^h (\Theta_{\epsilon^{ij}}v^{(i)})(x) $. 
 
